@@ -352,7 +352,7 @@ function init_gear_sets()
    sets.defense.MDT = sets.defense.PDT
    
    sets.idle = set_combine(sets.defense.PDT, {
-			,ring1="Sheltered Ring"
+			ring1="Sheltered Ring"
 			,ring1="Karieyh Ring +1"
    })
    

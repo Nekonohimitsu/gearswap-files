@@ -253,7 +253,7 @@ function init_gear_sets()
         head="Cath Palug Crown",
         body="Amalric Doublet +1",
         hands="Amalric Gages +1",
-        legs="Amalric Slops",
+        legs="Agwu's Slops",
         feet="Agwu's Pigaches",
         neck="Baetyl Pendant",
         ear2="Malignance Earring",

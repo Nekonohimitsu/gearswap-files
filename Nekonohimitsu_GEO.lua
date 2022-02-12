@@ -137,7 +137,7 @@ function init_gear_sets()
         main="Idris",
         sub="Chanter's Shield",
 		ammo="Dunna",
-        head="Bagua Galero +3",
+        head=vanyaHoodConserveMp,
         body="Vedic Coat",
         hands="Geomancy Mitaines +3",
 		legs="Vanya Slops",
@@ -381,8 +381,6 @@ function init_gear_sets()
         waist="Isa Belt" 
         })
 
-    sets.PetHP = {head="Bagua Galero +3"}
-
     sets.idle.Town = set_combine(sets.idle, {
         })
 
@@ -548,17 +546,6 @@ function customize_idle_set(idleSet)
     else
         enable('back')
     end
-    if pet.isvalid then
-		if pet.hpp > 73 then
-            if newLuopan == 1 then
-				equip(sets.PetHP)
-				disable('head')
-			end
-		elseif pet.hpp <= 73 then
-			enable('head')
-            newLuopan = 0
-		end
-	end
 
     return idleSet
 end
