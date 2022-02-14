@@ -76,8 +76,7 @@ function init_gear_sets()
 	-- For when casting with a matching Art (White Magic w/ Light Arts) and no Strategem
 	sets.GrimoireCasting = {
 		--head="Pedagogy Mortarboard +3",
-		--feet="Academic's Loafers +3",
-		ring1="Begrudging Ring"
+		--feet="Academic's Loafers +3"
 	}
 
     sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty,body="Crepuscular Cloak"})
