@@ -446,6 +446,7 @@ function init_gear_sets()
     sets.buff.Sublimation = {
 		--head="Academic's Mortarboard +3",
 		--body="Pedagogy Gown +3"
+		ear2="Savant's Earring"
 	}
 
     -- -- Defense sets
