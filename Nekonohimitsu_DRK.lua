@@ -60,7 +60,7 @@ function init_gear_sets()
 	
 	
 	sets.midcast['Endark II'] = {
-		head="Ignominy Burgonet +2",
+		head="Ignominy Burgeonet +2",
 		neck="Erra Pendant",
 		body="Carmine Scale Mail",
 		hands="Fallen's Finger Gauntlets +3",
@@ -90,7 +90,7 @@ function init_gear_sets()
 	
 	sets.midcast.Absorb = {
 		ammo="Pemphredo Tathlum",
-		head="Ignominy Burgonet +2",
+		head="Ignominy Burgeonet +2",
 		neck="Erra Pendant",
 		ear1="Crepuscular Earring",
 		ear2="Malignance Earring",

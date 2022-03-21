@@ -15,7 +15,7 @@ end
 function job_setup()
     state.Buff.Saboteur = buffactive.saboteur or false
     enfeebling_magic_skill = S{'Distract III', 'Frazzle III', 'Poison II', 'Poison', 'Poisonga'}	
-	pure_macc_spells = S{'Break', 'Silence', 'Sleep', 'Sleep II', 'Sleepga', 'Breakga'} 
+	pure_macc_spells = S{'Break', 'Silence', 'Sleep', 'Sleep II', 'Sleepga', 'Breakga', 'Bind'} 
 	no_cap_enh_skill = S{'Temper', 'Temper II', 'Enfire', 'Enblizzard',
 	'Enaero', 'Enstone', 'Enthunder', 'Enwater', 'Enfire II', 'Enblizzard II', 'Enaero II', 'Enstone II', 'Enthunder II', 'Enwater II'}
 	duration_only = S{'Dia', 'Dia II', 'Dia III', 'Bio', 'Bio II', 'Bio III'}
@@ -106,6 +106,8 @@ function init_gear_sets()
 	
 	--Duration only spells (Dia, Bio)
 	sets.midcast.DurationEnfeebles = {ring1="Kishar Ring", ear1="Snotra Earring", neck="Duelist's Torque +1", hands="Regal Cuffs", head="Vitiation Chapeau +3", waist="Obstinate Sash"}
+	
+	sets.midcast.Bind = set_combine(sets.midcast.IntEnfeebles, sets.midcast.DurationEnfeebles)
 	
 	--Used for spells where potency varies (Slow, Paralyze, Blind, Frazzle, etc)
 	sets.midcast.EffectMndEnfeebles = set_combine(sets.midcast.MndEnfeebles, {main="Daybreak", sub="Ammurapi Shield", 
@@ -237,18 +239,6 @@ function init_gear_sets()
 		waist="Carrier's Sash",
 		legs="Volte Brais",
 		feet="Volte Gaiters"}
-    
-    -- Resting sets
-    sets.resting = sets.idle
-	
-    sets.idle.Town = sets.idle
-    
-    sets.idle.Weak = sets.idle
-	
-    sets.idle.PDT = sets.idle
-
-    sets.idle.MDT = sets.idle
-    
     
     -- Defense sets
     sets.defense.PDT = set_combine(sets.idle, {head="Bunzi's Hat",

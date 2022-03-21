@@ -1,6 +1,7 @@
 include ('organizer-lib.lua')
 function init_gear_sets()
-	
+	gear.EnmRudiMantle = {name="Rudianos's Mantle", augments={"Enmity+10"}}
+	gear.FCRudiMantle = {name="Rudianos's Mantle", augments={'"Fast Cast"+10%'}}
 	--------------------------------------
     -- Defense sets
     --------------------------------------
@@ -55,7 +56,7 @@ function init_gear_sets()
 		hands="Sakpata's Gauntlets",
 		ring1="Gelatinous Ring +1",
 		ring2="Shadow Ring",
-		back=gear.rudiEnmity,
+		back=gear.EnmRudiMantle,
 		waist="Carrier's Sash",
 		legs="Sakpata's Cuisses",
 		feet="Sakpata's Leggings"

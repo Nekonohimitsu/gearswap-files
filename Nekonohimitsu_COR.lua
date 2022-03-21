@@ -141,7 +141,7 @@ function init_gear_sets()
 		ring2="Fenrir Ring +1",
 		back=camuMabWsd,
 		waist="Eschan Stone",
-		legs=stpMabTights,
+		legs="Herculean Trousers",
 		feet="Lanun Bottes +3"
 	}
 	

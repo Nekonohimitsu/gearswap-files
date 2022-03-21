@@ -386,8 +386,7 @@ function init_gear_sets()
 		waist="Sacro Cord",
 		--waist="Acuity Belt +1",
 		legs="Agwu's Slops",
-		--feet="Amalric Nails +1",
-		feet="Agwu's Pigaches"
+		feet="Amalric Nails +1"
 	}
 	
 	sets.midcast.Noctohelix = set_combine(sets.midcast.Helix, {
