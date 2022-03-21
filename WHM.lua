@@ -86,26 +86,39 @@ function init_gear_sets()
         body="Ebers Bliaut +1",hands="Theophany Mitts +3", ring2="Lebeche Ring",
         back=alaunMaccFC, legs="Ebers Pantaloons +1", feet="Kaykaus boots +1"
 		--ring1="Naji's Loop" (drop Mendicant's Earring)
-		})
+	})
 
     sets.midcast.Cure = set_combine(sets.midcast.CureSolace, {body="Theophany Bliaut +3"})
     sets.midcast.Curaga = sets.midcast.Cure
 	
-	sets.midcast.Cure.Weather = set_combine(sets.midcast.Cure, {
+	-- Weather Sets (gets equipped after the Cure set, so no set combine)
+	sets.midcast.Cure.Weather = {
 		main="Chatoyant Staff",
 		sub="Clerisy Strap",
 		waist="Hachirin-no-obi",
 		back="Twilight Cape"
-	})
+	}
 	
 	sets.midcast.Curaga.Weather = sets.midcast.Cure.Weather
 	
-	sets.midcast.CureSolace.Weather = set_combine(sets.midcast.CureSolace, {
+	sets.midcast.CureSolace.Weather = {
 		main="Chatoyant Staff",
 		sub="Clerisy Strap",
 		waist="Hachirin-no-obi",
 		--ear1="Mendicant's Earring" (When Naji's Loop in base)
-	})
+	}
+	
+	-- DT Sets
+	
+	sets.midcast.Cure.DT = {
+		ammo="Staunch Tathlum +1",
+		ear1="Odnowa Earring +1",
+		ring1="Defending Ring",
+		neck="Loricate Torque +1",
+		--waist="Acerbic Sash",
+	}
+	
+	-- Status Removal Sets
 	
     sets.midcast.StatusRemoval = set_combine(sets.midcast.FastRecast, {main="Yagrush", sub="Chanter's Shield"})
 
@@ -289,7 +302,11 @@ function job_get_spell_map(spell, default_spell_map)
 end
 
 function job_post_midcast(spell, action, spellMap, eventArgs) 
-	if (spell.element == world.day_element or spell.element == world.weather_element) then 
+	if (state.IdleMode.value == 'DT') then
+		equip(sets.midcast.Cure.DT)
+	end
+	
+	if (is_matching_day_weather(spell)) then 
 		if spellMap == 'Cure' then
 			equip(sets.midcast.Cure.Weather)
 		elseif spellMap == 'CureSolace' then
@@ -298,10 +315,22 @@ function job_post_midcast(spell, action, spellMap, eventArgs)
 			equip(sets.midcast.Curaga.Weather)
 		end
 	end
+	
     -- Apply Divine Caress boosting items as highest priority over other gear, if applicable.
     if spellMap == 'StatusRemoval' and buffactive['Divine Caress'] then
         equip(sets.buff['Divine Caress'])
     end
+end
+
+function is_matching_day_weather(spell)
+	if spell.element == world.weather_element then
+		return true
+	elseif spell.element == world.day_element then
+		if elements.weak_to[spell.element] == world.weather_element then
+			return false
+		end
+	end
+	return false
 end
 
 function customize_idle_set(idleSet)
