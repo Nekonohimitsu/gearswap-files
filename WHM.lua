@@ -110,12 +110,10 @@ function init_gear_sets()
 	
 	-- DT Sets
 	
-	sets.midcast.Cure.DT = {
+	sets.midcast.DT = {
 		ammo="Staunch Tathlum +1",
 		ear1="Odnowa Earring +1",
-		ring1="Defending Ring",
-		neck="Loricate Torque +1",
-		--waist="Acerbic Sash",
+		ring1="Defending Ring"
 	}
 	
 	-- Status Removal Sets
@@ -133,6 +131,12 @@ function init_gear_sets()
 		sub="Chanter's Shield"})
 	
 	sets.midcast.Erase = set_combine(sets.midcast.StatusRemoval, {neck="Cleric's Torque"})
+	
+	sets.midcast.Erase.DT = set_combine(sets.midcast.Erase, {
+		ammo="Staunch Tathlum +1",
+		ear1="Odnowa Earring +1",
+		ring1="Defending Ring"
+	})
 
 	sets.midcast.EnhancingDuration = set_combine(sets.midcast.ConserveMP, {main="Gada",
 		sub="Ammurapi Shield", head="Telchine Cap", body="Telchine Chasuble",
@@ -278,7 +282,9 @@ end
 function job_get_spell_map(spell, default_spell_map)
 	if spell.action_type == 'Magic' then
 		if spell.skill == 'Enhancing Magic' then
-			if not potencyBasedEnancing:contains(spell.english) then
+			if default_spell_map == 'Regen' then
+				return default_spell_map
+			elseif not potencyBasedEnancing:contains(spell.english) then
 				return 'EnhancingDuration'
 			elseif not buffactive['Light Arts'] then
 				if default_spell_map == 'BarElement' then
@@ -303,7 +309,11 @@ end
 
 function job_post_midcast(spell, action, spellMap, eventArgs) 
 	if (state.IdleMode.value == 'DT') then
-		equip(sets.midcast.Cure.DT)
+		if (spell.name == 'Erase') then
+			equip(sets.midcast.Erase.DT)
+		else
+			equip(sets.midcast.DT)
+		end
 	end
 	
 	if (is_matching_day_weather(spell)) then 

@@ -45,8 +45,8 @@ function init_gear_sets()
 
     -- Precast sets to enhance JAs
 
-    -- sets.precast.JA['Tabula Rasa'] = {legs="Pedagogy Pants +3"}
-	-- sets.precast.JA['Enlightenment'] = {body="Pedagogy Gown +3"}
+     sets.precast.JA['Tabula Rasa'] = {legs="Pedagogy Pants +3"}
+	 sets.precast.JA['Enlightenment'] = {body="Pedagogy Gown +3"}
 
     -- Fast cast sets for spells
 
@@ -61,8 +61,7 @@ function init_gear_sets()
 		ear2="Malignance Earring", -- 4
 		--"Pinga Tunic +1", -- 15
 		body="Zendik Robe", -- 13
-		--hands="Academic's Bracers +3", -- 8
-		hands="Volte Gloves", -- 6
+		hands="Academic's Bracers +2", -- 8
 		ring1="Lebeche Ring",
 		ring2="Kishar Ring", -- 4
 		back="Perimede Cape",
@@ -76,7 +75,7 @@ function init_gear_sets()
 	-- For when casting with a matching Art (White Magic w/ Light Arts) and no Strategem
 	sets.GrimoireCasting = {
 		--head="Pedagogy Mortarboard +3",
-		--feet="Academic's Loafers +3"
+		feet="Academic's Loafers +2"
 	}
 
     sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty,body="Crepuscular Cloak"})
@@ -100,10 +99,10 @@ function init_gear_sets()
 		ear1="Calamitous Earring",
 		ear2="Gifted Earring",
 		body="Vedic Coat",
-		--hands="Academic's Bracers +3",
-		--ring1="Mephitas's Ring +1",
+		hands="Academic's Bracers +2",
+		ring1="Mephitas's Ring +1",
 		back="Fi Follet Cape +1",
-		--waist="Shinjutsu-No-Obi +1",
+		waist="Shinjutsu-No-Obi +1",
 		legs="Vanya Slops",
 		feet="Kaykaus Boots +1"
 	}
@@ -116,8 +115,7 @@ function init_gear_sets()
 		head="Kaykaus Mitra +1",
 		--body="Kaykaus Bliaut +1",
 		body="Kaykaus Bliaut",
-		--hands="Pedagogy Bracers +3",
-		hands="Mallquis Cuffs +2",
+		hands="Pedagogy Bracers +3",
 		--ring2="Naji's Loop",
 		--legs="Kaykaus Tights +1",
 		feet="Kaykaus Boots +1"
@@ -141,14 +139,14 @@ function init_gear_sets()
 		neck="Debilis Medallion",
 		ear1="Meili Earring",
 		ear2="Beatific Earring",
-		--body="Pedagogy Gown +3",
+		body="Pedagogy Gown +3",
 		hands="Hieros Mittens",
 		ring1="Haoma's Ring",
 		--ring2="Menelaus's Ring",
 		ring2="Haoma's Ring",
 		back="Oretania's Cape +1",
 		waist="Bishop's Sash",
-		--legs="Academic's Pants +3",
+		legs="Academic's Pants +2",
 		feet="Gendewitha Galoshes +1"
 	}
 	
@@ -158,8 +156,7 @@ function init_gear_sets()
 		main="Gada",
 		sub="Ammurapi Shield",
 		head="Telchine Cap",
-		--body="Pedagogy Gown +3",
-		body="Telchine Chasuble",
+		body="Pedagogy Gown +3",
 		hands="Telchine Gloves",
 		waist="Embla Sash",
 		legs="Telchine Braconi",
@@ -169,11 +166,7 @@ function init_gear_sets()
 	-- Want 500 Enhancing Magic Skill
 	-- Currently @ ML0 -- Base Skill: 456 with Light Arts.
     sets.midcast['Enhancing Magic'] = set_combine(sets.midcast.EnhancingDuration, {
-		-- Telchine Body gives 12, Pedagogy gives 19
-		neck="Incanter's Torque", -- 10
-		ring1="Stikini Ring", -- 5 (Can remove when get Pedagogy Gown)
-		ring2="Stikini Ring +1", -- 8
-		back="Fi Follet Cape +1", -- 9
+		-- Base Duration Set gives 533 with Light Arts.
 	})
 	
 	-- Want 500 Enhancing Magic Skill
@@ -192,7 +185,7 @@ function init_gear_sets()
 	
 	sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
 		--main="Musa",
-		--head="Arbatel Bonnet +1",
+		head="Arbatel Bonnet +1",
 		main="Bolelabunga",
 		sub="Ammurapi Shield",
 		back="Bookworm's Cape"
@@ -219,7 +212,7 @@ function init_gear_sets()
 	})
 
     sets.midcast.Storm = set_combine(sets.midcast.EnhancingDuration, {
-		--feet="Pedagogy Loafers +3"
+		feet="Pedagogy Loafers +2"
 	})
 
     sets.midcast.Protect = set_combine(sets.midcast.EnhancingDuration, {ring1="Sheltered Ring"})
@@ -234,8 +227,7 @@ function init_gear_sets()
 		--sub="Khonsu",
 		sub="Kaja Grip",
 		ammo="Pemphredo Tathlum",
-		--head="Academic's Mortarboard +3",
-		head="Cath Palug Crown",
+		head="Academic's Mortarboard +3",
 		--neck="Argute Stole +2",
 		neck="Erra Pendant",
 		--ear1="Regal Earring",
@@ -280,7 +272,7 @@ function init_gear_sets()
 		main="Rubicundity",
 		sub="Ammurapi Shield",
 		head="Pixie Hairpin +1",
-		--legs="Pedagogy Pants +3",
+		legs="Pedagogy Pants +3",
 		ring2="Archon Ring",
 		waist="Fucho-no-Obi",
 		back="Bookworm's Cape",
@@ -293,8 +285,7 @@ function init_gear_sets()
 		main="Mpaca's Staff",
 		sub="Clerisy Strap",
 		ammo="Pemphredo Tathlum",
-		head="Amalric Coif +1",
-		--head="Academic's Mortarboard +3",
+		head="Academic's Mortarboard +3",
 		neck="Orunmila's Torque",
 		--neck="Voltsurge Torque",
 		ear1="Regal Earring",
@@ -443,9 +434,10 @@ function init_gear_sets()
 	})
 
     sets.buff.Sublimation = {
-		--head="Academic's Mortarboard +3",
-		--body="Pedagogy Gown +3"
-		ear2="Savant's Earring"
+		head="Academic's Mortarboard +3",
+		body="Pedagogy Gown +3",
+		ear2="Savant's Earring",
+		waist="Embla Sash"
 	}
 
     -- -- Defense sets
@@ -472,8 +464,8 @@ function init_gear_sets()
     sets.latent_refresh = {waist="Fucho-no-obi"}
 
     -- -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
-    -- sets.buff['Rapture'] = {head="Arbatel Bonnet +1"}
-    -- sets.buff['Perpetuance'] = {hands="Arbatel Bracers +1"}
+    sets.buff['Rapture'] = {head="Arbatel Bonnet +1"}
+    sets.buff['Perpetuance'] = {hands="Arbatel Bracers +1"}
     -- sets.buff['Celerity'] = {feet="Pedagogy Loafers +3"}
     -- sets.buff['Alacrity'] = {feet="Pedagogy Loafers +3"}
 
@@ -599,12 +591,10 @@ end
 function customize_idle_set(idleSet)
     if state.Buff['Sublimation: Activated'] then
         idleSet = set_combine(idleSet, sets.buff.Sublimation)
-    end
-
-    if player.mpp < 51 then
+    elseif player.mpp < 51 then
         idleSet = set_combine(idleSet, sets.latent_refresh)
     end
-
+	
     return idleSet
 end
 

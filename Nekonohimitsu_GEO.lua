@@ -403,7 +403,7 @@ function init_gear_sets()
 		feet="Merlinic Crackows"
 	}
 
-    sets.Kiting = {feet="Geo. Sandals +2"}
+    sets.Kiting = {feet="Geo. Sandals +3"}
 
     sets.latent_refresh = {waist="Fucho-no-Obi"}
 

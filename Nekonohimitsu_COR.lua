@@ -16,6 +16,9 @@ function user_setup()
 	--This matches the Offense or Ranged modes according to WS used if it can.
 	state.WeaponskillMode:options('Normal', 'Acc')
 	
+	state.WeaponMode = M{['description'] = 'Weapon Mode'}
+	state.WeaponMode:options('Melee', 'PhysRange', 'MagRange')
+	
 	--Whether you want to attempt a double roll removal with your Fold
 	state.DoubleFold = M(false, 'Double Fold')
 	
@@ -42,6 +45,13 @@ function init_gear_sets()
 	camuDa = {name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10',}}
 	camuMabWsd = {name="Camulus's Mantle", augments={'AGI+20', 'Mag. Acc.+10', 'Mag. Acc.+20/Mag. Dmg.+20', 'Weapon skill damage +10%'}}
 	camuRatkWsd = {name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+10','Weapon skill damage +10%'}}
+	
+	weaponTable = {
+		['Melee'] = {main='Naegling', sub='Blurred Knife +1', range='Anarchy +2'},
+		['PhysRange'] = {main='Kustawi +1', sub='Nusku Shield', range='Fomalhaut'},
+		['MagRange'] = {main='Naegling', sub='Tauret', range='Death Penalty'},
+		['DefaultShield'] = {sub='Nusku Shield'}
+	}
 	
 	sets.precast.JA['Wild Card'] = {feet="Lanun Bottes +3"}
 	sets.precast.JA['Random Deal'] = {body="Lanun Frac +3"}
@@ -95,6 +105,8 @@ function init_gear_sets()
 	})
 					
 	sets.precast.CorsairRoll = {
+		main="Rostam",
+		range="Compensator",
 		head="Lanun Tricorne +3",
 		neck="Regal Necklace",
 		ear1="Genmei Earring",
@@ -392,6 +404,15 @@ end
 function job_post_midcast(spell, action, spellMap, eventArgs)
 	if buffactive['Triple Shot'] and spell.english == 'Ranged' then
 		equip(sets.TripleShot)
+	end
+end
+
+function job_post_aftercast(spell, action, spellMap, eventArgs)
+	-- Change weapons back to normal after roll
+	if spell.type == 'CorsairRoll' then
+		if(weaponTable[state.WeaponMode.value]) then
+			equip(weaponTable[state.WeaponMode.value])
+		end
 	end
 end
 
