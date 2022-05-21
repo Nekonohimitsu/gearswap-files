@@ -37,6 +37,8 @@ end
 
 -- Define sets and vars used by this job file.
 function init_gear_sets()
+	lughMacc = {name="Lugh's Cape", augments={'INT+20', 'Mag. Acc+10', '"Fast Cast"+10%', 'Mag. Acc.+20/Mag. Dmg.+20', 'Damage Taken -5%'}}
+	lughMeva = {name="Lugh's Cape", augments={'Eva.+20/Mag.Eva.+20', 'Damage Taken -5%'}}
     --------------------------------------
     -- Start defining the sets
     --------------------------------------
@@ -295,7 +297,7 @@ function init_gear_sets()
 		--hands="Academic's Bracers +3",
 		ring1="Kishar Ring",
 		ring2="Metamorph Ring +1",
-		back="Lugh's Cape",
+		back=lughMacc,
 		waist="Witful Belt",
 		legs="Volte Brais",
 		feet="Volte Gaiters"
@@ -318,7 +320,7 @@ function init_gear_sets()
 		hands="Amalric Gages +1",
 		ring1="Archon Ring",
 		ring2="Freke Ring",
-		back="Lugh's Cape",
+		back=lughMacc,
 		waist="Sacro Cord",
 		legs="Agwu's Slops",
 		--legs="Amalric Slops +1",
@@ -347,7 +349,7 @@ function init_gear_sets()
         feet="Agwu's Pigaches",
         ring1="Metamorph Ring +1",
         ring2="Freke Ring",
-        back="Lugh's Cape",
+        back=lughMacc,
 		--waist="Acuity Belt +1",
         waist="Sacro Cord"
 	}
@@ -373,7 +375,7 @@ function init_gear_sets()
 		hands="Amalric Gages +1",
 		ring1="Freke Ring",
 		ring2="Mallquis Ring",
-		back="Lugh's Cape",
+		back=lughMacc,
 		waist="Sacro Cord",
 		--waist="Acuity Belt +1",
 		legs="Agwu's Slops",
@@ -418,7 +420,7 @@ function init_gear_sets()
 		neck="Loricate Torque +1",
 		ear1="Odnowa Earring +1",
 		ear2="Etiolation Earring",
-		back="Lugh's Cape",
+		back=lughMeva,
 		waist="Carrier's Sash",
 		ring2="Stikini Ring +1",
 		ring1="Defending Ring"
@@ -453,7 +455,7 @@ function init_gear_sets()
 		hands="Nyame Gauntlets",
 		ring1="Purity Ring",
 		ring2="Stikini Ring +1",
-		back="Lugh's Cape",
+		back=lughMeva,
 		waist="Carrier's Sash",
 		legs="Agwu's Slops",
 		feet="Volte Gaiters"

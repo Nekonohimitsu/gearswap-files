@@ -394,7 +394,7 @@ function define_engaged_sets()
 		ammo="Seething Bomblet +1",
 		neck="Combatant's Torque",
 		ear2="Dominance Earring +1",
-		ring1="Cacoethic Ring +1",
+		ring2="Cacoethic Ring +1",
 		--waist="Ioskeha Belt +1",
 		waist="Ioskeha Belt",
 	})
@@ -405,32 +405,30 @@ function define_engaged_sets()
 		ring2="Niqmaddu Ring", -- 5 II
 		ring1="Chirich Ring +1", -- 10
 		feet="Sakpata's Leggings", -- 13
-		neck="Abyssal Beads +1",
 	})
 	sets.engaged.SubtleBlow.NoAuspice = set_combine(sets.engaged.SubtleBlow, {
 		-- Base: 31, 15 II
 		ear1="Assuage Earring", -- 3
 		ear2="Dignitary's Earring", -- 5
-		neck="Bathy Choker", -- 10
+		neck="Bathy Choker +1", -- 11
 	})
 	
 	sets.engaged.SubtleBlow.DT = set_combine(sets.engaged.DT, {
-		ammo="Seething Bomblet +1",
+		ammo="Staunch Tathlum +1",
+		neck="Loricate Torque +1",
+		ear1="Genmei Earring",
 		ear2="Odnowa Earring +1",
 		body="Dagon Breastplate", -- 10 II
 		ring2="Niqmaddu Ring", -- 5 II
 		hands="Sakpata's Gauntlets", -- 8
 		feet="Sakpata's Leggings", -- 13
 		ring1="Chirich Ring +1", -- 10
-		neck="Abyssal Beads +1",
 	})
 	sets.engaged.SubtleBlow.DT.NoAuspice = set_combine(sets.engaged.SubtleBlow.DT, {
-		ear1="Odnowa Earring +1",
-		ammo="Seething Bomblet +1",
 		-- Base: 31, 15 II
 		ear1="Assuage Earring", -- 3
 		ear2="Dignitary's Earring", -- 5
-		neck="Bathy Choker", -- 10
+		neck="Bathy Choker +1", -- 11
 	})
 	
 	sets.engaged.SAM = set_combine(sets.engaged, {})
@@ -457,32 +455,11 @@ function define_caladbolg_sets()
 	-- 4-hit: 105 
 	-- 5-hit: 64
 	-- 6-hit: 37
-	-- sets.engaged: 31 STP, 66
-	sets.engaged.Caladbolg = set_combine(sets.engaged, {
-		-- neck="Abyssal Beads +1",
-		-- ear2="Crepuscular Earring",
-		-- body="Valorous Mail",
-		-- ring2="Flamma Ring",
-		-- legs="Odyssean Cuisses"
-	})
-	-- sets.engaged.DT: 30 STP, 37
-	sets.engaged.Caladbolg.DT = set_combine(sets.engaged.DT, {
-		neck="Abyssal Beads +1"
-	})
-	-- sets.engaged.Acc: 31 STP, 66
-	sets.engaged.Caladbolg.Acc = set_combine(sets.engaged.Acc, {
-		neck="Abyssal Beads +1",
-		ear2="Crepuscular Earring",
-		body="Valorous Mail",
-		ring1="Flamma Ring",
-		legs="Odyssean Cuisses"
-	})
-	-- sets.engaged.Acc.DT: 30 STP, 30
-	sets.engaged.Caladbolg.Acc.DT = set_combine(sets.engaged.Acc.DT, {
-	})
-	-- sets.engaged.SubtleBlow: 39 STP, 39
-	sets.engaged.Caladbolg.SubtleBlow = set_combine(sets.engaged.SubtleBlow, {
-	})
+	sets.engaged.Caladbolg = set_combine(sets.engaged, {})
+	sets.engaged.Caladbolg.DT = set_combine(sets.engaged.DT, {})
+	sets.engaged.Caladbolg.Acc = set_combine(sets.engaged.Acc, {})
+	sets.engaged.Caladbolg.Acc.DT = set_combine(sets.engaged.Acc.DT, {})
+	sets.engaged.Caladbolg.SubtleBlow = set_combine(sets.engaged.SubtleBlow, {})
 	sets.engaged.Caladbolg.SubtleBlow.NoAuspice = set_combine(sets.engaged.SubtleBlow.NoAuspice, {})
 	sets.engaged.Caladbolg.SubtleBlow.DT = set_combine(sets.engaged.SubtleBlow.DT, {})
 	sets.engaged.Caladbolg.SubtleBlow.DT.NoAuspice = set_combine(sets.engaged.SubtleBlow.DT.NoAuspice, {})
@@ -492,14 +469,8 @@ function define_caladbolg_sets()
 	-- 4-hit: 90 
 	-- 5-hit: 49
 	-- 6-hit: 22
-	sets.engaged.SAM.Caladbolg = set_combine(sets.engaged, {
-		neck="Abyssal Beads +1",
-		body="Valorous Mail"
-	})
-	sets.engaged.SAM.Caladbolg.DT = set_combine(sets.engaged.Caladbolg.DT, {
-		--ear2="Dedition Earring", -- 8
-		--ring1="Flamma Ring" -- 5
-	})
+	sets.engaged.SAM.Caladbolg = set_combine(sets.engaged, {})
+	sets.engaged.SAM.Caladbolg.DT = set_combine(sets.engaged.Caladbolg.DT, {})
 	sets.engaged.SAM.Caladbolg.Acc = set_combine(sets.engaged.Caladbolg.Acc, {})
 	sets.engaged.SAM.Caladbolg.Acc.DT = set_combine(sets.engaged.Caladbolg.Acc.DT, {})
 	sets.engaged.SAM.Caladbolg.SubtleBlow = set_combine(sets.engaged.Caladbolg.SubtleBlow, {})
@@ -515,28 +486,22 @@ function define_apoc_sets()
 	-- 5-hit: 41
 	-- 6-hit: 18
 	sets.engaged.Apocalypse = set_combine(sets.engaged, {
-		neck="Abyssal Beads +1",
-		ear2="Schere Earring"
+		ear1="Schere Earring"
 	})
 	sets.engaged.Apocalypse.DT = set_combine(sets.engaged.DT, {
-		neck="Abyssal Beads +1",
-		ear2="Crepuscular Earring"
+		ear1="Schere Earring"
 	})
 	sets.engaged.Apocalypse.Acc = set_combine(sets.engaged.Acc, {
-		ring2="Chirich Ring +1",
-		ear2="Schere Earring"
+		ear1="Schere Earring"
 	})
 	sets.engaged.Apocalypse.Acc.DT = set_combine(sets.engaged.Acc.DT, {
-		ear2="Crepuscular Earring",
-		ring1="Chirich Ring +1"
+		ear1="Schere Earring"
 	})
 	sets.engaged.Apocalypse.SubtleBlow = set_combine(sets.engaged.SubtleBlow, {
-		ear2="Crepuscular Earring"
+		ear1="Schere Earring"
 	})
 	sets.engaged.Apocalypse.SubtleBlow.NoAuspice = set_combine(sets.engaged.SubtleBlow.NoAuspice, {
-		legs="Odyssean Cuisses",
-		ear2="Schere Earring"
-
+		ear1="Schere Earring"
 	})
 	sets.engaged.Apocalypse.SubtleBlow.DT = set_combine(sets.engaged.SubtleBlow.DT, {})
 	sets.engaged.Apocalypse.SubtleBlow.DT.NoAuspice = set_combine(sets.engaged.SubtleBlow.DT.NoAuspice, {})
@@ -546,9 +511,7 @@ function define_apoc_sets()
 	-- 5-hit: 26
 	-- 6-hit: 3
 	sets.engaged.SAM.Apocalypse = set_combine(sets.engaged.Apocalypse, {
-		ear2="Crepuscular Earring",
-		body="Valorous Mail",
-		legs="Odyssean Cuisses"
+		ring1="Flamma Ring"
 	})
 	sets.engaged.SAM.Apocalypse.DT = set_combine(sets.engaged.DT, {})
 	sets.engaged.SAM.Apocalypse.Acc = set_combine(sets.engaged.Acc, {})
@@ -628,23 +591,9 @@ function define_naegling_sets()
 	-- 10-hit: 34
 	-- 11-hit: 22
 	-- 12-hit: 12
-	sets.engaged.Naegling = set_combine(sets.engaged, { 
-		neck="Abyssal Beads +1",
-		ear2="Crepuscular Earring",
-		body="Valorous Mail",
-		ring2="Flamma Ring",
-		legs="Odyssean Cuisses"
-	})
-	sets.engaged.Naegling.DT = set_combine(sets.engaged.DT, {
-		neck="Abyssal Beads +1"
-	})
-	sets.engaged.Naegling.Acc = set_combine(sets.engaged.Acc, {
-		neck="Abyssal Beads +1",
-		ear2="Crepuscular Earring",
-		body="Valorous Mail",
-		ring2="Flamma Ring",
-		legs="Odyssean Cuisses"
-	})
+	sets.engaged.Naegling = set_combine(sets.engaged, {})
+	sets.engaged.Naegling.DT = set_combine(sets.engaged.DT, {})
+	sets.engaged.Naegling.Acc = set_combine(sets.engaged.Acc, {})
 	sets.engaged.Naegling.Acc.DT = set_combine(sets.engaged.Acc.DT, {})
 	sets.engaged.Naegling.SubtleBlow = set_combine(sets.engaged.SubtleBlow, {})
 	sets.engaged.Naegling.SubtleBlow.NoAuspice = set_combine(sets.engaged.SubtleBlow.NoAuspice, {})
@@ -658,17 +607,9 @@ function define_naegling_sets()
 	-- 9-hit: 34
 	-- 10-hit: 19
 	-- 11-hit: 7
-	sets.engaged.SAM.Naegling = set_combine(sets.engaged, {
-		neck="Abyssal Beads +1",
-		ear2="Crepuscular Earring",
-		ring2="Flamma Ring",
-	})
+	sets.engaged.SAM.Naegling = set_combine(sets.engaged, {})
 	sets.engaged.SAM.Naegling.DT = set_combine(sets.engaged.Naegling.DT, {})
-	sets.engaged.SAM.Naegling.Acc = set_combine(sets.engaged.Acc, {
-		neck="Abyssal Beads +1",
-		ear2="Crepuscular Earring",
-		ring2="Flamma Ring"
-	})
+	sets.engaged.SAM.Naegling.Acc = set_combine(sets.engaged.Acc, {})
 	sets.engaged.SAM.Naegling.Acc.DT = set_combine(sets.engaged.Naegling.Acc.DT, {})
 	sets.engaged.SAM.Naegling.SubtleBlow = set_combine(sets.engaged.Naegling.SubtleBlow, {})
 	sets.engaged.SAM.Naegling.SubtleBlow.NoAuspice = set_combine(sets.engaged.Naegling.SubtleBlow.NoAuspice, {})
@@ -738,19 +679,14 @@ function define_anguta_sets()
 	-- 5-hit: 27
 	-- 6-hit: 5
 	sets.engaged.Anguta = set_combine(sets.engaged, {
-		neck="Abyssal Beads +1",
-		ear2="Crepuscular Earring",
-		body="Valorous Mail",
-		ring2="Flamma Ring",
-		legs="Odyssean Cuisses"
+		ear1="Schere Earring",
+		ring1="Flamma Ring"
 	})
-	sets.engaged.Anguta.DT = set_combine(sets.engaged.DT, {})
+	sets.engaged.Anguta.DT = set_combine(sets.engaged.DT, {
+		ear1="Schere Earring"
+	})
 	sets.engaged.Anguta.Acc = set_combine(sets.engaged.Acc, {
-		neck="Abyssal Beads +1",
-		ear2="Crepuscular Earring",
-		body="Valorous Mail",
-		ring1="Flamma Ring",
-		legs="Odyssean Cuisses"
+		ear1="Schere Earring",
 	})
 	sets.engaged.Anguta.Acc.DT = set_combine(sets.engaged.Acc.DT, {})
 	sets.engaged.Anguta.SubtleBlow = set_combine(sets.engaged.SubtleBlow, {})
@@ -763,16 +699,14 @@ function define_anguta_sets()
 	-- 5-hit: 12
 	-- 6-hit: default
 	sets.engaged.SAM.Anguta = set_combine(sets.engaged, {
-		ear2="Schere Earring",
-		neck="Abyssal Beads +1",
-		ring2="Flamma Ring",
+		ear1="Schere Earring",
+		ear2="Telos Earring",
+		body="Valorous Mail",
+		ring1="Chirich Ring +1",
+		legs="Odyssean Cuisses"
 	})
 	sets.engaged.SAM.Anguta.DT = set_combine(sets.engaged.Anguta.DT, {})
-	sets.engaged.SAM.Anguta.Acc = set_combine(sets.engaged.Acc, {
-		ear2="Schere Earring",
-		neck="Abyssal Beads +1",
-		body="Valorous Mail",
-	})
+	sets.engaged.SAM.Anguta.Acc = set_combine(sets.engaged.Acc, {})
 	sets.engaged.SAM.Anguta.Acc.DT = set_combine(sets.engaged.Anguta.Acc.DT, {})
 	sets.engaged.SAM.Anguta.SubtleBlow = set_combine(sets.engaged.Anguta.SubtleBlow, {})
 	sets.engaged.SAM.Anguta.SubtleBlow.NoAuspice = set_combine(sets.engaged.Anguta.SubtleBlow.NoAuspice, {})
