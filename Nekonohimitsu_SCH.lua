@@ -39,6 +39,9 @@ end
 function init_gear_sets()
 	lughMacc = {name="Lugh's Cape", augments={'INT+20', 'Mag. Acc+10', '"Fast Cast"+10%', 'Mag. Acc.+20/Mag. Dmg.+20', 'Damage Taken -5%'}}
 	lughMeva = {name="Lugh's Cape", augments={'Eva.+20/Mag.Eva.+20', 'Damage Taken -5%'}}
+	merlinicHoodFC = {name="Merlinic Hood", augments={"Fast Cast +5%"}}
+	vanyaHoodConserveMp = {name="Vanya Hood", augments={'"Conserve MP"+6'}}
+	grioFC = {name="Grioavolr", augments={"Fast Cast +7%"}}
     --------------------------------------
     -- Start defining the sets
     --------------------------------------
@@ -70,8 +73,7 @@ function init_gear_sets()
 		waist="Witful Belt", -- 3
 		--legs="Pinga Pants +1", -- 13
 		legs="Volte Brais", -- 8
-		--"Pedagogy Loafers +3", -- 8
-		feet="Volte Gaiters" -- 6
+		"Pedagogy Loafers +3", -- 8
 	}
 	
 	-- For when casting with a matching Art (White Magic w/ Light Arts) and no Strategem
@@ -214,7 +216,7 @@ function init_gear_sets()
 	})
 
     sets.midcast.Storm = set_combine(sets.midcast.EnhancingDuration, {
-		feet="Pedagogy Loafers +2"
+		feet="Pedagogy Loafers +3"
 	})
 
     sets.midcast.Protect = set_combine(sets.midcast.EnhancingDuration, {ring1="Sheltered Ring"})

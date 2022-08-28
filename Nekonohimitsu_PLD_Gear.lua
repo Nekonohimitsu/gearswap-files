@@ -1,7 +1,8 @@
-include ('organizer-lib.lua')
 function init_gear_sets()
 	gear.EnmRudiMantle = {name="Rudianos's Mantle", augments={"Enmity+10"}}
 	gear.FCRudiMantle = {name="Rudianos's Mantle", augments={'"Fast Cast"+10%'}}
+	gear.OdyGreavesDT = {name="Odyssean Greaves", augments={'Damage Taken -3%'}}
+	gear.OdyGreavesFC = {name="Odyssean Greaves", augments={'"Fast Cast"+4%'}}
 	--------------------------------------
     -- Defense sets
     --------------------------------------
@@ -21,8 +22,7 @@ function init_gear_sets()
 		ring1="Defending Ring", 
 		ear1={name="Tuisto Earring",priority=2}, 
 		ear2={name="Odnowa Earring +1",priority=2}, 
-		neck="Creed Collar", 
-		--neck="Unmoving Collar +1",
+		neck="Unmoving Collar +1",
 		ammo="Staunch Tathlum +1"
 	}
 	

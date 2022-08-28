@@ -7,7 +7,7 @@ function get_sets()
     mote_include_version = 2
 
     -- Load and initialize the include file.
-    include('Mote-Include.lua')
+    include('Mote-Include.lua') 
 end
 
 
@@ -46,6 +46,8 @@ function init_gear_sets()
 	critSucCape = {name="Sucellos's Cape", augments={'DEX+20', 'Crit.hit rate+10'}}
 	mndWsdSucCape = {name="Sucellos's Cape", augments={'MND+20', 'Weapon skill damage +10%'}}
 	mndDaSucCape = {name="Sucellos's Cape", augments={'MND+20', '"Dbl.Atk."+10'}}
+	merlinicCrackowsDrainAspir = {name="Merlinic Crackows", augments={'"Drain" and "Aspir" potency +10'}}
+	grioFC = {name="Grioavolr", augments={"Fast Cast +7%"}}
     --------------------------------------
     -- Start defining the sets
     --------------------------------------
@@ -111,12 +113,12 @@ function init_gear_sets()
 	
 	--Used for spells where potency varies (Slow, Paralyze, Blind, Frazzle, etc)
 	sets.midcast.EffectMndEnfeebles = set_combine(sets.midcast.MndEnfeebles, {main="Daybreak", sub="Ammurapi Shield", 
-		range="", ammo="Regal Gem", body="Lethargy Sayon +1", hands="Volte Gloves",
+		range="", ammo="Regal Gem", body="Lethargy Sayon +2", hands="Volte Gloves",
 		feet="Vitiation Boots +3", back=mevaSucCape, legs="Volte Brais"
 	})
 	
 	sets.midcast.EffectIntEnfeebles = set_combine(sets.midcast.IntEnfeebles, {range="", head="Volte Beret", 
-		hands="Volte Gloves", ammo="Regal Gem", ring2="Freke Ring", body="Lethargy Sayon +1",
+		hands="Volte Gloves", ammo="Regal Gem", ring2="Freke Ring", body="Lethargy Sayon +2",
 		feet="Vitiation Boots +3", legs="Volte Brais", main="Rubicundity", sub="Ammurapi Shield", 
 		legs="Volte Brais", waist="Acuity Belt +1", back=maccMatkSucCape
 	})
@@ -128,13 +130,13 @@ function init_gear_sets()
 	sets.midcast.SkillMndEnfeebles = set_combine(sets.midcast.EffectMndEnfeebles, {
 		main="Contemplator +1", sub="Mephitis Grip", ear1="Vor Earring", ear2="Enfeebling Earring",
 		waist="Rumination Sash", feet="Vitiation Boots +3",
-		hands="Lethargy Gantherots +1", ring1="Stikini Ring",
+		hands="Lethargy Gantherots +2", ring1="Stikini Ring",
 		legs="Chironic Hose", head="Vitiation Chapeau +3", ring2="Stikini Ring +1"
 	})
 	sets.midcast.SkillIntEnfeebles = set_combine(sets.midcast.EffectIntEnfeebles, {
 		main="Contemplator +1", sub="Mephitis Grip", ear1="Vor Earring",  ear2="Enfeebling Earring",
 		waist="Rumination Sash", feet="Vitiation Boots +3",
-		hands="Lethargy Gantherots +1", ring1="Stikini Ring",
+		hands="Lethargy Gantherots +2", ring1="Stikini Ring",
 		legs="Chironic Hose", head="Vitiation Chapeau +3", ring2="Stikini Ring +1"
 	})
 	sets.midcast.SkillMndEnfeebles.Resistant = sets.midcast.EffectMndEnfeebles.Resistant
@@ -220,7 +222,7 @@ function init_gear_sets()
         
     sets.buff.ComposureOther = set_combine(sets.midcast.EnhancingDuration, {head="Lethargy Chappel +1", legs="Lethargy Fuseau +1"})
 
-    sets.buff.Saboteur = {hands="Lethargy Gantherots +1"}
+    sets.buff.Saboteur = {hands="Lethargy Gantherots +2"}
     
     -- Idle sets
     sets.idle = {		

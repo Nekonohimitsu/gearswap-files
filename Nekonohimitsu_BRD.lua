@@ -49,7 +49,7 @@ end
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
     state.OffenseMode:options('None', 'Normal')
-    state.CastingMode:options('Normal', 'Resistant')
+    state.CastingMode:options('Normal', 'Resistant', 'Enmity')
     state.IdleMode:options('Normal', 'PDT')
     
     -- Adjust this if using the Terpander (new +song instrument)

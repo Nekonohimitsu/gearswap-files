@@ -77,6 +77,9 @@ end
 function init_gear_sets()
 	nantoPet = {name="Nantosuelta's Cape", augments={"Pet: Regen+10"}}
 	nantoMatk = {name = "Nantosuelta's Cape", augments={'"Mag.Atk.Bns."+10'}}
+	merlinicHoodFC = {name="Merlinic Hood", augments={"Fast Cast +5%"}}
+	vanyaHoodConserveMp = {name="Vanya Hood", augments={'"Conserve MP"+6'}}
+	grioFC = {name="Grioavolr", augments={"Fast Cast +7%"}}
     ------------------------------------------------------------------------------------------------
     ----------------------------------------- Precast Sets -----------------------------------------
     ------------------------------------------------------------------------------------------------

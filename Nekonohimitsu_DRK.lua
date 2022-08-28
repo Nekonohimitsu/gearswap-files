@@ -44,6 +44,7 @@ function init_gear_sets()
 	ankouSTRDA = {name="Ankou's mantle", augments={'"Dbl.Atk."+10', 'STR+20', 'STR+10'}}
 	ankouINTDA = {name="Ankou's mantle", augments={'"Dbl.Atk."+10', 'INT+20', 'INT+10'}}
 	ankouVITWS = {name="Ankou's mantle", augments={'Weapon skill damage +10%', 'VIT+20', 'VIT+10'}}
+	gear.OdyGreavesFC = {name="Odyssean Greaves", augments={'"Fast Cast"+4%'}}
 
 	
 	define_spell_and_ja_sets()
@@ -245,6 +246,24 @@ function define_spell_and_ja_sets()
 		ear1="Odnowa Earring +1", -- 3%
 		ammo="Staunch Tathlum +1", -- 3%
 	})
+	
+	sets.midcast['Elemental Magic'] = {
+		ammo="Pemphredo Tathlum",
+		head="Nyame Helm",
+		neck="Baetyl Pendant",
+		ear1="Friomisi Earring",
+		ear2="Malignance Earring",
+		--body="Fallen's Cuirass +3",
+		--hands="Fallen's Finger Gauntlets +3",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		ring1="Shiva Ring +1",
+		ring2="Fenrir Ring +1",
+		back=ankouSTRWS,
+		waist="Eschan Stone",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets"
+	}
 	
 	-- Buffs
 	sets.midcast['Endark II'] = {
