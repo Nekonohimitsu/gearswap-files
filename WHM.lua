@@ -64,12 +64,6 @@ function job_get_spell_map(spell, default_spell_map)
 			if not default_spell_map or not default_spell_map == "Regen" then
 				if not potencyBasedEnancing:contains(spell.english) then
 					new_spell_map = "EnhancingDuration"
-				elseif not state.Buff['Light Arts'] then
-					if default_spell_map == "BarElement" then
-						new_spell_map = "BarElementNoArts"
-					else
-						new_spell_map = "EnhNoLightArts"
-					end
 				end
 			end
 		end

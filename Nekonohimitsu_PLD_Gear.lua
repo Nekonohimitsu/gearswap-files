@@ -214,12 +214,12 @@ function init_gear_sets()
 	sets.midcast.Lunge = sets.midcast.Provoke
 	
 	sets.precast.JA['Invincible'] = set_combine(sets.midcast.Enmity, {legs="Caballarius Breeches +3"})
-    sets.precast.JA['Holy Circle'] = set_combine(sets.midcast.Enmity, {})
+    sets.precast.JA['Holy Circle'] = set_combine(sets.midcast.Enmity, {feet="Reverence Leggings +3"})
     sets.precast.JA['Shield Bash'] = set_combine(sets.midcast.Enmity, {hands="Caballarius Gauntlets +3"})
     sets.precast.JA['Sentinel'] = set_combine(sets.midcast.Enmity, {feet="Caballarius Leggings +3"})
     sets.precast.JA['Rampart'] = set_combine(sets.midcast.Enmity, {head="Caballarius Coronet +1"})
     sets.precast.JA['Fealty'] = set_combine(sets.midcast.Enmity, {body="Caballarius Surcoat"})
-    sets.precast.JA['Divine Emblem'] = set_combine(sets.midcast.Enmity, {})--feet="Chevalier's Sabatons +1"})
+    sets.precast.JA['Divine Emblem'] = set_combine(sets.midcast.Enmity, {feet="Chevalier's Sabatons +2"})
     sets.precast.JA['Cover'] = set_combine(sets.midcast.Enmity, {head="Reverence Coronet +3"})
 	
     --------------------------------------

@@ -42,6 +42,7 @@ function init_gear_sets()
 	merlinicHoodFC = {name="Merlinic Hood", augments={"Fast Cast +5%"}}
 	vanyaHoodConserveMp = {name="Vanya Hood", augments={'"Conserve MP"+6'}}
 	grioFC = {name="Grioavolr", augments={"Fast Cast +7%"}}
+	gadaEnhDur = {name="Gada", augments={"Enh. Mag. eff. dur. +5"}}
     --------------------------------------
     -- Start defining the sets
     --------------------------------------
@@ -78,7 +79,7 @@ function init_gear_sets()
 	
 	-- For when casting with a matching Art (White Magic w/ Light Arts) and no Strategem
 	sets.GrimoireCasting = {
-		--head="Pedagogy Mortarboard +3",
+		head="Pedagogy Mortarboard +3",
 		feet="Academic's Loafers +2"
 	}
 
@@ -130,9 +131,8 @@ function init_gear_sets()
 		sub="Kaja Grip",
 		--sub="Khonsu",
 		ammo="Esper Stone +1",
-		--ear2="Domesticator's Earring",
-		waist="Hachirin-no-Obi",
-		back="Twilight Cape"
+		ear2="Mendicant's Earring",
+		waist="Hachirin-no-Obi"
 	})
 	
     sets.midcast.Cursna = {
@@ -157,14 +157,14 @@ function init_gear_sets()
 	sets.midcast.EnhancingDuration = set_combine(sets.midcast.ConserveMP, {
 		--main="Musa",
 		--main="Pedagogy Staff",
-		main="Gada",
+		main=gadaEnhDur,
 		sub="Ammurapi Shield",
 		head="Telchine Cap",
 		body="Pedagogy Gown +3",
 		hands="Telchine Gloves",
 		waist="Embla Sash",
 		legs="Telchine Braconi",
-		--feet="Telchine Pigaches"
+		feet="Telchine Pigaches"
 	})
 
 	-- Want 500 Enhancing Magic Skill
@@ -178,7 +178,6 @@ function init_gear_sets()
 	sets.midcast.EnhNoLightArts = set_combine(sets.midcast['Enhancing Magic'], {
 		-- +32~34 from LA set
 		ring1="Stikini Ring", -- 5
-		ammo="Savant's Treatise", -- 4
 		main="Gada", -- 18
 		sub="Ammurapi Shield",
 		ear1="Mimir Earring", -- 10
@@ -189,9 +188,10 @@ function init_gear_sets()
 	
 	sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
 		--main="Musa",
-		head="Arbatel Bonnet +1",
-		main="Bolelabunga",
-		sub="Ammurapi Shield",
+		main="Pedagogy Staff",
+		sub="Giuoco Grip",
+		body="Telchine Chasuble",
+		head="Arbatel Bonnet +2",
 		back="Bookworm's Cape"
 	})
 	
@@ -233,9 +233,8 @@ function init_gear_sets()
 		ammo="Pemphredo Tathlum",
 		head="Academic's Mortarboard +3",
 		--neck="Argute Stole +2",
-		neck="Erra Pendant",
-		--ear1="Regal Earring",
-		ear1="Crepuscular Earring",
+		neck="Argute Stole +1",
+		ear1="Regal Earring",
 		ear2="Malignance Earring",
 		--body="Academic's Gown +3",
 		body="Mallquis Saio +2",
@@ -253,9 +252,15 @@ function init_gear_sets()
     sets.midcast.IntEnfeebles = sets.midcast.MndEnfeebles
 	
     sets.midcast.Impact = set_combine(sets.midcast.IntEnfeebles, {
+		main="Bunzi's Rod",
+		sub="Ammurapi Shield",
 		head=empty,
 		body="Crepuscular Cloak",
-        ring2="Archon Ring"
+		hands="Regal Cuffs",
+        ring2="Archon Ring",
+		waist="Acuity Belt +1",
+		legs="Pedagogy Pants +3",
+		feet="Arbatel Loafers +2"
 	})
 	
 	sets.midcast.Dispelga = set_combine(sets.midcast.IntEnfeebles, {
@@ -302,65 +307,47 @@ function init_gear_sets()
 		back=lughMacc,
 		waist="Witful Belt",
 		legs="Volte Brais",
-		feet="Volte Gaiters"
-		--feet="Pedagogy Loafers +3"
+		feet="Pedagogy Loafers +3"
 	}
 
     sets.midcast.Stun.Resistant = sets.midcast['Dark Magic']
-	
-    sets.midcast.Kaustra = {
-		main="Bunzi's Rod",
-		sub="Ammurapi Shield",
-		ammo="Pemphredo Tathlum",
-		--ammo="Ghastly Tathlum +1",
-		head="Pixie Hairpin +1",
-		neck="Saevus Pendant +1",
-		--neck="Argute Stole +2",
-		ear2="Malignance Earring",
-		ear1="Regal Earring",
-		body="Agwu's Robe",
-		hands="Amalric Gages +1",
-		ring1="Archon Ring",
-		ring2="Freke Ring",
-		back=lughMacc,
-		waist="Sacro Cord",
-		legs="Agwu's Slops",
-		--legs="Amalric Slops +1",
-		feet="Agwu's Pigaches"
-	}
-	
-	sets.midcast.KaustraBurst = set_combine(sets.midcast.Kaustra, {
-		ring2="Mujin Band",
-		--back="Seshaw Cape +1"
-	})
 
     sets.midcast['Elemental Magic'] = {
 		main="Bunzi's Rod",
         sub="Ammurapi Shield",
-		ammo="Pemphredo Tathlum",
-		--head="Pedagogy Mortarboard +3",
-        head="Cath Palug Crown",
+		ammo="Pemphredo Tathlum",		
+		--ammo="Ghastly Tathlum +1",
+		head="Pedagogy Mortarboard +3",
+		--head="Agwu's Cap",
 		--neck="Argute Stole +2",
-        neck="Baetyl Pendant",
+        neck="Argute Stole +1",
         ear2="Malignance Earring",
+		--ear2="Arbatel Earring +2",
         ear1="Regal Earring",
-        body="Amalric Doublet +1",
+		body="Agwu's Robe",
         hands="Amalric Gages +1",
-		--legs="Amalric Slops +1",
+		--hands="Agwu's Gages",
         legs="Agwu's Slops",
         feet="Agwu's Pigaches",
         ring1="Metamorph Ring +1",
         ring2="Freke Ring",
         back=lughMacc,
-		--waist="Acuity Belt +1",
-        waist="Sacro Cord"
+		waist="Acuity Belt +1"
 	}
 	
 	sets.midcast.Burst = set_combine(sets.midcast['Elemental Magic'], {
-		--ammo="Ghastly Tathlum +1",
-		body="Agwu's Robe",
-		ring1="Mujin Band",
-		legs="Agwu's Slops"
+		head="Pedagogy Mortarboard +3",
+		hands="Amalric Gages +1"
+	})
+	
+    sets.midcast.Kaustra = set_combine(sets.midcast['Elemental Magic'], {
+		head="Pixie Hairpin +1",
+		ring1="Archon Ring"
+	})
+	
+	sets.midcast.KaustraBurst = set_combine(sets.midcast.Burst, {
+		head="Pixie Hairpin +1",
+		ring2="Archon Ring"
 	})
 	
 	sets.midcast.Helix = {
@@ -370,18 +357,19 @@ function init_gear_sets()
 		ammo="Pemphredo Tathlum",
 		head="Agwu's Cap",
 		--neck="Argute Stole +2",
-		neck="Saevus Pendant +1",
+		neck="Argute Stole +1",
 		ear2="Malignance Earring",
 		ear1="Regal Earring",
 		body="Agwu's Robe",
 		hands="Amalric Gages +1",
+		--hands="Agwu's Gages",
 		ring1="Freke Ring",
-		ring2="Mallquis Ring",
+		ring2="Metamorph Ring +1",
 		back=lughMacc,
-		waist="Sacro Cord",
-		--waist="Acuity Belt +1",
+		waist="Acuity Belt +1",
+		--waist="Skrymir Cord +1",
 		legs="Agwu's Slops",
-		feet="Amalric Nails +1"
+		feet="Agwu's Pigaches"
 	}
 	
 	sets.midcast.Noctohelix = set_combine(sets.midcast.Helix, {
@@ -394,9 +382,9 @@ function init_gear_sets()
 	})
 	
 	sets.midcast.HelixBurst = set_combine(sets.midcast.Helix, {
-		--head="Pedagogy Mortarboard +3",
+		head="Pedagogy Mortarboard +3",
 		ear2="Crematio Earring",
-		ring1="Mujin Band"
+		feet="Arbatel Loafers +2"
 	})
 	
 	sets.midcast.NoctoBurst = set_combine(sets.midcast.HelixBurst, {
@@ -418,7 +406,7 @@ function init_gear_sets()
 		hands="Volte Gloves",
 		legs="Volte Brais",
 		feet="Volte Gaiters",
-		--neck="Chrys. Torque",
+		--neck="Sibyl Scarf",
 		neck="Loricate Torque +1",
 		ear1="Odnowa Earring +1",
 		ear2="Etiolation Earring",
@@ -432,7 +420,6 @@ function init_gear_sets()
 		main="Daybreak",
 		sub="Genmei Shield",
 		ammo="Staunch Tathlum +1",
-		ring2="Gelatinous Ring +1",
 		legs="Agwu's Slops",
 		hands="Nyame Gauntlets"
 	})
@@ -453,14 +440,14 @@ function init_gear_sets()
 		neck="Warder's Charm +1",
 		ear1="Sanare Earring",
 		ear2="Hearty Earring",
-		body="Agwu's Robe",
+		body="Nyame Mail",
 		hands="Nyame Gauntlets",
 		ring1="Purity Ring",
-		ring2="Stikini Ring +1",
+		ring2="Shadow Ring",
 		back=lughMeva,
 		waist="Carrier's Sash",
 		legs="Agwu's Slops",
-		feet="Volte Gaiters"
+		feet="Nyame Sollerets"
 	}
 
     sets.defense.MDT = sets.defense.PDT
@@ -468,10 +455,9 @@ function init_gear_sets()
     sets.latent_refresh = {waist="Fucho-no-obi"}
 
     -- -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
-    sets.buff['Rapture'] = {head="Arbatel Bonnet +1"}
-    sets.buff['Perpetuance'] = {hands="Arbatel Bracers +1"}
-    -- sets.buff['Celerity'] = {feet="Pedagogy Loafers +3"}
-    -- sets.buff['Alacrity'] = {feet="Pedagogy Loafers +3"}
+    sets.buff['Rapture'] = {head="Arbatel Bonnet +2"}
+    sets.buff['Perpetuance'] = {hands="Arbatel Bracers +2"}
+	sets.buff['Klimaform'] = {feet="Arbatel Loafers +2"}
 
     sets.Kiting = {feet="Herald's Gaiters"}
 	sets.Weather = {waist="Hachirin-no-Obi"}
@@ -559,10 +545,11 @@ function job_get_spell_map(spell, default_spell_map)
                 return 'IntEnfeebles'
             end
 		elseif spell.skill == 'Enhancing Magic' then
-			if not potencyBasedEnancing:contains(spell.english) then
-				return 'EnhancingDuration'
-			elseif not buffactive['Light Arts'] then
+			if potencyBasedEnancing:contains(spell.english) and not buffactive['Light Arts'] then
 				return 'EnhNoLightArts'
+			end
+			if not default_spell_map then
+				return 'EnhancingDuration'
 			end
 		elseif spell.english == 'Kaustra' then
 			if state.MagicBurst.value then

@@ -51,7 +51,7 @@ function init_gear_sets()
     sets.midcast.Paeon = {head="Brioso Roundlet +3"}
     sets.midcast.Carol = {hands="Mousai Gages"} -- hands="Mousai Gages +1"
 	sets.midcast.Etude = {head="Mousai Turban"} -- head="Mousai Turban +1"
-    sets.midcast["Sentinel's Scherzo"] = {feet="Fili Cothurnes +1"} -- feet="Fili Cothurnes +2"
+    sets.midcast["Sentinel's Scherzo"] = {feet="Fili Cothurnes +2"}
     sets.midcast['Honor March'] = {range="Marsyas", hands="Fili Manchettes +1"} -- hands="Fili Manchettes +2"
 	sets.midcast.Mambo = {feet="Mousai Crackows"} -- feet="Mousai Crackows +1"
 	sets.midcast.Prelude = {back=maccFCIntarabus}
@@ -254,7 +254,7 @@ function init_gear_sets()
 
     sets.defense.MDT = sets.defense.PDT
 
-    sets.Kiting = {feet="Fili Cothurnes +1"} -- feet="Fili Cothurnes +2"
+    sets.Kiting = {feet="Fili Cothurnes +2"}
 
     sets.latent_refresh = {waist="Fucho-no-obi"}
 

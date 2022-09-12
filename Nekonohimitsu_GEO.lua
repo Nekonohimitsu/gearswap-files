@@ -89,7 +89,7 @@ function init_gear_sets()
 
     -- Precast sets to enhance JAs
     sets.precast.JA.Bolster = {body="Bagua Tunic"}
-    sets.precast.JA['Full Circle'] = {head="Azimuth Hood +1", hands="Bagua Mitaines +3"}
+    sets.precast.JA['Full Circle'] = {head="Azimuth Hood +2", hands="Bagua Mitaines +3"}
     sets.precast.JA['Life Cycle'] = {body="Geomancy Tunic +3", back="Nantosuelta's Cape",}
 	sets.precast.JA['Concentric Pulse'] = {head="Bagua Galero +3"}
 
@@ -143,14 +143,12 @@ function init_gear_sets()
         main="Idris",
         sub="Chanter's Shield",
 		ammo="Dunna",
-        head=vanyaHoodConserveMp,
-		--head="Azimuth Hood +2",
+		head="Azimuth Hood +2",
         body="Vedic Coat",
 		hands="Volte Gloves",
 		--hands="Azimuth Gloves +2",
 		legs="Vanya Slops",
-		feet="Merlinic Crackows",
-		--feet="Azimuth Gaiters +2",
+		feet="Azimuth Gaiters +2",
         ear1="Calamitous Earring",
         ear2="Gifted Earring",
         neck="Bagua Charm +1",
@@ -162,12 +160,10 @@ function init_gear_sets()
         }
 
     sets.midcast.Geomancy.Indi = set_combine(sets.midcast.Geomancy, {
-		head="Azimuth Hood +1",
-		--head="Azimuth Hood +2",
+		head="Azimuth Hood +2",
 		neck="Incanter's Torque",
 		legs="Bagua Pants +3",
-        feet="Azimuth Gaiters +1",
-		--feet="Azimuth Gaiters +2",
+        feet="Azimuth Gaiters +2",
         back="Lifestream Cape",
 		ring2="Defending Ring"
         })
@@ -177,17 +173,15 @@ function init_gear_sets()
         sub="Sors Shield", --3/(-5)
         head=vanyaHoodConserveMp, --10
         body="Zendik Robe",
-        hands="Mallquis Cuffs +2",
+        hands="Bagua Mitaines +3",
         legs="Geomancy Pants +3",
         feet="Vanya Clogs", --12
         neck="Incanter's Torque",
         ear1="Calamitous Earring",
-        ear2="Mendi. Earring", --5
         ring1="Lebeche Ring", --3/(-5)
         ring2="Mephitas's Ring +1",
-        back="Perimede Cape", -- 6
         waist="Hachirin-no-Obi"
-        }
+    }
 
     sets.midcast.Curaga = set_combine(sets.midcast.Cure, {
         })
@@ -296,7 +290,7 @@ function init_gear_sets()
     sets.midcast.Aspir = sets.midcast.Drain
 
     sets.midcast.Stun = set_combine(sets.midcast['Dark Magic'], {
-        })
+    })
 
     -- Elemental Magic sets
 
@@ -319,8 +313,15 @@ function init_gear_sets()
         }
 
     sets.midcast['Elemental Magic'].Resistant = set_combine(sets.midcast['Elemental Magic'], {
-			ear2="Digni. Earring",
-        })
+    })
+
+    sets.magic_burst = {
+		neck="Mizukage-no-Kubikazari",
+		head="Ea Hat +1",
+		--body="Ea Houppelande +1",
+        hands="Amalric Gages +1", --(5)
+		legs="Ea Slops +1"
+    }
 
     sets.midcast.GeoElem = set_combine(sets.midcast['Elemental Magic'], {})
 
@@ -328,7 +329,7 @@ function init_gear_sets()
         head=empty,
         body="Crepuscular Cloak",
         ring2="Archon Ring",
-        })
+    })
 
     -- Initializes trusts at iLvl 119
     sets.midcast.Trust = sets.precast.FC
@@ -365,17 +366,13 @@ function init_gear_sets()
 		main="Bolelabunga",
 		sub="Genmei Shield", -- 0% / 10% / 0%
 		-- Remove when DT good below.
-		head="Nyame Helm", -- 7% / 0% / 0%
-		--head="Azimuth Hood +2", -- 11% / 0% / 0%
+		head="Azimuth Hood +2", -- 11% / 0% / 0%
 		neck="Loricate Torque +1", -- 6% / 0% / 0%
 		ear1="Odnowa Earring +1", -- 3% / 0% / 2%
 		--ear2="Azimuth Earring +2", -- 7% / 0% / 0%
 		ring1="Defending Ring", -- 10% / 0% / 0%
 		legs="Nyame Flanchard", -- 8% / 0% / 0%
-		--legs="Agwu's Slops", -- 9% / 0% / 0%
-		feet="Nyame Sollerets", -- 7% / 0% / 0%
-		--Change to Azimuth Gaiters +2 when obtained.
-		--Remove when Azimuth Earring +2 obtained.
+		feet="Azimuth Gaiters +2", -- 10% / 0% / 0% --Remove when Azimuth Earring +2 obtained.
 		back=nantoPet, -- 5% / 0% / 0%
 		------------------------------------------
 		-- 40% / 10% / 2%
@@ -386,8 +383,7 @@ function init_gear_sets()
         main="Idris", 
         sub="Genmei Shield", 
 		ammo="Dunna", 
-        head="Azimuth hood +1",
-		--head="Azimuth Hood +2",
+		head="Azimuth Hood +2",
         body="Jhakri Robe +2", 
 		--body="Telchine Chas.",
         hands="Geo. Mitaines +3",
@@ -414,8 +410,7 @@ function init_gear_sets()
         main="Idris", 
         sub="Genmei Shield",
 		ammo="Dunna", 
-        head="Azimuth Hood +1",
-		--head="Azimuth Hood +2",
+		head="Azimuth Hood +2",
         body="Nyame Mail", 
         hands="Geo. Mitaines +3", 
         legs="Agwu's Slops", 
@@ -434,22 +429,15 @@ function init_gear_sets()
 
     -- Defense sets
 
-    sets.defense.PDT = sets.idle.DT
-    sets.defense.MDT = {
-		main="Daybreak",
-		head="Volte Beret",
-		body="Geomancy Tunic +3",
-		hands="Volte Gloves",
-		neck="Loricate Torque +1",
-		ear1="Etiolation Earring",
-		ear2="Lugalbanda Earring",
-		ring1="Defending Ring",
-		ring2="Purity Ring",
-		back=nantoPet,
-		waist="Carrier's Sash",
-		legs="Amalric Slops",
-		feet="Merlinic Crackows"
-	}
+    sets.defense.PDT = set_combine(sets.idle.DT.Pet, {
+		head="Nyame Helm",
+		neck="Warder's Charm +1",
+		hands="Nyame Gauntlets",
+		feet="Nyame Sollerets",
+		ring2="Shadow Ring",
+		ear2="Sanare Earring"
+	})
+    sets.defense.MDT = sets.defense.PDT
 
     sets.Kiting = {feet="Geo. Sandals +3"}
 
@@ -474,6 +462,7 @@ function init_gear_sets()
 		ear1="Crepuscular Earring",
 		ear2="Telos Earring",
 		neck="Combatant's Torque",
+		waist="Goading Belt",
 		ring1="Chirich Ring +1",
 		ring2="Chirich Ring +1"
     })
@@ -487,11 +476,6 @@ function init_gear_sets()
     --------------------------------------
     -- Custom buff sets
     --------------------------------------
-
-    sets.magic_burst = {
-		neck="Mizukage-no-Kubikazari",
-        hands="Amalric Gages +1", --(5)
-    }
 
     sets.buff.Doom = {ring1="Purity Ring"}
     sets.Obi = {waist="Hachirin-no-Obi"}

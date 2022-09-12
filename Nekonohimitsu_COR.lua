@@ -104,7 +104,7 @@ function init_gear_sets()
 		--Cap: 70% Snapshot, 99% Rapid Shot
 		--Gifts: 10% / 30%
 		--Flurry 2: 30%
-		head="Chasseur's Tricorne +1", -- 0% / 14% (Remove once base set good)
+		head="Chasseur's Tricorne +2", -- 0% / 14% (Remove once base set good)
 		legs="Pursuer's Pants" -- 0% / 19%
 		--Result: 71% Snapshot, 99% Rapid Shot
 	})
@@ -130,8 +130,7 @@ function init_gear_sets()
 	}
 	
 	sets.precast.CorsairRoll["Blitzer's Roll"] = set_combine(sets.precast.CorsairRoll, {
-		head="Chasseur's Tricorne +1"
-		--head="Chasseur's Tricorne +2",
+		head="Chasseur's Tricorne +2"
 	})
 	
 	sets.precast.CorsairRoll["Caster's Roll"] = set_combine(sets.precast.CorsairRoll, {
