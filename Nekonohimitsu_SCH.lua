@@ -56,29 +56,28 @@ function init_gear_sets()
 
     -- Fast cast sets for spells
 
-    sets.precast.FC = { -- 77%
+    sets.precast.FC = { -- 81%
 		main=grioFC, -- 11
 		sub="Clerisy Strap", -- 2
+		--sub="Clerisy Strap +1",
 		ammo="Impatiens",
 		head=merlinicHoodFC, -- 13
-		--head="Amalric Coif +1", -- 11
+		--head="Amalric Coif +1", -- 11 (when strap +1)
 		neck="Orunmila's Torque", -- 5
 		ear1="Loquacious Earring", -- 2
 		ear2="Malignance Earring", -- 4
-		--"Pinga Tunic +1", -- 15
 		body="Zendik Robe", -- 13
 		hands="Academic's Bracers +2", -- 8
 		ring1="Lebeche Ring",
 		ring2="Kishar Ring", -- 4
 		back="Perimede Cape",
 		waist="Witful Belt", -- 3
-		--legs="Pinga Pants +1", -- 13
 		legs="Volte Brais", -- 8
 		"Pedagogy Loafers +3", -- 8
 	}
 	
 	-- For when casting with a matching Art (White Magic w/ Light Arts) and no Strategem
-	sets.GrimoireCasting = {
+	sets.GrimoireCasting = { -- 62% FC
 		head="Pedagogy Mortarboard +3",
 		feet="Academic's Loafers +2"
 	}
@@ -91,8 +90,6 @@ function init_gear_sets()
 		ammo="Sapience Orb",
 		ring1="Prolix Ring",
 		back="Fi Follet Cape +1",
-		legs="Volte Brais",
-		body="Zendik Robe",
 	})
 
 	sets.midcast.ConserveMP = {
@@ -115,13 +112,13 @@ function init_gear_sets()
     sets.midcast.Cure = set_combine(sets.midcast.ConserveMP, {
 		main="Tamaxchi",
 		sub="Sors Shield",
-		--ammo="Pemphredo Tathlum",
-		ammo="Esper Stone +1",
+		ammo="Esper Stone +1", -- Remove when Enmity OK.
 		head="Kaykaus Mitra +1",
 		--body="Kaykaus Bliaut +1",
 		body="Kaykaus Bliaut",
 		hands="Pedagogy Bracers +3",
-		--ring2="Naji's Loop",
+		ring2="Naji's Loop",
+		legs="Pedagogy Pants +3",
 		--legs="Kaykaus Tights +1",
 		feet="Kaykaus Boots +1"
 	})
@@ -131,7 +128,11 @@ function init_gear_sets()
 		sub="Kaja Grip",
 		--sub="Khonsu",
 		ammo="Esper Stone +1",
-		ear2="Mendicant's Earring",
+		ear1="Enervating Earring", -- Remove when Enmity OK.
+		--ear1="Mendicant's Earring",
+		ring1="Lebeche Ring", -- Remove when Enmity OK.
+		neck="Lasaia Pendant", -- Remove when Enmity OK.
+		legs="Academic's Pants +2", -- Remove when Enmity OK.
 		waist="Hachirin-no-Obi"
 	})
 	
@@ -151,14 +152,14 @@ function init_gear_sets()
 		back="Oretania's Cape +1",
 		waist="Bishop's Sash",
 		legs="Academic's Pants +2",
+		--legs="Academic's Pants +3",
 		feet="Gendewitha Galoshes +1"
 	}
 	
 	sets.midcast.EnhancingDuration = set_combine(sets.midcast.ConserveMP, {
 		--main="Musa",
-		--main="Pedagogy Staff",
-		main=gadaEnhDur,
-		sub="Ammurapi Shield",
+		main="Pedagogy Staff",
+		sub="Giuoco Grip",
 		head="Telchine Cap",
 		body="Pedagogy Gown +3",
 		hands="Telchine Gloves",
@@ -168,28 +169,21 @@ function init_gear_sets()
 	})
 
 	-- Want 500 Enhancing Magic Skill
-	-- Currently @ ML0 -- Base Skill: 456 with Light Arts.
     sets.midcast['Enhancing Magic'] = set_combine(sets.midcast.EnhancingDuration, {
 		-- Base Duration Set gives 533 with Light Arts.
 	})
 	
 	-- Want 500 Enhancing Magic Skill
-	-- Currently @ ML0 -- Base Skill: 386 without Light Arts
 	sets.midcast.EnhNoLightArts = set_combine(sets.midcast['Enhancing Magic'], {
-		-- +32~34 from LA set
-		ring1="Stikini Ring", -- 5
+		ring1="Stikini Ring +1", -- 8
 		main="Gada", -- 18
 		sub="Ammurapi Shield",
 		ear1="Mimir Earring", -- 10
-		ear2="Andoaa Earring", -- 5
 		legs="Shedir Seraweels", -- 15
 		feet="Kaykaus Boots +1", -- 21
 	})
 	
 	sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
-		--main="Musa",
-		main="Pedagogy Staff",
-		sub="Giuoco Grip",
 		body="Telchine Chasuble",
 		head="Arbatel Bonnet +2",
 		back="Bookworm's Cape"
@@ -236,20 +230,24 @@ function init_gear_sets()
 		neck="Argute Stole +1",
 		ear1="Regal Earring",
 		ear2="Malignance Earring",
+		--ear2="Arbatel Earring +2",
 		--body="Academic's Gown +3",
-		body="Mallquis Saio +2",
+		body="Academic's Gown +2",
 		hands= "Kaykaus Cuffs +1",
 		ring2="Stikini Ring +1",
 		ring1= "Metamorph Ring +1",
+		--ring1="Stikini Ring +1",
 		back="Aurist's Cape +1",
 		waist="Obstinate Sash",
-		--legs="Academic's Pants +3",
+		--legs="Arbatel Pants +2",
 		legs="Chironic Hose",
 		--feet="Academic's Loafers +3",
-		feet="Mallquis Clogs +2"
+		feet="Academic's Loafers +2"
 	}
 
-    sets.midcast.IntEnfeebles = sets.midcast.MndEnfeebles
+    sets.midcast.IntEnfeebles = set_combine(sets.midcast.MndEnfeebles, {
+		ring1="Metamorph Ring +1",
+	})
 	
     sets.midcast.Impact = set_combine(sets.midcast.IntEnfeebles, {
 		main="Bunzi's Rod",
@@ -257,9 +255,11 @@ function init_gear_sets()
 		head=empty,
 		body="Crepuscular Cloak",
 		hands="Regal Cuffs",
+		--hands="Academic's Bracers +3",
         ring2="Archon Ring",
 		waist="Acuity Belt +1",
 		legs="Pedagogy Pants +3",
+		--legs="Arbatel Pants +2",
 		feet="Arbatel Loafers +2"
 	})
 	
@@ -271,10 +271,13 @@ function init_gear_sets()
     sets.midcast.ElementalEnfeeble = set_combine(sets.midcast.IntEnfeebles, {legs="Agwu's Slops"})
 
     sets.midcast['Dark Magic'] = set_combine(sets.midcast.IntEnfeebles, {
-		neck="Erra Pendant",
-		--body="Academic's Gown +3",
-		ring1="Evanescence Ring",
-		ear2="Mani Earring",
+		main="Bunzi's Rod",
+		sub="Ammurapi Shield",
+		neck="Argute Stole +1",
+		--neck="Argute Stole +2",
+		hands="Academic's Bracers +2",
+		--hands="Academic's Bracers +3",
+		waist="Acuity Belt +1",
 	})
 
     sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {
@@ -293,12 +296,14 @@ function init_gear_sets()
     sets.midcast.Stun = {
 		main="Mpaca's Staff",
 		sub="Clerisy Strap",
+		--sub="Clerisy Strap +1",
 		ammo="Pemphredo Tathlum",
 		head="Academic's Mortarboard +3",
 		neck="Orunmila's Torque",
 		--neck="Voltsurge Torque",
-		ear1="Regal Earring",
-		ear2="Malignance Earring",
+		ear2="Regal Earring",
+		ear1="Malignance Earring",
+		--ear2="Arbatel Earring +2",
 		body="Zendik Robe",
 		hands="Volte Gloves",
 		--hands="Academic's Bracers +3",
@@ -337,7 +342,6 @@ function init_gear_sets()
 	
 	sets.midcast.Burst = set_combine(sets.midcast['Elemental Magic'], {
 		head="Pedagogy Mortarboard +3",
-		hands="Amalric Gages +1"
 	})
 	
     sets.midcast.Kaustra = set_combine(sets.midcast['Elemental Magic'], {
@@ -358,8 +362,9 @@ function init_gear_sets()
 		head="Agwu's Cap",
 		--neck="Argute Stole +2",
 		neck="Argute Stole +1",
-		ear2="Malignance Earring",
-		ear1="Regal Earring",
+		ear1="Malignance Earring",
+		--ear2="Arbatel Earring +2",
+		ear2="Regal Earring",
 		body="Agwu's Robe",
 		hands="Amalric Gages +1",
 		--hands="Agwu's Gages",
@@ -383,8 +388,6 @@ function init_gear_sets()
 	
 	sets.midcast.HelixBurst = set_combine(sets.midcast.Helix, {
 		head="Pedagogy Mortarboard +3",
-		ear2="Crematio Earring",
-		feet="Arbatel Loafers +2"
 	})
 	
 	sets.midcast.NoctoBurst = set_combine(sets.midcast.HelixBurst, {
@@ -403,6 +406,7 @@ function init_gear_sets()
 		ammo="Homiliary",
 		head="Volte Beret",
 		body="Agwu's Robe",
+		--body="Arbatel Gown +2",
 		hands="Volte Gloves",
 		legs="Volte Brais",
 		feet="Volte Gaiters",
@@ -414,14 +418,19 @@ function init_gear_sets()
 		waist="Carrier's Sash",
 		ring2="Stikini Ring +1",
 		ring1="Defending Ring"
+		--ring1="Stikini Ring +1",
 	}
 	
 	sets.idle.PDT = set_combine(sets.idle, {
-		main="Daybreak",
-		sub="Genmei Shield",
 		ammo="Staunch Tathlum +1",
-		legs="Agwu's Slops",
-		hands="Nyame Gauntlets"
+		head="Arbatel Bonnet +2",
+		--neck="Warder's Charm +1", Uncomment when Arbatel Gown +2.
+		neck="Loricate Torque +1",
+		ear2="Sanare Earring",
+		ring1="Defending Ring",
+		--ring2="Shadow Ring", Uncomment when Arbatel Gown +2.
+		ring2="Gelatinous Ring +1",
+		legs="Nyame Flanchard"
 	})
 
     sets.buff.Sublimation = {

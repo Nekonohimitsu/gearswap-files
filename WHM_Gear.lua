@@ -1,6 +1,6 @@
 -- Define sets and vars used by this job file.
 function init_gear_sets()
-	alaunMevaCure = {name="Alaunus's Cape", augments={'"Cure" Potency+10%'}}
+	alaunMevaCure = {name="Alaunus's Cape", augments={'Enmity-10'}}
 	alaunMaccFC = {name="Alaunus's Cape", augments={"Fast Cast +10%"}}
 	vanyaHoodConserveMp = {name="Vanya Hood", augments={'"Conserve MP"+6'}}
 	grioFC = {name="Grioavolr", augments={"Fast Cast +7%"}}
@@ -112,64 +112,85 @@ function define_cure_sets()
 	-- Cures w/ Solace up
 	-------------------------------------------------------------------------------------------------------------------
     sets.midcast.CureSolace = set_combine(sets.midcast.ConserveMP, {
-		main="Queller Rod", sub="Sors Shield", neck="Cleric's Torque",
-        head="Kaykaus Mitra +1", ear1="Mendicant's Earring",ear2="Glorious Earring",
-        body="Ebers Bliaut +2",hands="Theophany Mitts +3", ring2="Lebeche Ring",
-        back=alaunMaccFC, legs="Ebers Pantaloons +2", feet="Kaykaus boots +1"
-		--ring1="Naji's Loop" (drop Mendicant's Earring)
+		main="Queller Rod", sub="Thuellaic Ecu +1", head="Kaykaus Mitra +1", 
+		ear1="Nourishing Earring +1",ear2="Glorious Earring", body="Ebers Bliaut +2",
+		hands="Theophany Mitts +3", ring2="Naji's Loop", back=alaunMevaCure,
+		legs="Ebers Pantaloons +2", feet="Kaykaus boots +1"
 	})
 	
 	sets.midcast.CureSolaceWeather = set_combine(sets.midcast.CureSolace, {
 		main="Chatoyant Staff",
-		sub="Clerisy Strap",
+		sub="Giuoco Grip",
+		neck="Cleric's Torque",
 		waist="Hachirin-no-obi",
-		--ear1="Mendicant's Earring" (When Naji's Loop in base)
 	})
 	
 	sets.midcast.CureSolace.DT = set_combine(sets.midcast.CureSolace, {
-		main="Tamaxchi",
-		sub="Genmei Shield",
-		ring1="Defending Ring", -- 10%
 		ammo="Staunch Tathlum +1", -- 3%
-		ear1="Odnowa Earring +1", -- 3%
-		waist="Acerbic Sash",
-		neck="Loricate Torque +1" -- 6%
-		--back 5%
-		--------------
-		-- 27% DT, 10% PDT, 2% MDT
-		-- -46 Enmity
-		-- 567 Healing Skill 
-		-- 53% Cure Potency
-		-- 10% Cure Potency II
+		neck="Loricate Torque +1", -- 6%
+		ring1="Defending Ring", -- 10%
+		waist="Carrier's Sash",
+		sub="Genmei Shield", -- P10%
+		---------------------------
+		-- Base Set: DT-17% (Remove DT-5% for PDT-10% when cape changes)
+		---------------------------
+		-- DT-36%, PDT-10(46)%
 	})
 	
 	sets.midcast.CureSolaceWeather.DT = set_combine(sets.midcast.CureSolaceWeather,{
-		sub="Giuoco Grip", -- 1% PDT
-		ammo="Staunch Tathlum +1", -- 3% DT
-		ring1="Defending Ring", -- 10% DT
-		ear1="Odnowa Earring +1" -- 3% DT, 2% MDT
-		-- back 5%
-		--------------
-		-- 21% DT, 1% PDT, 3% MDT
-		-- -44 Enmity
-		-- 567 Healing Skill 
-		-- 46% Cure Potency
-		-- 10% Cure Potency II
-		-- +0.2 Weather
+		sub="Giuoco Grip", --P1%
+		--sub="Mensch Strap +1",
+		ammo="Staunch Tathlum +1", -- 3%
+		ring1="Defending Ring", -- 10%
+		---------------------------
+		-- Base Set: DT-17% (Remove DT-5% for PDT-10% when cape changes)
+		---------------------------
+		-- DT-30%, PDT-1(31)%
 	})
 	
 	-------------------------------------------------------------------------------------------------------------------
 	-- Normal Cures
 	-------------------------------------------------------------------------------------------------------------------
-	sets.midcast.Cures = set_combine(sets.midcast.CureSolace,{body="Theophany Bliaut +3"})
+	sets.midcast.Cures = set_combine(sets.midcast.CureSolace,{
+		sub="Sors Shield", -- Remove when Kaykaus +1
+		body="Theophany Bliaut +3",
+		--body="Kaykaus Bliaut +1",
+		--ear1="Ebers Earring",
+		ear1="Mendicant's Earring", -- Change to Ebers when Kaykaus +1
+		back="Fi Follet Cape +1",
+	})
 	sets.midcast.CuresWeather = set_combine(sets.midcast.Cures, {
 		main="Chatoyant Staff",
-		sub="Clerisy Strap",
+		sub="Giuoco Grip",
+		ammo="Esper Stone +1", -- Remove when Kaykaus +1
 		waist="Hachirin-no-obi",
+		ear1="Nourishing Earring +1", -- Remove when Kaykaus +1
+		neck="Cleric's Torque",
 		back="Twilight Cape"
 	})
-	sets.midcast.Cures.DT = set_combine(sets.midcast.CureSolace.DT,{body="Theophany Bliaut +3"})
-	sets.midcast.CuresWeather.DT = set_combine(sets.midcast.CuresWeather)
+	sets.midcast.Cures.DT = set_combine(sets.midcast.Cures,{
+		sub="Genmei Shield", -- P10%
+		ammo="Staunch Tathlum +1", --3%
+		neck="Loricate Torque +1", -- 6%
+		ear1="Nourishing Earring +1", -- Remove when Kaykaus +1
+		ring1="Defending Ring", -- 10%
+		back=alaunMevaCure, --5% (change to PDT-10%)
+		---------------------------
+		-- Base Set: DT-12%
+		---------------------------
+		-- DT-36%, PDT-10(46)%
+		
+	})
+	sets.midcast.CuresWeather.DT = set_combine(sets.midcast.CuresWeather, {
+		ammo="Staunch Tathlum +1", -- 3%
+		--ear2="Ebers Earring +2",
+		ring1="Defending Ring", -- 10%
+		back=alaunMevaCure, -- 5% (change to PDT-10%)
+		---------------------------
+		-- Base Set: DT-12%
+		---------------------------
+		-- DT-30%
+	})
 	
 	-------------------------------------------------------------------------------------------------------------------
 	-- Curagas
@@ -208,10 +229,9 @@ function define_enhancing_magic_sets()
 
     sets.midcast.BarElement = set_combine(sets.midcast.EnhancingDuration, {
 		main="Beneficus",
-		sub="Ammurapi Shield", head="Ebers Cap +1", body="Ebers Bliaut +2",
+		sub="Ammurapi Shield", head="Ebers Cap +2", body="Ebers Bliaut +2",
 		hands="Ebers Mitts +2", back=alaunMaccFC, legs="Piety Pantaloons +3",
 		feet="Ebers Duckbills +2"
-		--head="Ebers Cap +2",
 		})
 
     sets.midcast.Regen = set_combine(sets.midcast.ConserveMP, {main="Bolelabunga",
@@ -261,7 +281,7 @@ function define_divine_magic_sets()
 		
 	sets.midcast.Repose = set_combine(sets.midcast['Enfeebling Magic'], {
 		neck="Jokushu Chain",
-		hands="Inyanga Dastans +2",
+		hands="Inyanga Dastanas +2",
 		legs="Theophany Pantaloons +3",
 	})
 	

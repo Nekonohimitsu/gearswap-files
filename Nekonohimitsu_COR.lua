@@ -13,6 +13,8 @@ function user_setup()
 	--F9 to Cycle
 	state.OffenseMode:options('Normal', 'Acc')
 	
+	state.HybridMode:options('Normal', 'DT')
+	
 	--This matches the Offense or Ranged modes according to WS used if it can.
 	state.WeaponskillMode:options('Normal', 'Acc')
 	
@@ -116,12 +118,9 @@ function init_gear_sets()
 		neck="Regal Necklace",
 		ear1="Odnowa Earring +1",
 		ear2="Etiolation Earring",
-		body="Malignance Tabard",
-		--body="Chassuer's Frac +2",
+		body="Chassuer's Frac +2",
 		hands="Chasseur's Gants +2",
-		--hands="Chasseur's Gants +2",
-		ring1="Gelatinous Ring +1",
-		--ring1="Purity Ring", (when Frac +2)
+		ring1="Purity Ring",
 		ring2="Defending Ring",
 		back=camuDT,
 		waist="Flume Belt",
@@ -134,23 +133,19 @@ function init_gear_sets()
 	})
 	
 	sets.precast.CorsairRoll["Caster's Roll"] = set_combine(sets.precast.CorsairRoll, {
-		legs="Chasseur's Culottes +1"
-		--legs="Chasseur's Culottes +2",
+		legs="Chasseur's Culottes +2"
 	})
 	
 	sets.precast.CorsairRoll["Courser's Roll"] = set_combine(sets.precast.CorsairRoll, {
-		feet="Chasseur's Bottes +1"
-		--feet="Chasseur's Bottes +2",
+		feet="Chasseur's Bottes +2"
 	})
 	
 	sets.precast.CorsairRoll["Tactician's Roll"] = set_combine(sets.precast.CorsairRoll, {
 		body="Chasseur's Frac +2"
-		--body="Chasseur's Frac +2",
 	})
 	
 	sets.precast.CorsairRoll["Allies Roll"] = set_combine(sets.precast.CorsairRoll, {
 		hands="Chasseur's Gants +2"
-		--hands="Chasseur's Gants +2",
 	})
 		
 	sets.precast.CorsairShot = {
@@ -165,6 +160,7 @@ function init_gear_sets()
 		ring2="Fenrir Ring +1",
 		back=camuMabWsd,
 		waist="Eschan Stone",
+		--waist="Skrymir Cord +1",
 		legs="Herculean Trousers",
 		feet="Lanun Bottes +3"
 	}
@@ -175,34 +171,36 @@ function init_gear_sets()
 		neck="Vim Torque +1",
 		ear1="Telos Earring",
 		ear2="Crepuscular Earring",
+		--ear2="Dedition Earring",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
 		ring1="Chirich Ring +1",
 		ring2="Crepuscular ring",
 		back=camuRacc,
 		waist="Tellen Belt",
-		legs="Chasseur's Culottes +1",
-		--legs="Chasseur's Culottes +2",
+		--waist="Gerdr Belt +1",
+		legs="Chasseur's Culottes +2",
 		feet="Malignance Boots"
 	})
 	
-	sets.QDDmg = {head="Laksamana's Tricorne +3", feet="Chasseur's Bottes +1", body="Mirke Wardecors"}
-	--feet="Chasseur's Bottes +2"
+	sets.QDDmg = {head="Laksamana's Tricorne +3", feet="Chasseur's Bottes +2", body="Mirke Wardecors"}
 	
 	sets.precast.CorsairShot['Light Shot'] = {
 		ammo="Animikii Bullet",
 		head="Laksa. Tricorne +3",
 		neck="Commodore Charm +1",
+		--neck="Commodore Charm +2",
 		ear1="Crepuscular Earring",
 		ear2="Dignitary's Earring",
-		body="Mummu Jacket +2",
+		--ear2="Chasseur's Earring +2",
+		body="Chassuer's Frac +2",
 		--body="Oshosi Vest +1",
 		hands="Laksamana's Gants +3",
 		ring1="Metamorph Ring +1",
 		ring2="Regal Ring",
 		back=camuMabWsd,
 		waist="K. Kachina Belt +1",
-		legs="Mummu Kecks +2",
+		legs="Chassuer's Culottes +2",
 		--legs="Oshosi Trousers +1",
 		feet="Laksamana's Bottes +3"
 	}
@@ -229,12 +227,7 @@ function init_gear_sets()
 	}
 					
 	sets.midcast.RA.Acc = set_combine(sets.midcast.RA, {
-		head="Malignance Chapeau"
-		,body="Laksamana's Frac +3"
-		,ring1="Regal Ring"
-		,ring2="Hajduk Ring +1"
-		,hands="Malignance Gloves"
-		,waist="Kwahu Kachina Belt +1"
+		waist="Kwahu Kachina Belt +1"
 		,ear2="Beyla Earring"
 	})
 
@@ -242,7 +235,6 @@ function init_gear_sets()
    sets.TripleShot = set_combine(sets.midcast.RA, {
 			head="Oshosi Mask +1",
 			body="Chasseur's Frac +2",
-			--body="Chasseur's Frac +2",
 			hands="Lanun Gants +3",
 			--legs="Oshosi Trousers +1",
 			feet="Oshosi Leggings +1"
@@ -268,14 +260,17 @@ function init_gear_sets()
 	ammo="Living Bullet",
 	head="Nyame Helm",
 	neck="Commodore Charm +1",
+	--neck="Commodore Charm +2",
 	ear1="Crematio Earring",
 	ear2="Friomisi Earring",
 	body="Lanun Frac +3",
 	hands="Nyame Gauntlets",
 	ring1="Ilabrat Ring",
 	ring2="Dingir ring",
+	--ring1="Epaminondas's Ring",
 	back=camuMabWsd,
 	waist="Eschan Stone",
+	--waist="Skrymir Cord +1",
 	legs="Nyame Flanchard",
 	feet="Lanun Bottes +3"
    }
@@ -291,11 +286,11 @@ function init_gear_sets()
 	ammo="Chrono Bullet",
 	head="Lanun Tricorne +3",
 	neck="Fotia Gorget",
-	ear1="Ishvara Earring",
-	ear2="Moonshade Earring",
+	ear2="Ishvara Earring",
+	ear1="Moonshade Earring",
+	--ear2="Chasseur's Earring +2",
 	body="Laksamana's Frac +3",
-	hands="Meghanada Gloves +2",
-	--hands="Chasseur's Gants +2",
+	hands="Chasseur's Gants +2",
 	ring1="Dingir Ring",
 	--ring1="Epaminondas's Ring",
 	ring2="Regal Ring",
@@ -306,12 +301,6 @@ function init_gear_sets()
    }
    
    sets.precast.WS['Last Stand'].Acc = set_combine(sets.precast.WS['Last Stand'], {
-	head="Malignance Chapeau",
-	neck="Iskur Gorget",
-	ear1="Telos Earring",
-	ring2="Cacoethic Ring +1",
-	waist="K. Kachina Belt +1",
-	feet="Meghanada Jambeaux +2"
    })
    
    sets.precast.WS['Slug Shot'] = sets.precast.WS['Last Stand']
@@ -320,8 +309,10 @@ function init_gear_sets()
    sets.precast.WS['Savage Blade'] = {
 	head="Nyame Helm",
 	neck="Commodore Charm +1",
-	ear1="Ishvara Earring",
-	ear2="Moonshade Earring",
+	--neck="Commodore Charm +2",
+	ear2="Ishvara Earring",
+	--ear2="Commodore Earring +2",
+	ear1="Moonshade Earring",
 	body="Nyame Mail",
 	hands="Nyame Gauntlets",
 	ring1="Karieyh Ring +1",
@@ -357,7 +348,7 @@ function init_gear_sets()
 	ear2="Moonshade Earring",
 	body="Adhemar Jacket +1",
 	hands="Nyame Gauntlets",
-	ring1="Ilabrat Ring",
+	ring1="Rufescent Ring",
 	ring2="Regal Ring",
 	back=camuDa,
 	waist="Fotia Belt",
@@ -366,7 +357,7 @@ function init_gear_sets()
    }
    
    sets.engaged = {
-	head="Adhemar Bonnet +1",
+	head="Malignance Chapeau",
 	neck="Clotharius Torque",
 	ear1="Telos Earring",
 	ear2="Suppanomimi",
@@ -381,14 +372,20 @@ function init_gear_sets()
    }
    
    sets.engaged.Acc = set_combine(sets.engaged, {
-	head="Malignance Chapeau",
-	body="Malignance Tabard",
-	hands="Adhemar Wristbands +1",
-	legs="Meghanada Chausses +2",
-	waist="Grunfeld Rope",
-	ring2="Regal Ring",
-	ear2="Crepuscular Earring",
-	neck="Combatant's Torque"
+		body="Malignance Tabard",
+   })
+   
+   sets.engaged.DT = set_combine(sets.engaged, {
+		-- BASE: 10%
+		body="Malignance Tabard", -- 9%
+		hands="Malignance Gloves", -- 5%
+		ring1="Defending Ring", -- 10%
+		waist="Flume Belt", -- P4%
+		legs="Nyame Flanchard", -- 7%
+		--legs="Malignance Tights", -- 7%
+		feet="Malignance Boots" -- 4%
+		--------------------------------
+		-- DT-46%, PDT-4(50)%
    })
    
    sets.defense.PDT = {
@@ -402,7 +399,7 @@ function init_gear_sets()
 		,ring2="Defending Ring"
 		,back=camuDT
 		,waist="Flume Belt"
-		,legs="Mummu Kecks +2" --,legs="Malignance Tights"
+		,legs="Nyame Flanchard" --,legs="Malignance Tights"
 		,feet="Malignance Boots"
    }
    sets.defense.MDT = sets.defense.PDT

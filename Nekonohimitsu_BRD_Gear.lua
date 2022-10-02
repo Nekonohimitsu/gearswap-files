@@ -15,7 +15,7 @@ function init_gear_sets()
 
     -- Fast cast sets for spells
     sets.precast.FC = {main="Grioavolr", sub="Clerisy Strap", head="Bunzi's Hat", neck="Orunmila's Torque",
-				ear1="Enchanter's Earring +1", ear2="Loquac. Earring", body="Inyanga Jubbah +2", hands="Leyline Gloves",
+				ear1="Etiolation Earring", body="Inyanga Jubbah +2", hands="Volte Gloves",
 				ring1="Kishar Ring", ring2="Lebeche Ring", back=maccFCIntarabus, waist="Witful Belt", legs="Volte Brais",
 				feet="Volte Gaiters"}
 
@@ -44,15 +44,15 @@ function init_gear_sets()
     -- Gear to enhance certain classes of songs.
     sets.midcast.Ballad = {range="Blurred Harp +1", legs="Fili Rhingrave +1"} --legs="Fili Rhingrave +2"
     sets.midcast.Lullaby = {range="Blurred Harp +1", hands="Brioso Cuffs +3"}
-    sets.midcast.Madrigal = {head="Fili Calot +1", back=maccFCIntarabus} -- head="Fili Calot +2"
-    sets.midcast.March = {hands="Fili Manchettes +1"} -- hands="Fili Manchettes +2"
-    sets.midcast.Minuet = {body="Fili Hongreline +1"} -- body="Fili Hongreline +2"
+    sets.midcast.Madrigal = {head="Fili Calot +2", back=maccFCIntarabus}
+    sets.midcast.March = {hands="Fili Manchettes +2"}
+    sets.midcast.Minuet = {body="Fili Hongreline +2"}
     sets.midcast.Minne = {legs="Mousai Seraweels"} -- legs="Mousai Seraweels +1"
     sets.midcast.Paeon = {head="Brioso Roundlet +3"}
     sets.midcast.Carol = {hands="Mousai Gages"} -- hands="Mousai Gages +1"
 	sets.midcast.Etude = {head="Mousai Turban"} -- head="Mousai Turban +1"
     sets.midcast["Sentinel's Scherzo"] = {feet="Fili Cothurnes +2"}
-    sets.midcast['Honor March'] = {range="Marsyas", hands="Fili Manchettes +1"} -- hands="Fili Manchettes +2"
+    sets.midcast['Honor March'] = {range="Marsyas", hands="Fili Manchettes +2"}
 	sets.midcast.Mambo = {feet="Mousai Crackows"} -- feet="Mousai Crackows +1"
 	sets.midcast.Prelude = {back=maccFCIntarabus}
 	sets.midcast.Threnody = {body="Mousai Manteel"} -- body="Mousai Manteel +1"
@@ -63,15 +63,12 @@ function init_gear_sets()
 		main="Carnwenhan",
 		sub="Genmei Shield",
 		range="Gjallarhorn",
-		head="Fili Calot +1",
-		--head="Fili Calot +2",
+		head="Fili Calot +2",
 		neck="Moonbow Whistle +1",
 		ear1="Hearty Earring",
 		ear2="Odnowa Earring +1",
-		body="Fili Hongreline +1",
-		--body="Fili Hongreline +2",
-		hands="Fili Manchettes +1",
-		--hands="Fili Manchettes +2",
+		body="Fili Hongreline +2",
+		hands="Fili Manchettes +2",
 		ring1="Defending Ring",
 		ring2="Gelatinous Ring +1",
 		back=maccFCIntarabus,
@@ -92,8 +89,7 @@ function init_gear_sets()
 		ear1="Enchanter's Earring +1",
 		--ear1="Fili Earring +2",
 		ear2="Regal Earring",
-		body="Fili Hongreline +1",
-		--body="Fili Hongreline +2",
+		body="Fili Hongreline +2",
 		hands="Brioso Cuffs +3",
 		ring1="Metamorph Ring +1",
 		ring2="Stikini Ring +1",
@@ -133,7 +129,7 @@ function init_gear_sets()
     sets.midcast.ResistantSongDebuff = set_combine(sets.midcast.SongDebuff, {
 		legs="Brioso Cannions +3",
 		body="Brioso Justaucorps +3",
-		--hands="Fili Manchettes +2"
+		hands="Fili Manchettes +2"
 	})
 
     -- Song-specific recast reduction
@@ -152,31 +148,25 @@ function init_gear_sets()
 		head="Kaykaus Mitra +1",
 		body="Kaykaus Bliaut",
 		--body="Kaykaus Bliaut +1",
-		hands="Brioso Cuffs +3",
-		--hands="Kaykaus Cuffs +1",
-		ring1="Lebeche Ring",
-		--ring1="Defending Ring",
-		ring2="Prolix Ring",
-		--ring2="Naji's Loop",
+		hands="Kaykaus Cuffs +1",
+		ring1="Defending Ring",
+		ring2="Naji's Loop",
 		waist="Shinjutsu-no-Obi +1",
 		--waist="Pythia Sash +1",
-		legs="Volte Brais",
+		legs="Bunzi's Pants",
 		--legs="Kaykaus Tights +1",
 		feet="Kaykaus Boots +1",
-		neck="Orunmila's Torque",
-		--neck="Loricate Torque +1",
-		ear1="Calamitous Earring",
-		--ear1="Odnowa Earring +1",
+		neck="Loricate Torque +1",
+		ear1="Odnowa Earring +1",
 		ear2="Enervating Earring",
 		--ear2="Fili Earring +2",
-		back="Fi Follet Cape +1"
-		--back=maccFCIntarabus
+		back=maccFCIntarabus
 	}
         
     sets.midcast.Curaga = sets.midcast.Cure
 	
 	sets.midcast.CureWeather = set_combine(sets.midcast.Cure, 
-		{main="Chatoyant Staff", sub="Clerisy Strap", waist="Hachirin-no-Obi", ear1="Mendicant's Earring"})
+		{main="Chatoyant Staff", sub="Clerisy Strap", waist="Hachirin-no-Obi"})
 	
 	sets.midcast.EnhancingDuration = {head="Telchine Cap", 
 				body="Telchine Chasuble", hands="Telchine Gloves", legs="Telchine Braconi",
@@ -279,7 +269,7 @@ function init_gear_sets()
 	
 	sets.engaged.DW = set_combine(sets.engaged, {
 		--ear1="Eabani Earring",
-		--ear2="Suppanomimi"
+		ear2="Suppanomimi"
 	})
 	-- WS Sets
 	
@@ -339,6 +329,7 @@ function init_gear_sets()
 	sets.precast.WS['Savage Blade'] = {
 		head="Nyame Helm",
 		neck="Combatant's Torque",
+		--neck=Bard's Charm +2",
 		ear1="Ishvara Earring",
 		ear2="Moonshade Earring",
 		body="Bihu Justaucorps +3",

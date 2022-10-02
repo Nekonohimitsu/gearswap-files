@@ -78,7 +78,6 @@ end
 function init_gear_sets()
 	nantoPet = {name="Nantosuelta's Cape", augments={"Pet: Regen+10"}}
 	nantoMatk = {name = "Nantosuelta's Cape", augments={'"Mag.Atk.Bns."+10'}}
-	merlinicHoodFC = {name="Merlinic Hood", augments={"Fast Cast +5%"}}
 	vanyaHoodConserveMp = {name="Vanya Hood", augments={'"Conserve MP"+6'}}
 	grioFC = {name="Grioavolr", augments={"Fast Cast +7%"}}
 	gadaIndiDur = {name="Gada", augments={"Indi. eff. dur. +10%"}}
@@ -96,23 +95,21 @@ function init_gear_sets()
     -- Fast cast sets for spells
 
     sets.precast.FC = {
-    --  /RDM --15
         ranged="Dunna", --3
         main=grioFC, --11
         sub="Clerisy Strap", --2
-        head=merlinicHoodFC, --13
-        body="Zendik Robe", --13
+        head="Amalric Hood +1", --11
+        body="Agwu's Robe", --8
         hands="Volte Gloves", --6, 
         legs="Geomancy Pants +3", --13
         feet="Volte Gaiters", --6
         neck="Orunmila's Torque", --5
-        ear1="Loquacious Earring", --2
         ear2="Malignance Earring", --4
         ring1="Kishar Ring", --4
-        ring2="Lebeche Ring", --2
-        back="Perimede Cape", --4
+        ring2="Lebeche Ring",
+        back="Perimede Cape",
         waist="Witful Belt", --3(3)
-        }
+    }
 
     sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty, body="Crepuscular Cloak"})
     sets.precast.FC.Dispelga = set_combine(sets.precast.FC, {main="Daybreak", sub="Chanter's Shield"})
@@ -126,11 +123,17 @@ function init_gear_sets()
 		hands="Nyame Gauntlets",
 		legs="Nyame Flanchard",
 		feet="Nyame Sollerets",
-		ring1="Rufescent Ring",
 		ring2="Karieyh Ring +1",
 		ear1="Ishvara Earring",
-		ear2="Moonshade Earring"
+		ear2="Moonshade Earring",
     }
+	
+	sets.precast.WS['Black Halo'] = set_combine(sets.precast.WS, {
+		--neck="Republican Platinum Medal",
+		waist="Grunfeld Rope",
+		ring1="Rufescent Ring",
+		--back=strWsdNanto
+	})
 
     ------------------------------------------------------------------------
     ----------------------------- Midcast Sets -----------------------------
@@ -153,9 +156,9 @@ function init_gear_sets()
         ear2="Gifted Earring",
         neck="Bagua Charm +1",
 		--neck="Bagua Charm +2",
-        ring2="Stikini Ring +1",
+        ring2="Defending Ring",
         ring1="Mephitas's Ring +1",
-        waist="Hachirin-no-Obi",
+        waist="Shinjutsu-no-obi +1",
 		back="Fi Follet Cape +1"
         }
 
@@ -164,9 +167,8 @@ function init_gear_sets()
 		neck="Incanter's Torque",
 		legs="Bagua Pants +3",
         feet="Azimuth Gaiters +2",
-        back="Lifestream Cape",
-		ring2="Defending Ring"
-        })
+        back="Lifestream Cape"
+    })
 
     sets.midcast.Cure = {
         main="Tamaxchi", --22
@@ -202,6 +204,7 @@ function init_gear_sets()
         head="Befouled Crown",
         body="Telchine Chas.",
         neck="Incanter's Torque",
+		ear1="Mimir Earring",
         ear2="Andoaa Earring",
         ring1="Stikini Ring",
 		ring2="Stikini Ring +1",
@@ -209,7 +212,7 @@ function init_gear_sets()
         waist="Olympus Sash",
         }
 
-    sets.midcast.EnhancingDuration = set_combine(sets.midcast['Enhancing Magic'], {
+    sets.midcast.EnhancingDuration = {
         main=gadaEnhDur,
         sub="Ammurapi Shield",
         head="Telchine Cap",
@@ -218,7 +221,7 @@ function init_gear_sets()
 		legs="Telchine Braconi",
 		feet="Telchine Pigaches",
 		waist="Embla Sash",
-        })
+        }
 
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
         main="Bolelabunga"
@@ -236,9 +239,12 @@ function init_gear_sets()
         })
 
     sets.midcast.Aquaveil = set_combine(sets.midcast.EnhancingDuration, {
+		main="Vadose Rod",
+		sub="Ammurapi Shield",
 		head="Amalric Coif +1",
 		legs="Shedir Seraweels",
-		hands="Regal Cuffs"
+		hands="Regal Cuffs",
+		waist="Emphatikos Rope",
         })
 
     sets.midcast.Protect = set_combine(sets.midcast.EnhancingDuration, {ring2="Sheltered Ring"})
@@ -281,6 +287,7 @@ function init_gear_sets()
 		sub="Ammurapi Shield",
         head="Bagua Galero +3",
 		neck="Erra Pendant",
+		hands="Geomancy Mitaines +3",
 		ring1="Evanescence Ring",
 		ring2="Archon Ring",
 		waist="Fucho-no-Obi",
@@ -304,8 +311,10 @@ function init_gear_sets()
         legs="Agwu's Slops",
         feet="Agwu's Pigaches",
         neck="Saevus Pendant +1",
+		--neck="Sibyl Scarf",
         ear2="Malignance Earring",
         ear1="Regal Earring",
+		--ear2="Azimuth Earring +2",
         ring1="Metamorph Ring +1",
         ring2="Freke Ring",
         back=nantoMatk,
@@ -344,6 +353,7 @@ function init_gear_sets()
 		range="Dunna",
         head="Volte Beret",
         neck="Loricate Torque +1",
+		--neck="Sibyl Scarf",
         ear1="Odnowa Earring +1",
         ear2="Etiolation Earring",
 		--ear2="Azimuth Earring +2",
@@ -363,19 +373,16 @@ function init_gear_sets()
     })
 
     sets.idle.DT = set_combine(sets.idle, {
-		main="Bolelabunga",
-		sub="Genmei Shield", -- 0% / 10% / 0%
-		-- Remove when DT good below.
 		head="Azimuth Hood +2", -- 11% / 0% / 0%
 		neck="Loricate Torque +1", -- 6% / 0% / 0%
 		ear1="Odnowa Earring +1", -- 3% / 0% / 2%
 		--ear2="Azimuth Earring +2", -- 7% / 0% / 0%
 		ring1="Defending Ring", -- 10% / 0% / 0%
-		legs="Nyame Flanchard", -- 8% / 0% / 0%
+		legs="Agwu's Slops", -- 7% / 0% / 0%
 		feet="Azimuth Gaiters +2", -- 10% / 0% / 0% --Remove when Azimuth Earring +2 obtained.
 		back=nantoPet, -- 5% / 0% / 0%
 		------------------------------------------
-		-- 40% / 10% / 2%
+		-- 52% / 0% / 2%
     })
 
     -- .Pet sets are for when Luopan is present.
@@ -416,15 +423,15 @@ function init_gear_sets()
         legs="Agwu's Slops", 
         feet="Bagua Sandals +3", 
         neck="Bagua Charm +1",
+		--neck="Bagua Charm +2",
         ear1="Etiolation Earring",
 		--ear1="Azimuth Earring +2",
         ear2="Odnowa Earring +1", 
         ring1="Defending Ring", 
-        ring2="Gelatinous Ring +1", 
-		--ring2="Shadow Ring",
+		ring2="Shadow Ring",
         back=nantoPet, 
         waist="Isa Belt" 
-		-- 29% DT, 20% PDT, 4% MDT
+		-- 45 DT, 13% PDT, 5% MDT
         })
 
     -- Defense sets
@@ -462,6 +469,7 @@ function init_gear_sets()
 		ear1="Crepuscular Earring",
 		ear2="Telos Earring",
 		neck="Combatant's Torque",
+		--back=dexDaNanto,
 		waist="Goading Belt",
 		ring1="Chirich Ring +1",
 		ring2="Chirich Ring +1"

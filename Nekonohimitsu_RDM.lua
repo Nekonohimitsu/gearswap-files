@@ -28,7 +28,7 @@ end
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
     state.OffenseMode:options('None', 'Normal', 'Acc')
-    state.HybridMode:options('Normal', 'PhysicalDef', 'MagicalDef')
+    state.HybridMode:options('Normal', 'DT')
     state.CastingMode:options('Normal', 'Resistant')
     state.IdleMode:options('Normal', 'DT')
 	
@@ -85,9 +85,12 @@ function init_gear_sets()
 
     sets.midcast.Cure = {
 		main="Tamaxchi", sub="Sors Shield", ammo="Esper Stone +1", head="Kaykaus Mitra +1",
-		neck="Orunmila's Torque", ear1="Enervating Earring", ear2="Lethargy Earring",
-		body="Kaykaus Bliaut", hands="Kaykaus Cuffs +1", ring1="Lebeche Ring", ring2="Mephitas's Ring +1", 
-		back="Fi Follet Cape +1", waist="Shinjutsu-no-obi +1", legs="Vanya Slops", feet="Kaykaus Boots +1"
+		neck="Incanter's Torque", ear1="Malignance Earring", ear2="Etiolation Earring",
+		body="Kaykaus Bliaut", hands="Kaykaus Cuffs +1", ring1="Naji's Loop", ring2="Mephitas's Ring +1", 
+		back="Fi Follet Cape +1", waist="Shinjutsu-no-obi +1", legs="Bunzi's Pants", feet="Kaykaus Boots +1"
+		--legs="Kaykaus Tights +1",
+		--body="Kaykaus Bliaut +1",
+		--ammo="Pemphredo Tathlum"
 	}
         
     sets.midcast.Curaga = sets.midcast.Cure
@@ -100,7 +103,9 @@ function init_gear_sets()
 		ring2="Haoma's Ring", neck="Debilis Medallion", feet="Gendewitha Galoshes +1",
 		ear1="Beatific Earring", ear2="Meili Earring", legs="Carmine Cuisses +1", head="Kaykaus Mitra +1",
 		waist="Bishop's Sash", body="Vitiation Tabard +3", hands="Hieros Mittens",
-		back="Oretania's Cape +1"})
+		back="Oretania's Cape +1"
+		--ring1="Menelaus's Ring"
+	})
     
 	--Used for Pure MACC Spells (Sleep, Break, Silence, etc)
     sets.midcast.MndEnfeebles = {
@@ -109,13 +114,18 @@ function init_gear_sets()
 		hands="Lethargy Gantherots +2", ring1="Metamorph Ring +1", ring2="Stikini Ring +1",
 		back="Aurist's Cape +1", waist="Obstinate Sash", legs="Chironic Hose", feet="Vitiation Boots +3"
 		--ring1="Stikini Ring +1",
+		--neck="Duelist's Torque +2",
+		--ear2="Lethargy Earring +2",
 	}		 
 	sets.midcast.IntEnfeebles = set_combine(sets.midcast.MndEnfeebles, {
 		ring1="Metamorph Ring +1",
 	})
 	
 	--Duration only spells (Dia, Bio)
-	sets.midcast.DurationEnfeebles = {ring1="Kishar Ring", ear1="Snotra Earring", neck="Duelist's Torque +1", hands="Regal Cuffs", head="Vitiation Chapeau +3", waist="Obstinate Sash"}
+	sets.midcast.DurationEnfeebles = {ring1="Kishar Ring", ear1="Snotra Earring", neck="Duelist's Torque +1",
+	hands="Regal Cuffs", head="Vitiation Chapeau +3", waist="Obstinate Sash"
+	--neck=Duelist's Torque +2",
+	}
 	
 	sets.midcast.Bind = set_combine(sets.midcast.IntEnfeebles, sets.midcast.DurationEnfeebles)
 	
@@ -123,7 +133,8 @@ function init_gear_sets()
 	sets.midcast.EffectMndEnfeebles = set_combine(sets.midcast.MndEnfeebles, {
 		main="Daybreak", sub="Ammurapi Shield", range="", ammo="Regal Gem", ring1="Metamorph Ring +1",
 		ear2="Snotra Earring", ear1="Malignance Earring", body="Lethargy Sayon +2",
-		hands="Kaykaus Cuffs +1", feet="Vitiation Boots +3", back=mevaSucCape, legs="Lethargy Fuseau +2"
+		hands="Kaykaus Cuffs +1", feet="Vitiation Boots +3", back=mevaSucCape, legs="Lethargy Fuseau +2",
+		waist="Luminary Sash"
 	})
 	
 	sets.midcast.EffectIntEnfeebles = set_combine(sets.midcast.IntEnfeebles, {
@@ -154,13 +165,18 @@ function init_gear_sets()
     sets.midcast.Impact = set_combine(sets.midcast.IntEnfeebles, {
 		head=empty,body="Crepuscular Cloak", waist="Acuity Belt +1",ear1="Malignance Earring", feet="Lethargy Houseaux +2"
 		--feet="Bunzi's Sabots" -- R25. Lethargy Houseaux +2 until R21.
+		--legs="Vitiation Tights +3",
+		--hands="Raetic Bangles +1",
 	})
-    sets.midcast.Stun = set_combine(sets.midcast.IntEnfeebles, {
-		head="Atrophy Chapeau +3",
-		body="Vitiation Tabard +3",
-		legs="Volte Brais",
-		ear2="Malignance Earring"
-	})
+    sets.midcast.Stun = {
+		main="Mpaca's Staff", sub="Clerisy Strap", --sub="Clerisy Strap +1",
+		range="Ullr", ammo="", head="Atrophy Chapeau +3", neck="Duelist's Torque +1", --neck="Duelist's Torque +2",
+		ear1="Malignance Earring", ear2="Lethargy Earring", --ear2="Lethargy Earring +2",
+		body="Atrophy Tabard +3", hands="Regal Cuffs", --hands="Raetic Bangles +1",
+		ring1="Stikini Ring +1", ring2="Metamorph Ring +1", --ring2="Stikini Ring +1",
+		back="Aurist's Cape +1", waist="Acuity Belt +1", legs="Volte Brais", feet="Vitiation Boots +3"
+		--feet="Bunzi's Sabots" (when R20+)
+	}
     
     sets.midcast['Elemental Magic'] = {
 			main="Bunzi's Rod",
@@ -204,7 +220,8 @@ function init_gear_sets()
 		head="Telchine Cap", body="Vitiation Tabard +3", hands="Atrophy Gloves +3",
 		back=mevaSucCape, legs="Telchine Braconi", feet="Lethargy Houseaux +2", 
 		neck="Duelist's Torque +1", waist="Embla Sash", ear2="Lethargy Earring"
-		--ear2="Lethargy Earring +2"
+		--ear2="Lethargy Earring +2",
+		--neck="Duelist's Torque +2",
 	}
 
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {main="Bolelabunga", feet="Bunzi's Sabots"})
@@ -252,11 +269,13 @@ function init_gear_sets()
 		ammo="Homiliary",
 		head="Vitiation Chapeau +3",
 		neck="Loricate Torque +1",
+		--neck="Sibyl Scarf",
 		ear1="Hearty Earring",
 		ear2="Odnowa Earring +1",
 		body="Jhakri Robe +2",
 		hands="Volte Gloves",
 		ring1="Defending Ring",
+		--ring1="Stikini Ring +1",
 		ring2="Stikini Ring +1",
 		back=mevaSucCape,
 		waist="Carrier's Sash",
@@ -293,13 +312,22 @@ function init_gear_sets()
     -- EG: sets.engaged.Dagger.Accuracy.Evasion
     
     -- Normal melee group
-    sets.engaged = {range="", ammo="Ginsen", head="Malignance Chapeau",
-					body="Malignance Tabard", neck="Clotharius Torque", 
-					ear1="Telos Earring", ear2="Sherida Earring", hands="Malignance Gloves",
-					ring1="Chirich Ring +1", ring2="Chirich Ring +1", back=storeTPSucCape,
-					waist="Windbuffet Belt +1", legs="Ayanmo Cosciales +2",
-					feet="Malignance Boots"}
+    sets.engaged = {range="", ammo="Coiste Bodhar", head="Malignance Chapeau",
+		body="Malignance Tabard", neck="Clotharius Torque", 
+		ear1="Telos Earring", ear2="Sherida Earring", hands="Malignance Gloves",
+		ring1="Chirich Ring +1", ring2="Chirich Ring +1", back=storeTPSucCape,
+		waist="Sailfi Belt +1", legs="Nyame Flanchard",
+		feet="Malignance Boots"
+		--ear2="Lethargy Earring +2",
+	}
 	sets.engaged.DW = set_combine(sets.engaged, {waist="Reiki Yotai", ear1="Suppanomimi"})
+	sets.engaged.DT = set_combine(sets.engaged, {
+		-- Base: 36%
+		ring1="Defending Ring", -- 10%
+		waist="Flume Belt", -- P4%
+		---------------------------
+		-- DT-46%, PDT-4(50)%
+	})
 	
 	sets.engaged.Acc = set_combine(sets.engaged, {ear1="Telos Earring", neck="Combatant's Torque", waist="Grunfeld Rope"})
 	sets.engaged.DW.Acc = set_combine(sets.engaged.DW, {ear1="Telos Earring", neck="Combatant's Torque"})
@@ -307,17 +335,30 @@ function init_gear_sets()
 	-- WS Sets
 	sets.precast.WS['Evisceration'] = {head="Malignance Chapeau", neck="Fotia Gorget", ear1="Dominance Earring +1", ear2="Sherida Earring", 
 				hands="Malignance Gloves", ring1="Ilabrat Ring", ring2="Begrudging Ring", back=critSucCape, waist="Fotia Belt",
-				legs="Carmine Cuisses +1", feet="Thereoid Greaves", body="Vitiation Tabard +3", ammo="Yetshila"}
+				legs="Carmine Cuisses +1", feet="Thereoid Greaves", body="Vitiation Tabard +3", ammo="Yetshila"
+				--head="Blistering Sallet +1",
+				--ammo="Yetshila +1",
+				--legs="Zoar Subligar +1"
+				}
 	sets.precast.WS['Chant du Cygne'] = sets.precast.WS['Evisceration'] 
 	
 	sets.precast.WS['Savage Blade'] = {head="Nyame Helm", neck="Duelist's Torque +1", ear1="Ishvara Earring", ear2="Moonshade Earring",
-				body="Nyame Mail", hands="Nyame Gauntlets", ring1="Karieyh Ring +1", ring2="Rufescent Ring", back=savageSucCape, 
-				waist="Sailfi Belt +1", legs="Nyame Flanchard", feet="Nyame Sollerets", ammo="Coiste Bodhar"}
+		body="Nyame Mail", hands="Nyame Gauntlets", ring1="Karieyh Ring +1", ring2="Rufescent Ring", back=savageSucCape, 
+		waist="Sailfi Belt +1", legs="Nyame Flanchard", feet="Nyame Sollerets", ammo="Coiste Bodhar"
+		--neck="Republican Platinum Medal",
+		--ear2="Lethargy Earring +2",
+		--ring1="Epaminonda's Ring",
+	}
 	sets.precast.WS['Death Blossom'] = sets.precast.WS['Savage Blade']
 	
 	sets.precast.WS['Seraph Blade'] = {head="Nyame Helm", neck="Baetyl Pendant", ear1="Moonshade Earring", ear2="Malignance Earring",
-				body="Amalric Doublet +1", hands="Jhakri Cuffs +2", ring1="Freke Ring", ring2="Karieyh Ring +1", back=mndWsdSucCape, waist="Sacro Cord",
-				legs="Nyame Flanchard", feet="Lethargy Houseaux +2", ammo="Pemphredo Tathlum"}
+		body="Nyame Mail", hands="Jhakri Cuffs +2", ring1="Freke Ring", ring2="Karieyh Ring +1", back=mndWsdSucCape, waist="Sacro Cord",
+		legs="Nyame Flanchard", feet="Lethargy Houseaux +2", ammo="Pemphredo Tathlum"
+		--neck="Sibyl Scarf",
+		--waist="Orpheus's Sash",
+		--ring2="Epaminonda's Ring",
+		--legs="Amalric Slops +1",
+	}
 	sets.precast.WS['Aeolian Edge'] = sets.precast.WS['Seraph Blade']
 	sets.precast.WS['Sanguine Blade'] = set_combine(sets.precast.WS['Seraph Blade'], {ear1="Regal Earring", ring1="Archon Ring", head="Pixie Hairpin +1"})
 	
