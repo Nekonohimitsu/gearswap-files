@@ -110,10 +110,20 @@ function job_post_midcast(spell, action, spellMap, eventArgs)
 		elseif state.ExtraSongsMode.value == 'Dummy' then
 			equip(sets.midcast.DaurdablaDummy)
 		end
-		if player.sub_job == "DNC" or player.sub_job == "NIN" then
-			if set.contains(spell.targets, 'Enemy') then
-				equip(sets.midcast.SongDebuff.DW)
+		if set.contains(spell.targets, 'Enemy') then
+			if state.CastingMode.value == 'Enmity' then
+				if player.sub_job == "DNC" or player.sub_job == "NIN" then
+					equip(sets.midcast.SongDebuff.DW.Enmity)
+				else
+					equip(sets.midcast.SongDebuff.Enmity)
+				end
 			else
+				if player.sub_job == "DNC" or player.sub_job == "NIN" then
+					equip(sets.midcast.SongDebuff.DW)
+				end
+			end
+		else
+			if player.sub_job == "DNC" or player.sub_job == "NIN" then
 				equip(sets.midcast.SongEffect.DW)
 			end
 		end
