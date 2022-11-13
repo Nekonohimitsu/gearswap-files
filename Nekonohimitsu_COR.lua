@@ -52,7 +52,7 @@ function init_gear_sets()
 	mabAgiHercHelm = {name="Herculean Helm", augments={"AGI+9"}}
 	
 	weaponTable = {
-		['Melee'] = {main='Naegling', sub='Blurred Knife +1', range='Anarchy +2'},
+		['Melee'] = {main='Naegling', sub="Gleti's Knife", range='Anarchy +2'},
 		['PhysRange'] = {main='Kustawi +1', sub='Nusku Shield', range='Fomalhaut'},
 		['MagRange'] = {main='Naegling', sub='Tauret', range='Death Penalty'},
 		['DefaultShield'] = {sub='Nusku Shield'}

@@ -239,8 +239,7 @@ function init_gear_sets()
 		--ring1="Stikini Ring +1",
 		back="Aurist's Cape +1",
 		waist="Obstinate Sash",
-		--legs="Arbatel Pants +2",
-		legs="Chironic Hose",
+		legs="Arbatel Pants +2",
 		--feet="Academic's Loafers +3",
 		feet="Academic's Loafers +2"
 	}
@@ -258,9 +257,8 @@ function init_gear_sets()
 		--hands="Academic's Bracers +3",
         ring2="Archon Ring",
 		waist="Acuity Belt +1",
-		legs="Pedagogy Pants +3",
-		--legs="Arbatel Pants +2",
-		feet="Arbatel Loafers +2"
+		legs="Arbatel Pants +2",
+		feet="Arbatel Loafers +3"
 	})
 	
 	sets.midcast.Dispelga = set_combine(sets.midcast.IntEnfeebles, {
@@ -405,8 +403,7 @@ function init_gear_sets()
 		sub="Oneiros Grip",
 		ammo="Homiliary",
 		head="Volte Beret",
-		body="Agwu's Robe",
-		--body="Arbatel Gown +2",
+		body="Arbatel Gown +2",
 		hands="Volte Gloves",
 		legs="Volte Brais",
 		feet="Volte Gaiters",
@@ -424,12 +421,10 @@ function init_gear_sets()
 	sets.idle.PDT = set_combine(sets.idle, {
 		ammo="Staunch Tathlum +1",
 		head="Arbatel Bonnet +2",
-		--neck="Warder's Charm +1", Uncomment when Arbatel Gown +2.
-		neck="Loricate Torque +1",
+		neck="Warder's Charm +1",
 		ear2="Sanare Earring",
 		ring1="Defending Ring",
-		--ring2="Shadow Ring", Uncomment when Arbatel Gown +2.
-		ring2="Gelatinous Ring +1",
+		ring2="Shadow Ring", 
 		legs="Nyame Flanchard"
 	})
 
@@ -466,7 +461,7 @@ function init_gear_sets()
     -- -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
     sets.buff['Rapture'] = {head="Arbatel Bonnet +2"}
     sets.buff['Perpetuance'] = {hands="Arbatel Bracers +2"}
-	sets.buff['Klimaform'] = {feet="Arbatel Loafers +2"}
+	sets.buff['Klimaform'] = {feet="Arbatel Loafers +3"}
 
     sets.Kiting = {feet="Herald's Gaiters"}
 	sets.Weather = {waist="Hachirin-no-Obi"}

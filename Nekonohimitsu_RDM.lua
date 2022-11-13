@@ -19,6 +19,9 @@ function job_setup()
 	no_cap_enh_skill = S{'Temper', 'Temper II', 'Enfire', 'Enblizzard',
 	'Enaero', 'Enstone', 'Enthunder', 'Enwater', 'Enfire II', 'Enblizzard II', 'Enaero II', 'Enstone II', 'Enthunder II', 'Enwater II'}
 	duration_only = S{'Dia', 'Dia II', 'Dia III', 'Bio', 'Bio II', 'Bio III'}
+	barAilments = S{"Barlseep", "Barpoison", "Barparalyze", "Barblind", "Barsilence",
+		"Barpetrify", "Barvirus", "Baramnesia", "Barpoisonra", "Barparalyzra", "Barpetra",
+		"Barvira", "Barsleepra", "Barblindra", "Barsilencera", "Baramnesra"}
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -227,6 +230,8 @@ function init_gear_sets()
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {main="Bolelabunga", feet="Bunzi's Sabots"})
 	
 	sets.midcast['Enhancing Magic'] = sets.midcast.EnhancingDuration
+	
+	sets.midcast.BarAilment = set_combine(sets.midcast.EnhancingDuration, {neck="Sroda Necklace"})
 
     sets.midcast.GainSpell = set_combine( sets.midcast['Enhancing Magic'] , {hands="Vitiation Gloves +3"})
 	
@@ -450,7 +455,12 @@ function job_get_spell_map(spell, default_spell_map)
 				end
 			end 
         end
-    end
+		if spell.skill == "Enhancing Magic" then
+			if barAilments:contains(spell.english) then
+				return "BarAilment"
+			end
+		end
+	end
 end
 
 -- Called by the 'update' self-command, for common needs.

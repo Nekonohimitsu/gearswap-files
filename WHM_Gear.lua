@@ -54,7 +54,7 @@ function define_fc_sets()
 	
 	sets.precast.FC.Dispelga = set_combine(sets.precast.FC, {main="Daybreak", sub="Chanter's Shield"})
 
-    sets.precast.FC.Cure = set_combine(sets.precast.FC, {legs="Ebers Pantaloons +2"})
+    sets.precast.FC.Cure = set_combine(sets.precast.FC, {legs="Ebers Pantaloons +3"})
 	
     -- -- Midcast Sets
     
@@ -115,7 +115,7 @@ function define_cure_sets()
 		main="Queller Rod", sub="Thuellaic Ecu +1", head="Kaykaus Mitra +1", 
 		ear1="Nourishing Earring +1",ear2="Glorious Earring", body="Ebers Bliaut +2",
 		hands="Theophany Mitts +3", ring2="Naji's Loop", back=alaunMevaCure,
-		legs="Ebers Pantaloons +2", feet="Kaykaus boots +1"
+		legs="Ebers Pantaloons +3", feet="Kaykaus boots +1"
 	})
 	
 	sets.midcast.CureSolaceWeather = set_combine(sets.midcast.CureSolace, {
@@ -232,7 +232,9 @@ function define_enhancing_magic_sets()
 		sub="Ammurapi Shield", head="Ebers Cap +2", body="Ebers Bliaut +2",
 		hands="Ebers Mitts +2", back=alaunMaccFC, legs="Piety Pantaloons +3",
 		feet="Ebers Duckbills +2"
-		})
+	})
+	
+	sets.midcast.BarAilment = set_combine(sets.midcast.EnhancingDuration, {neck="Sroda Necklace"})
 
     sets.midcast.Regen = set_combine(sets.midcast.ConserveMP, {main="Bolelabunga",
 		sub="Ammurapi Shield", head="Inyanga Tiara +2", body="Piety Bliaut +3",

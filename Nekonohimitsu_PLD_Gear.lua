@@ -7,23 +7,23 @@ function init_gear_sets()
     -- Defense sets
     --------------------------------------
 	--Base defense set. No specific damage incoming.
-	--HP: 3017 (3217)
+	--HP: 3010
 	sets.defense = {
 		main="Malignance Sword",
 		sub="Ochain", 
-		head={name="Souveran Schaller +1",priority=2}, 
-		body="Sakpata's Plate",
-		hands="Sakpata's Gauntlets", 
+		ammo={name="Happy Egg",priority=3},
+		head={name="Sakpata's Helm",priority=2}, 
+		neck={name="Unmoving Collar +1",priority=3},
+		ear1={name="Tuisto Earring",priority=3}, 
+		ear2={name="Odnowa Earring +1",priority=3}, 
+		body={name="Sakpata's Plate",priority=2},
+		hands={name="Sakpata's Gauntlets",priority=2},
+		ring1={name="Gelatinous Ring +1",priority=3}, 
+		ring2="Shadow Ring", 
 		back=gear.EnmRudiMantle, 
 		waist="Carrier's Sash",
-		legs="Sakpata's Cuisses", 
-		feet={name="Souveran Schuhs +1",priority=2},
-		ring2="Gelatinous Ring +1", 
-		ring1="Defending Ring", 
-		ear1={name="Tuisto Earring",priority=2}, 
-		ear2={name="Odnowa Earring +1",priority=2}, 
-		neck="Unmoving Collar +1",
-		ammo="Staunch Tathlum +1"
+		legs={name="Chevalier's Cuisses +3",priority=2},
+		feet={name="Sakpata's Leggings",priority=2}
 	}
 	
 	--------------------------------------
@@ -32,34 +32,28 @@ function init_gear_sets()
     --------------------------------------
 	-- Defense set with emphasis on blocking physical damage.
 	-- F10 to turn mode on. Ctrl-F12 to turn mode off. Ctrl-F10 to cycle mode between BlockRate, Reraise, Doom.
-	--HP: 3065
-	sets.defense.BlockRate = set_combine(sets.defense, {
-		main="Nixxer",
-		neck="Combatant's Torque",
-		--ear1="Zwazo Earring +1",
-		ear2="Thureous Earring",
-		hands={name="Souveran Handschuhs +1",priority=2},
-		waist="Creed Baudrier"
-	})
+	--HP: 3010
+	sets.defense.BlockRate = set_combine(sets.defense, {})
 	
 	-- Defense set with emphasis on reducing magical damage.
 	-- F11 to turn mode on. Ctrl-F12 to turn mode off.
+	-- HP:2976
 	sets.defense.MDT = set_combine(sets.defense, {
 		main="Malignance Sword",
 		sub="Aegis",
-		ammo="Staunch Tathlum +1",
-		head="Sakpata's Helm",
+		ammo={name="Happy Egg",priority=3}, 
+		head={name="Sakpata's Helm",priority=2},
 		neck="Warder's Charm +1",
-		ear1="Sanare Earring",
-		ear2="Odnowa Earring +1",
-		body="Sakpata's Breastplate",
-		hands="Sakpata's Gauntlets",
-		ring1="Gelatinous Ring +1",
+		ear1={name="Tuisto Earring",priority=3}, 
+		ear2={name="Odnowa Earring +1",priority=3}, 
+		body={name="Sakpata's Breastplate",priority=2},
+		hands={name="Sakpata's Gauntlets",priority=2},
+		ring1={name="Gelatinous Ring +1",priority=3}, 
 		ring2="Shadow Ring",
-		back=gear.EnmRudiMantle,
-		waist="Carrier's Sash",
-		legs="Sakpata's Cuisses",
-		feet="Sakpata's Leggings"
+		back={name="Moonlight Cape",priority=3}, 
+		waist={name="Carrier's Sash",priority=2},
+		legs={name="Sakpata's Cuisses",priority=2},
+		feet={name="Sakpata's Leggings",priority=2}
 	})
 	
 	-- F10 to turn mode on. Ctrl-F12 to turn mode off. Ctrl-F10 to cycle mode between BlockRate, Reraise, Doom.
@@ -73,46 +67,42 @@ function init_gear_sets()
 	-- These sets go on top of the normal defense set and do not stay equipped full-time (midcasts for enmity change as expected)
     --------------------------------------
 	-- Defense set with emphasis on resisting debuffs.
-	--HP: 2564 (3039)
-	sets.StatusResist = set_combine(sets.defense, {
+	--HP: 2997
+	sets.StatusResist = {
 		main="Malignance Sword",
 		sub="Adamas",
 		ammo="Staunch Tathlum +1",
-		neck="Knight's Bead Necklace +1",
-		--neck="Unmoving Collar +1",
-		ear1="Odnowa Earring +1",
-		ear2="Hearty Earring",
-		head="Sakpata's Helm",
-		hands="Sakpata's Gauntlets",
-		ring1="Purity Ring",
-		ring2="Gelatinous Ring +1",
-		back=gear.EnmRudiMantle,
-		--back="Moonlight Cape",
+		head={name="Sakpata's Helm",priority=2},
+		neck={name="Unmoving Collar +1",priority=3},
+		ear2={name="Odnowa Earring +1",priority=3},
+		ear1="Hearty Earring",
+		body={name="Sakpata's Breastplate",priority=2},
+		hands={name="Sakpata's Gauntlets",priority=2},
+		ring2="Purity Ring",
+		ring1={name="Gelatinous Ring +1",priority=3},
+		back={name="Moonlight Cape",priority=3},
 		waist="Carrier's Sash",
-		feet="Sakpata's Leggings"
-	})
+		legs={name="Sakpata's Cuisses",priority=2},
+		feet={name="Sakpata's Leggings",priority=2}
+	}
 	
 	sets.MDEF = sets.defense.MDT
-	
-    sets.Charm = set_combine(sets.StatusResist, {legs="Souveran Diechlings +1", ear1="Arete del Luna +1"})
-	
-	sets.MP = {
-		waist="Flume Belt",
-		sub="Ochain",
+		
+	-- HP: 3018
+	sets.MP = set_combine(sets.defense, {
+		ammo="Staunch Tathlum +1",
+		--head={name="Chevalier's Armet +3",priority=2},
+		head={name="Chevalier's Armet +2",priority=2},
 		ear2="Ethereal Earring",
-		back=gear.EnmRudiMantle,
-		hands="Sakpata's Gauntlets",
-		feet="Reverence Leggings +3",
-		ear1="Odnowa Earring +1",
-		neck="Knight's Bead Necklace +1"
-	}
+		ring2={name="Moonlight Ring",priority=3},
+		waist="Flume Belt",
+		feet={name="Reverence Leggings +3",priority=2}
+	})
 	
 	sets.Knockback = {
 		back="Philidor Mantle",
 		--legs="Dashing Subligar"
 	}
-	
-	sets.MP_Knockback = set_combine(sets.MP, sets.Knockback)
 	
     --------------------------------------
     -- Idle sets
@@ -138,52 +128,136 @@ function init_gear_sets()
 			waist={name="Creed Baudrier",priority=2}, legs="Carmine Cuisses +1", feet="Carmine Greaves"}
 
     -- Fast cast sets for spells
-    sets.precast.FC = set_combine(sets.defense,{sub={name="Srivatsa",priority=2}, ring1={name="Gelatinous Ring +1",priority=2}, ear2={name="Odnowa Earring +1",priority=2},ring2={name="Moonlight Ring",priority=2},
-			legs={name="Souveran Diechlings +1",priority=2}, neck={name="Bloodbead Gorget",priority=2}, ammo={name="Egoist's Tathlum",priority=2}, body={name="Reverence Surcoat +3",priority=2}, back=gear.FCRudiMantle,
-			main="Sakpata's Sword", head="Carmine Mask", hands="Leyline Gloves", feet=gear.OdyGreavesFC})
-
+    sets.precast.FC = {
+		main={name="Sakpata's Sword",priority=2},
+		sub={name="Srivatsa",priority=2},
+		ammo={name="Egoist's Tathlum",priority=2},
+		--head="Carmine Mask +1",
+		head="Carmine Mask",
+		neck="Orunmila's Torque",
+		ear2={name="Odnowa Earring +1",priority=2},
+		ear1={name="Tuisto Earring",priority=2},
+		body={name="Reverence Surcoat +3",priority=2},
+		hands="Leyline Gloves",
+		ring1={name="Gelatinous Ring +1",priority=2},
+		ring2="Kishar Ring",
+		back=gear.FCRudiMantle,
+		waist={name="Creed Baudrier",priority=2},
+		legs="Eschite Cuisses",
+		--feet="Chevalier's Sabatons +3"
+		feet="Chevalier's Sabatons +2"
+	}
+	
     --------------------------------------
     -- Spells
     --------------------------------------
-	--Merits 10%
-	--Founder's Hose 30%
-	--Staunch Tathlum +1 11%
-	--Odyssean Greaves 20%
-	--Moonbeam Necklace 10%
-	--Resolute Belt 8%
-	--Bushin Head 15%
-	----------------------------
-	-- Total: 104% / 102%
-	----------------------------
-    sets.midcast.FastRecast = set_combine(sets.defense, {head={name="Souveran Schaller +1",priority=2},legs="Founder's Hose", ammo="Staunch Tathlum +1", feet=gear.OdyGreavesDT,
-								ear2={name="Odnowa Earring +1",priority=2}, waist="Resolute Belt", body={name="Reverence Surcoat +3",priority=2}, back=gear.FCRudiMantle,
-								neck="Moonbeam Necklace", ring1={name="Gelatinous Ring +1",priority=2}, ring2={name="Moonlight Ring",priority=2}})
+    sets.midcast.FastRecast = sets.precast.FC
         
-    sets.midcast.Enmity = {main="Brilliance", sub="Srivatsa", head="Loess Barbuta +1", neck="Unmoving Collar +1", ear1="Trux Earring", ear2="Cryptic Earring", body="Souveran Cuirass +1", hands="Yorium Gauntlets",
-							ring1="Apeile Ring", ring2="Apeile Ring +1", back=gear.EnmRudiMantle, waist="Creed Baudrier", legs="Souveran Diechlings +1",
-							feet="Eschite Greaves", ammo="Iron Gobbet"}
+    sets.midcast.Enmity = {
+			main="Brilliance",
+			sub={name="Srivatsa",priority=2},
+			ammo={name="Egoist's Tathlum",priority=2},
+			head="Loess Barbuta +1",
+			neck={name="Unmoving Collar +1",priority=2},
+			ear1="Trux Earring",
+			ear2={name="Cryptic Earring",priority=2},
+			body={name="Souveran Cuirass +1",priority=2},
+			hands="Caballarius Gauntlets +3",
+			ring1="Apeile Ring",
+			ring2="Apeile Ring +1",
+			back=gear.EnmRudiMantle, 
+			waist={name="Creed Baudrier",priority=2},
+			legs="Souveran Diechlings +1",
+			feet={name="Eschite Greaves",priority=2}
+	}
 
-    sets.midcast.Flash = set_combine(sets.midcast.Enmity, {ammo="Sapience Orb"})
+    sets.midcast.Flash = set_combine(sets.midcast.Enmity, {
+		ammo="Sapience Orb",
+		ear2={name="Odnowa Earring +1",priority=2},
+		body="Reverence Surcoat +3",
+		waist="Goading Belt",
+		--feet="Chevalier's Sabatons +3",
+		feet="Chevalier's Sabatons +2",
+	})
+	
+	sets.midcast.FlashSentinel = {
+		main={name="Sakpata's Sword",priority=2},
+		sub={name="Srivatsa",priority=2},
+		ammo="Sapience Orb",
+		--head="Carmine Mask +1",
+		head="Carmine Mask",
+		neck={name="Unmoving Collar +1",priority=2},
+		ear2={name="Odnowa Earring +1",priority=2},
+		ear1="Trux Earring",
+		body={name="Reverence Surcoat +3",priority=2},
+		hands="Leyline Gloves",
+		ring1="Kishar Ring",
+		ring2="Defending Ring",
+		back=gear.FCRudiMantle,
+		waist={name="Creed Baudrier",priority=2},
+		legs="Souveran Diechlings +1",
+		--feet="Chevalier's Sabatons +3",
+		feet="Chevalier's Sabatons +2"
+	}
 
 	
-	sets.midcast.Reprisal = set_combine(sets.midcast.FastRecast, {sub="Srivatsa", ear1="Tuisto Earring", neck="Bloodbead Gorget",
-							ring2="Moonlight Ring", waist="Tempus Fugit",back=gear.FCRudiMantle,
-							legs="Souveran Diechlings +1", hands="Souveran Handschuhs +1", body="Reverence Surcoat +3", 
-							ring1="Kishar Ring", ammo="Sapience Orb", main="Malignance Sword"})
+	sets.midcast.Reprisal = set_combine(sets.midcast.FastRecast,{})
     
     sets.midcast.Stun = sets.midcast.Flash
     
-    sets.midcast.Cure = {main="Deacon Sword", sub={name="Srivatsa",priority=2}, head={name="Souveran Schaller +1",priority=2}, neck="Moonbeam Necklace", ear1={name="Tuisto Earring",priority=2}, ear2={name="Odnowa Earring +1",priority=2},
-						body={name="Souveran Cuirass +1",priority=2}, hands="Sakpata's Gauntlets", ring2={name="Moonlight Ring",priority=2}, ring1="Defending Ring",
-						back=gear.EnmRudiMantle, waist="Resolute Belt", legs="Founder's Hose", feet=gear.OdyGreavesDT}
+    sets.midcast.Cure = {
+		main="Deacon Sword", sub={name="Srivatsa",priority=2},
+		head={name="Souveran Schaller +1",priority=2}, neck="Moonbeam Necklace", 
+		ear1={name="Tuisto Earring",priority=2}, ear2={name="Odnowa Earring +1",priority=2},
+		body={name="Souveran Cuirass +1",priority=2}, hands="Sakpata's Gauntlets", 
+		ring2={name="Moonlight Ring",priority=2}, ring1="Defending Ring", 
+		back=gear.EnmRudiMantle, waist="Resolute Belt", legs="Founder's Hose",
+		feet=gear.OdyGreavesDT
+	}
 
-    sets.midcast.Phalanx = {main="Sakpata's Sword", sub="Priwen", ear1={name="Tuisto Earring",priority=2}, neck="Incanter's Torque", hands={name="Souveran Handschuhs +1",priority=2},
-							back="Weard Mantle", waist={name="Creed Baudrier",priority=2}, feet="Souveran Schuhs +1", body="Sakpata's Plate", head="Odyssean Helm",
-							ammo="Staunch Tathlum +1", ring1="Stikini Ring +1", ring2="Defending Ring", ear2={name="Odnowa Earring +1",priority=2}, legs="Sakpata's Cuisses"}
+    sets.midcast.Phalanx = { 
+			main={name="Sakpata's Sword",priority=3},
+			sub="Priwen",
+			ammo="Staunch Tathlum +1",
+			head="Odyssean Helm",
+			neck="Loricate Torque +1",
+			ear1={name="Tuisto Earring",priority=3}, 
+			ear2={name="Odnowa Earring +1",priority=3},
+			body={name="Sakpata's Plate",priority=2},
+			hands={name="Souveran Handschuhs +1",priority=2},
+			ring2="Apeile Ring +1",
+			ring1={name="Gelatinous Ring +1",priority=3},
+			back="Weard Mantle",
+			waist="Creed Baudrier",
+			legs="Sakpata's Cuisses",
+			feet={name="Souveran Schuhs +1",priority=2}
+	}
     
-	sets.midcast.Phalanx.SIRDPhalanx = {main="Sakpata's Sword", sub="Priwen", ear1={name="Tuisto Earring",priority=2}, neck="Moonbeam Necklace", hands={name="Souveran Handschuhs +1",priority=2},
-							back="Weard Mantle", waist="Resolute Belt", feet=gear.OdyGreavesDT, body="Sakpata's Plate", head={name="Souveran Schaller +1",priority=2},
-							ammo="Staunch Tathlum +1", ring1="Stikini Ring +1", ring2={name="Moonlight Ring",priority=2}, ear2={name="Odnowa Earring +1",priority=2}, legs="Founder's Hose"}
+	sets.midcast.Phalanx.SIRDPhalanx = {
+			main={name="Sakpata's Sword",priority=3},
+			sub="Priwen",
+			ammo="Staunch Tathlum +1", -- 11%
+			head={name="Souveran Schaller +1",priority=3}, -- 20%
+			--neck="Moonlight Necklace",
+			neck="Knight's Bead Necklace +1",
+			--ear1="Halasz Earring",
+			ear1={name="Tuisto Earring",priority=3},
+			--ear2="Knightly Earring",
+			ear2={name="Odnowa Earring +1",priority=3},
+			--body="Chevalier's Cuirass +3",
+			body="Sakpata's Plate",
+			hands={name="Souveran Handschuhs +1",priority=3},
+			ring2="Evanescence Ring", -- 5%
+			ring1={name="Gelatinous Ring +1",priority=3},
+			back="Weard Mantle",
+			--waist="Audumbla Sash",
+			waist="Resolute Belt", -- 8%
+			--legs="Sakpata's Cuisses", (when Audumbla, Knightly, Moonlight, Halasz)
+			legs="Founder's Hose",
+			--feet={name="Souveran Schuhs +1",priority=3} (when Audumbla, Knightly, Moonlight, Halasz)
+			feet=gear.OdyGreavesDT -- 20%
+			-- 94/92%
+	}
 	
 	-- Shield Barrier trait increases DEF of Protect based on Shield's DEF value. Srivatsa gives Protect DEF+150.
     sets.midcast.Protect = {ring1="Sheltered Ring", sub="Srivatsa"}
@@ -193,13 +267,27 @@ function init_gear_sets()
     -- Blue Magic Spells
     --------------------------------------
 	
-	sets.midcast['Blue Magic'] = {main="Brilliance", sub={name="Srivatsa",priority=2}, ammo="Staunch Tathlum +1", head={name="Souveran Schaller +1",priority=2}, 
-									neck="Moonbeam Necklace", ear1={name="Tuisto Earring",priority=2},
-									ear2="Cryptic Earring", body={name="Souveran Cuirass +1",priority=2}, hands="Yorium Gauntlets", 
-									ring2={name="Moonlight Ring",priority=2}, ring1={name="Gelatinous Ring +1",priority=2},
-									back=gear.EnmRudiMantle, waist="Resolute Belt", legs="Founder's Hose", feet=gear.OdyGreavesDT}
+	sets.midcast['Blue Magic'] = {
+		main="Brilliance",
+		sub={name="Srivatsa",priority=2},
+		ammo="Staunch Tathlum +1", 
+		head={name="Souveran Schaller +1",priority=2},
+		neck="Moonbeam Necklace",
+		ear1={name="Tuisto Earring",priority=2},
+		ear2="Cryptic Earring",
+		body={name="Souveran Cuirass +1",priority=2},
+		hands="Yorium Gauntlets", 
+		ring2={name="Moonlight Ring",priority=2},
+		ring1={name="Gelatinous Ring +1",priority=2},
+		back=gear.EnmRudiMantle,
+		waist="Resolute Belt",
+		legs="Founder's Hose",
+		feet=gear.OdyGreavesDT
+	}
 	
 	sets.midcast['Blue Magic'].NoSIRD = sets.midcast.Enmity
+	
+	sets.midcast.Sleepga = sets.midcast['Blue Magic']
 	
 	--------------------------------------
     -- Job Abilities

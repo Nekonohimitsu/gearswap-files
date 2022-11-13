@@ -18,6 +18,10 @@ function job_setup()
 	pure_macc_spells = S{'Break', 'Silence', 'Sleep', 'Sleep II', 'Sleepga', 'Breakga'} 
 	potencyBasedEnancing = S{"Embrava", "Phalanx", "Barfire", "Barfira", "Barblizzard", "Barblizzara", "Baraero",
 		"Baraera", "Barstone", "Barstonra", "Barthunder", "Barthundra", "Barwater", "Barwatera"}
+		
+	barAilments = S{"Barlseep", "Barpoison", "Barparalyze", "Barblind", "Barsilence",
+		"Barpetrify", "Barvirus", "Baramnesia", "Barpoisonra", "Barparalyzra", "Barpetra",
+		"Barvira", "Barsleepra", "Barblindra", "Barsilencera", "Baramnesra"}
 end 
 
 -------------------------------------------------------------------------------------------------------------------
@@ -62,6 +66,10 @@ function job_get_spell_map(spell, default_spell_map)
 			end
 		elseif spell.skill == "Enhancing Magic" then
 			if not default_spell_map or not default_spell_map == "Regen" then
+				if barAilments:contains(spell.english) then
+					new_spell_map = "BarAilment"
+					return new_spell_map
+				end
 				if not potencyBasedEnancing:contains(spell.english) then
 					new_spell_map = "EnhancingDuration"
 				end

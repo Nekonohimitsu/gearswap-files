@@ -28,9 +28,7 @@ function user_setup()
     state.CastingMode:options('Normal', 'NoSIRD', 'SIRDPhalanx')
     state.PhysicalDefenseMode:options('BlockRate', 'ReRaise', 'Doom')
     
-    state.ExtraDefenseMode = M{['description']='Extra Defense Mode', 'None', 'MP', 'Knockback', 'MP_Knockback', 'Charm', 'StatusResist', 'MDEF'}
-
-    update_defense_mode()
+    state.ExtraDefenseMode = M{['description']='Extra Defense Mode', 'None', 'MP', 'Knockback', 'StatusResist', 'MDEF'}
     
     send_command('bind !f11 gs c cycle ExtraDefenseMode')
 end
@@ -42,6 +40,12 @@ end
 -------------------------------------------------------------------------------------------------------------------
 -- Job-specific hooks for standard casting events.
 -------------------------------------------------------------------------------------------------------------------
+function job_precast(spell, action, spellMap, eventArgs)
+    if state.DefenseMode.value ~= 'None' then
+        handle_equipping_gear(player.status)
+        eventArgs.handled = true
+    end
+end
 
 function job_midcast(spell, action, spellMap, eventArgs)
     -- If DefenseMode is active, apply that gear over midcast
@@ -51,34 +55,25 @@ function job_midcast(spell, action, spellMap, eventArgs)
     -- Exclude Job Abilities from this restriction, as we probably want
     -- the enhanced effect of whatever item of gear applies to them,
     -- and only one item should be swapped out.
-    if state.DefenseMode.value ~= 'None' and spell.type ~= 'JobAbility' then
+    if state.DefenseMode.value ~= 'None' then
         handle_equipping_gear(player.status)
         eventArgs.handled = true
     end
+	
+	if state.Buff.Sentinel and spell.name == 'Flash' then
+		equip(sets.midcast.FlashSentinel)
+	end
 end
 
--------------------------------------------------------------------------------------------------------------------
--- Job-specific hooks for non-casting events.
--------------------------------------------------------------------------------------------------------------------
-
--- Called when the player's status changes.
-function job_state_change(field, new_value, old_value)
-    classes.CustomDefenseGroups:clear()
-    classes.CustomDefenseGroups:append(state.ExtraDefenseMode.current)
-
-    classes.CustomMeleeGroups:clear()
-    classes.CustomMeleeGroups:append(state.ExtraDefenseMode.current)
+function job_post_midcast(spell, action, spellMap, eventArgs)
+	if state.DefenseMode.value == 'None' and state.Buff.Sentinel and spell.name == 'Flash' then
+		equip(sets.midcast.FlashSentinel)
+	end
 end
 
 -------------------------------------------------------------------------------------------------------------------
 -- User code that supplements standard library decisions.
 -------------------------------------------------------------------------------------------------------------------
-
--- Called by the 'update' self-command, for common needs.
--- Set eventArgs.handled to true if we don't want automatic equipping of gear.
-function job_update(cmdParams, eventArgs)
-    update_defense_mode()
-end
 
 -- Modify the default idle set after it was constructed.
 function customize_idle_set(idleSet)
@@ -100,64 +95,4 @@ function customize_defense_set(defenseSet)
     end
     
     return defenseSet
-end
-
-
-function display_current_job_state(eventArgs)
-    local msg = 'Melee'
-    
-    if state.CombatForm.has_value then
-        msg = msg .. ' (' .. state.CombatForm.value .. ')'
-    end
-    
-    msg = msg .. ': '
-    
-    msg = msg .. state.OffenseMode.value
-    if state.HybridMode.value ~= 'Normal' then
-        msg = msg .. '/' .. state.HybridMode.value
-    end
-    msg = msg .. ', WS: ' .. state.WeaponskillMode.value
-    
-    if state.DefenseMode.value ~= 'None' then
-        msg = msg .. ', Defense: ' .. state.DefenseMode.value .. ' (' .. state[state.DefenseMode.value .. 'DefenseMode'].value .. ')'
-    end
-
-    if state.ExtraDefenseMode.value ~= 'None' then
-        msg = msg .. ', Extra: ' .. state.ExtraDefenseMode.value
-    end
-    
-    if state.Kiting.value == true then
-        msg = msg .. ', Kiting'
-    end
-
-    if state.PCTargetMode.value ~= 'default' then
-        msg = msg .. ', Target PC: '..state.PCTargetMode.value
-    end
-
-    if state.SelectNPCTargets.value == true then
-        msg = msg .. ', Target NPCs'
-    end
-
-    add_to_chat(122, msg)
-
-    eventArgs.handled = true
-end
-
--------------------------------------------------------------------------------------------------------------------
--- Utility functions specific to this job.
--------------------------------------------------------------------------------------------------------------------
-
-function update_defense_mode()
-    if player.equipment.main == 'Kheshig Blade' and not classes.CustomDefenseGroups:contains('Kheshig Blade') then
-        classes.CustomDefenseGroups:append('Kheshig Blade')
-    end
-    
-    if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
-        if player.equipment.sub and not player.equipment.sub:contains('Shield') and
-           player.equipment.sub ~= 'Aegis' and player.equipment.sub ~= 'Ochain' then
-            state.CombatForm:set('DW')
-        else
-            state.CombatForm:reset()
-        end
-    end
 end
