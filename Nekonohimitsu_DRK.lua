@@ -43,6 +43,7 @@ function init_gear_sets()
 	ankouSTRWS = {name="Ankou's mantle", augments={'Weapon skill damage +10%', 'STR+20', 'STR+10'}}
 	ankouSTRDA = {name="Ankou's mantle", augments={'"Dbl.Atk."+10', 'STR+20', 'STR+10'}}
 	ankouINTDA = {name="Ankou's mantle", augments={'"Dbl.Atk."+10', 'INT+20', 'INT+10'}}
+	ankouINTMACC = {name="Ankou's Mantle", augments={'INT+20','Mag. Acc.+10'}}
 	ankouVITWS = {name="Ankou's mantle", augments={'Weapon skill damage +10%', 'VIT+20', 'VIT+10'}}
 	gear.OdyGreavesFC = {name="Odyssean Greaves", augments={'"Fast Cast"+4%'}}
 
@@ -89,57 +90,57 @@ function define_spell_and_ja_sets()
 		ammo="Coiste Bodhar",
 		head="Hjarrandi Helm",
 		neck="Vim Torque +1",
+		--ear1="Dedition Earring",
 		ear1="Telos Earring",
-		ear2="Crepuscular Earring",
+		ear2="Schere Earring",
 		body="Valorous Mail",
-		hands="Emicho Gauntlets +1",
+		hands="Sakpata's Gauntlets",
 		ring1="Chirich Ring +1",
 		ring2="Chirich Ring +1",
 		back=ankouTP,
 		waist="Goading Belt",
-		legs="Ratri Cuisses",
+		legs="Odyssean Cuisses",
+		--feet="Ostro Greaves",
 		feet="Carmine Greaves"
 	}
 	
 	-- Dark Magic
 	sets.midcast['Dark Magic'] = {
 		-- Ankou's Mantle (INT+20 MACC+30) provides 40 more MACC over Niht
-		-- Carmine Mask / Body +1 provide 11 more MACC over Crepuscular Cloak
-		-- Raetic Bangles +1 provide 6 more MACC over Fallen +3
 		ammo="Pemphredo Tathlum",
-		--head="Carmine Mask +1", -- Path D
+		--head="Heathen's Burgeonet +3",
 		head="",
 		neck="Erra Pendant",
 		ear1="Malignance Earring",
-		ear2="Crepuscular Earring",
-		--body="Carmine Scale Mail +1", -- Path A or C
+		--ear2="Heathen's Earring +2",
+		ear2="Heathen's Earring +1",
+		--body="Heathen's Cuirass +3",
 		body="Crepuscular Cloak",
-		--hands="Raetic Bangles +1",
+		--hands="Heathen's Gauntlets +3",
 		hands="Fallen's Finger Gauntlets +3",
 		ring1="Stikini Ring +1",
 		ring2="Metamorph Ring +1",
-		--back=ankouINTMACC
-		back="Niht Mantle",
+		back=ankouINTMACC,
 		waist="Eschan Stone",
+		--legs="Heathen's Flanchard +3",
 		legs="Fallen's Flanchard +3",
+		--feet="Heathen's Sollerets +3",
 		feet="Ignominy Sollerets +3"
 	}
 	
 	sets.midcast['Dark Magic'].DT = set_combine(sets.midcast['Dark Magic'], {
-		head="Sakpata's Helm", -- 7%
-		body="Nyame Mail", -- 9%
-		hands="Sakpata's Gauntlets", --8%
-		legs="Nyame Flanchard", -- 8%
-		feet="Nyame Sollerets", -- 7%
+		head="Sakpata's Helm", -- 7% remove when ankou
+		body="Nyame Mail", -- 9% remove when heathen +3
+		hands="Sakpata's Gauntlets", --8% remove when heathen +3
+		legs="Nyame Flanchard", -- 8% remove when heathen +3
+		feet="Nyame Sollerets", -- 7% remove when heathen +3
 		ring1="Defending Ring" -- 10%
 	})
 	
 	sets.midcast.Absorb = set_combine(sets.midcast['Dark Magic'], {
 		head="Ignominy Burgeonet +3",
-		body="Nyame Mail", -- Remove when get Carmine Body +1
-		hands="Pavor Gauntlets",
+		body="Nyame Mail", -- Remove when get Heathen Body +3
 		ring2="Kishar Ring",
-		back="Chuparrosa Mantle",
 		--feet="Ratri Sollerets +1"
 		feet="Ratri Sollerets"
 	})
@@ -149,7 +150,6 @@ function define_spell_and_ja_sets()
 		body="Nyame Mail", -- 9%
 		hands="Sakpata's Gauntlets", --8%
 		ring2="Defending Ring", -- 10%
-		back=ankouINTDA, -- 5%
 		legs="Nyame Flanchard", -- 8%
 		feet="Nyame Sollerets" --7%
 	})
@@ -157,6 +157,7 @@ function define_spell_and_ja_sets()
 	sets.midcast.Absorb.Resistant = sets.midcast['Dark Magic']
 	
 	sets.midcast.Absorb['Absorb-TP'] = set_combine(sets.midcast['Dark Magic'], {
+		--hands="Heathen's Gauntlets +3",
 		hands="Heathen's Gauntlets +1"
 	})
 	sets.midcast.Absorb['Absorb-TP'].DT = sets.midcast['Dark Magic'].DT
@@ -164,11 +165,9 @@ function define_spell_and_ja_sets()
 	
 	sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {
 		-- Carmine Body +1 will add another 3 Dark Magic Skill and 12 MACC.
-		-- Dark Earring will add another 3 Dark Magic Skill.
 		head="Pixie Hairpin +1",
-		--ear1="Dark Earring",
-		ear1="Malignance Earring",
-		ear2="Mani Earring",
+		ear1="Mani Earring",
+		ear2="Heathen's Earring +1",
 		--body="Carmine Scale Mail +1", -- Path A or C
 		body="Carmine Scale Mail",
 		hands="Fallen's Finger Gauntlets +3",
@@ -204,28 +203,27 @@ function define_spell_and_ja_sets()
 		
 	-- Enfeebling Magic
 	sets.midcast['Enfeebling Magic'] = {
-		-- Carmine Mask +1 and Crepuscular Mail will add 24 MACC.
-		-- Raetic Bangles +1 will add 17 MACC.
-		-- R25 Sakpata's Leggs will add 4 MACC.
 		ammo="Pemphredo Tathlum",
-		--head="Carmine Mask +1", -- Path D
+		--head="Heathen's Burgeonet +3",
 		head="",
 		neck="Erra Pendant",
-		ear1="Crepuscular Earring",
-		ear2="Malignance Earring",
-		--body="Crepuscular Mail",
+		ear1="Malignance Earring",
+		ear2="Heathen's Earring +1",
+		--body="Heathen's Cuirass +3",
 		body="Crepuscular Cloak",
-		--hands="Raetic Bangles +1",
+		--hands="Heathen's Gauntlets +3",
 		hands="Sakpata's Gauntlets",
 		ring1="Metamorph Ring +1",
 		ring2="Stikini Ring +1",
-		back=ankouINTDA,
+		back=ankouINTMACC,
 		waist="Eschan Stone",
-		--"Sakpata's Cuisses", -- When R25
+		--legs="Heathen's Flanchard +3",
 		legs="Nyame Flanchard",
+		--feet="Heathen's Sollerets +3",
 		feet="Ignominy Sollerets +3"
 	}
 	sets.midcast['Enfeebling Magic'].DT = set_combine(sets.midcast['Enfeebling Magic'], {
+		-- When Heathen's Body/Hands/Legs (35%): Defending Ring only.
 		head="Sakpata's Helm", -- 7%
 		neck="Loricate Torque +1", -- 6%
 		body="Nyame Mail", -- 9%
@@ -253,15 +251,14 @@ function define_spell_and_ja_sets()
 		neck="Baetyl Pendant",
 		ear1="Friomisi Earring",
 		ear2="Malignance Earring",
-		--body="Fallen's Cuirass +3",
-		--hands="Fallen's Finger Gauntlets +3",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
+		body="Fallen's Cuirass +3",
+		hands="Fallen's Finger Gauntlets +3",
 		ring1="Shiva Ring +1",
 		ring2="Fenrir Ring +1",
-		back=ankouSTRWS,
+		back=ankouINTMACC,
 		waist="Eschan Stone",
 		legs="Nyame Flanchard",
+		--feet="Heathen's Sollerets +3",
 		feet="Nyame Sollerets"
 	}
 	
@@ -291,13 +288,14 @@ function define_spell_and_ja_sets()
 		ear2="Odnowa Earring +1", -- 3%
 		body="Nyame Mail", -- 9%
 		ring1="Defending Ring", -- 10%
-		--back="Moonlight Cape", -- 6%
+		back="Moonlight Cape", -- 6%
 		waist="Flume Belt", -- 4% PDT
 		legs="Nyame Flanchard", -- 8%
 		feet="Nyame Sollerets", -- 7%
 	})
 	
 	sets.MaxHPDread = {
+		--body="Heathen's Cuirass +3",
 		body="Heathen's Cuirass +1",
 	}
 	
@@ -305,17 +303,14 @@ function define_spell_and_ja_sets()
 		ammo="Egoist's Tathlum",
 		--head="Ratri Sallet +1",
 		head="Hjarrandi Helm",
-		--neck="Unmoving Collar +1",
-		neck="Bloodbead Gorget",
+		neck="Unmoving Collar +1",
 		ear1="Odnowa Earring +1",
 		ear2="Tuisto Earring",
 		--hands="Ratri Gadlings +1",
 		hands="Sakpata's Gauntlets",
 		ring1="Moonlight Ring",
 		ring2="Gelatinous Ring +1",
-		--back="Moonlight Cape",
-		back="Engulfer Cape +1",
-		--waist="Steppe Sash",
+		back="Moonlight Cape",
 		waist="Carrier's Sash",
 		--legs="Ratri Cuisses +1",
 		legs="Ratri Cuisses",
@@ -324,12 +319,10 @@ function define_spell_and_ja_sets()
 	})
 	
 	sets.midcast['Dread Spikes'].DT = set_combine(sets.midcast['Dread Spikes'], {
-		ammo="Staunch Tathlum +1", --3% Remove when Moonlight Cape
-		head="Sakpata's Helm", -- 7%
 		ear1="Odnowa Earring +1", -- 3%
 		hands="Sakpata's Gauntlets", -- 8%
 		ring2="Gelatinous Ring +1", -- 7% PDT
-		--back="Moonlight Cape", -- 6%
+		back="Moonlight Cape", -- 6%
 		waist="Flume Belt", -- 4% PDT
 		legs="Sakpata's Cuisses", -- 9%
 		feet="Nyame Sollerets", --7%
@@ -761,8 +754,9 @@ function define_ws_sets()
 		ammo="Knobkierrie",
 		head="Nyame Helm",
 		neck="Abyssal Beads +1",
-		ear1="Thrud Earring",
-		ear2="Moonshade Earring",
+		--ear2="Heathen's Earring +2",
+		ear2="Thrud Earring",
+		ear1="Moonshade Earring",
 		body="Nyame Mail",
 		hands="Nyame Gauntlets",
 		ring1="Karieyh Ring +1",
@@ -770,6 +764,7 @@ function define_ws_sets()
 		back=ankouSTRWS,
 		waist="Sailfi Belt +1",
 		legs="Nyame Flanchard",
+		--feet="Heathen's Sollerets +3",
 		feet="Nyame Sollerets",
 	}
 	
@@ -782,16 +777,26 @@ function define_ws_sets()
 	sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS.Acc, {})
 	
 	-- 2-hit, 60% STR / MND, No ATK Mod, No fTP carry, DMG varies with TP
-	sets.precast.WS['Cross Reaper'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Cross Reaper'].Acc = set_combine(sets.precast.WS.Acc, {})
+	sets.precast.WS['Cross Reaper'] = set_combine(sets.precast.WS, {
+		ring1="Regal Ring",
+	})
+	sets.precast.WS['Cross Reaper'].Acc = set_combine(sets.precast.WS.Acc, {
+		ring1="Regal Ring",
+	})
 	
 	-- 1-hit, 50% STR / MND, No ATK Mod, No fTP carry, DMG varies with TP
 	sets.precast.WS['Judgment'] = set_combine(sets.precast.WS, {})
 	sets.precast.WS['Judgment'].Acc = set_combine(sets.precast.WS.Acc, {})
 	
 	--- 1-hit, 60% STR / MND, No ATK Mod, No fTP carry, Ignore Def varies with TP
-	sets.precast.WS['Quietus'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Quietus'].Acc = set_combine(sets.precast.WS.Acc, {})
+	sets.precast.WS['Quietus'] = set_combine(sets.precast.WS, {
+		--head="Ratri Sallet +1",
+		--hands="Ratri Gauntlets +1",
+	})
+	sets.precast.WS['Quietus'].Acc = set_combine(sets.precast.WS.Acc, {
+		--head="Ratri Sallet +1",
+		--hands="Ratri Gauntlets +1",
+	})
 	
 	-- 1-hit, 50% STR / INT, 1.75 ATK Mod, No fTP carry, DMG varies with TP
 	sets.precast.WS['Ground Strike'] = set_combine(sets.precast.WS, {})
@@ -804,9 +809,13 @@ function define_ws_sets()
 	-- 1-hit, 40% STR / INT, No ATK Mod, No fTP carry, No vary with TP
 	sets.precast.WS['Catastrophe'] = set_combine(sets.precast.WS, {
 		ear2="Schere Earring",
+		--head="Ratri Sallet +1",
+		--hands="Ratri Gauntlets +1",
 	})
 	sets.precast.WS['Catastrophe'].Acc = set_combine(sets.precast.WS.Acc, {
 		ear2="Schere Earring",	
+		--head="Ratri Sallet +1",
+		--hands="Ratri Gauntlets +1",
 	})
 	
 	-- 1-hit, 100% STR, 2.0 ATK Mod, No fTP carry, Acc varies with TP, 100% Crit Rate
@@ -828,10 +837,12 @@ function define_ws_sets()
 	-- 1-hit, 80% VIT, No ATK Mod, No fTP carry, DMG varies with TP
 	sets.precast.WS['Torcleaver'] = set_combine(sets.precast.WS, {
 		back=ankouVITWS,
+		ear2="Thrud Earring",
 		waist="Fotia Belt"
 	})
 	sets.precast.WS['Torcleaver'].Acc = set_combine(sets.precast.WS.Acc, {
 		back=ankouVITWS,
+		ear2="Thrud Earring",
 		waist="Fotia Belt"
 	})
 	
@@ -841,12 +852,13 @@ function define_ws_sets()
 	-- 4-hit, 85% INT, No ATK Mod, fTP carry, DMG varies with TP
 	sets.precast.WS['Entropy'] = set_combine(sets.precast.WS, {
 		ammo="Coiste Bodhar",
-		head="Sakpata's Helm",
-		ear1="",
-		body="Sakpata's Plate",
-		hands="Sakpata's Gauntlets",
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
 		ring1="Metamorph Ring +1",
-		legs="Sakpata's Cuisses",
+		ring2="Shiva Ring +1",
+		legs="Ignominy Flanchard +3",
+		feet="Nyame Sollerets",
 		back=ankouINTDA,
 		waist="Fotia Belt"
 	})
@@ -856,13 +868,13 @@ function define_ws_sets()
 	sets.precast.WS['Resolution'] = set_combine(sets.precast.WS, {
 		head="Sakpata's Helm",
 		ear1="Schere Earring",
-		body="Sakpata's Plate",
+		body="Nyame Mail",
 		hands="Sakpata's Gauntlets",
 		ring1="Regal Ring",
 		back=ankouSTRDA,
 		waist="Fotia Belt",
-		legs="Sakpata's Cuisses",
-		feet="Sakpata's Leggings"
+		legs="Ignominy Flanchard +3",
+		feet="Nyame Sollerets"
 	})
 	sets.precast.WS['Resolution'].Acc = set_combine(sets.precast.WS['Resolution'], {})
 	
@@ -874,13 +886,13 @@ function define_ws_sets()
 	sets.precast.WS['Insurgency'] = set_combine(sets.precast.WS, {
 		ammo="Coiste Bodhar",
 		head="Sakpata's Helm",
-		body="Sakpata's Plate",
+		body="Nyame Mail",
 		hands="Sakpata's Gauntlets",
 		ring1="Regal Ring",
 		back=ankouSTRDA,
 		waist="Fotia Belt",
-		legs="Sakpata's Cuisses",
-		feet="Sakpata's Leggings",
+		legs="Ignominy Flanchard +3",
+		feet="Nyame Sollerets",
 	})
 	sets.precast.WS['Insurgency'].Acc = set_combine(sets.precast.WS['Insurgency'], {})
 	
@@ -893,10 +905,8 @@ function define_ws_sets()
 		neck="Baetyl Pendant",
 		ear1="Friomisi Earring",
 		ear2="Malignance Earring",
-		--body="Fallen's Cuirass +3",
-		--hands="Fallen's Finger Gauntlets +3",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
+		body="Fallen's Cuirass +3",
+		hands="Fallen's Finger Gauntlets +3",
 		ring1="Karieyh Ring +1",
 		ring2="Fenrir Ring +1",
 		back=ankouSTRWS,
@@ -952,13 +962,12 @@ function define_idle_dt_sets()
 		ear2="Genmei Earring", -- 2% PDT
 		ring2="Sheltered Ring",
 		ring1="Karieyh Ring +1",
-		--back="Moonlight Cape", -- 6%
-		back=ankouTP,
+		back="Moonlight Cape", -- 6%
 		waist="Flume Belt" -- 4% PDT
 	})
 	
 	sets.idle.Regen = set_combine(sets.idle, {
-		--head="Volte Salade",
+		--head="Crepuscular Helm",
 		neck="Coatl Gorget +1",
 		ear2="Infused Earring",
 		body="Sacro Breastplate",

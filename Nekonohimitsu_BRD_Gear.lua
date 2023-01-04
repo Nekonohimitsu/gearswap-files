@@ -1,8 +1,8 @@
 -- Define sets and vars used by this job file.
 function init_gear_sets()
-
+	grioFC = {name="Grioavolr", augments={"Fast Cast +7%"}}
 	maccFCIntarabus = {name="Intarabus's Cape", augments={'CHR+20', 'Mag. Acc+10', '"Fast Cast"+10%', 'Mag. Acc.+20/Mag. Dmg.+20', 'Damage Taken -5%'}}
-	mereeIntarabus = {name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Damage taken-5%'}}
+	mereeIntarabus = {name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%'}}
 	evisIntarabus = {name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Crit.hit rate+10','Damage taken-5%'}}
 	dexWsdIntarabus = {name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Weapon skill damage +10%'}}
 	strWsdIntarabus = {name="Intarabus's Cape", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%'}}
@@ -14,10 +14,9 @@ function init_gear_sets()
     -- Precast Sets
 
     -- Fast cast sets for spells
-    sets.precast.FC = {main="Grioavolr", sub="Clerisy Strap", head="Bunzi's Hat", neck="Orunmila's Torque",
-				ear1="Etiolation Earring", body="Inyanga Jubbah +2", hands="Volte Gloves",
-				ring1="Kishar Ring", ring2="Lebeche Ring", back=maccFCIntarabus, waist="Witful Belt", legs="Volte Brais",
-				feet="Volte Gaiters"}
+    sets.precast.FC = {main=grioFC, sub="Clerisy Strap", head="Bunzi's Hat", neck="Orunmila's Torque",
+				body="Inyanga Jubbah +2", hands="Volte Gloves", ring1="Kishar Ring", ring2="Lebeche Ring", 
+				back=maccFCIntarabus, waist="Witful Belt", legs="Volte Brais", feet="Fili Cothurnes +2"}
 
     sets.precast.FC.Daurdabla = set_combine(sets.precast.FC, {range="Daurdabla"})
     sets.precast.FC['Honor March'] = set_combine(sets.precast.FC, {range="Marsyas"})
@@ -30,11 +29,6 @@ function init_gear_sets()
     sets.precast.JA.Troubadour = {body="Bihu Justaucorps +3"}
     sets.precast.JA['Soul Voice'] = {legs="Bihu Cannions +1"}
     
-       
-    -- Weaponskill sets
-    -- Default set for any weaponskill that isn't any more specifically defined
-    sets.precast.WS = {}
-    
     
     -- Midcast Sets
 
@@ -42,15 +36,15 @@ function init_gear_sets()
     sets.midcast.FastRecast = sets.precast.FC
         
     -- Gear to enhance certain classes of songs.
-    sets.midcast.Ballad = {range="Blurred Harp +1", legs="Fili Rhingrave +1"} --legs="Fili Rhingrave +2"
+    sets.midcast.Ballad = {range="Blurred Harp +1", legs="Fili Rhingrave +2"} --legs="Fili Rhingrave +3"
     sets.midcast.Lullaby = {range="Blurred Harp +1", hands="Brioso Cuffs +3"}
     sets.midcast.Madrigal = {head="Fili Calot +2", back=maccFCIntarabus}
     sets.midcast.March = {hands="Fili Manchettes +2"}
     sets.midcast.Minuet = {body="Fili Hongreline +2"}
-    sets.midcast.Minne = {legs="Mousai Seraweels"} -- legs="Mousai Seraweels +1"
+    sets.midcast.Minne = {legs="Mousai Seraweels +1"}
     sets.midcast.Paeon = {head="Brioso Roundlet +3"}
-    sets.midcast.Carol = {hands="Mousai Gages"} -- hands="Mousai Gages +1"
-	sets.midcast.Etude = {head="Mousai Turban"} -- head="Mousai Turban +1"
+    sets.midcast.Carol = {hands="Mousai Gages +1"}
+	sets.midcast.Etude = {head="Mousai Turban +1"}
     sets.midcast["Sentinel's Scherzo"] = {feet="Fili Cothurnes +2"}
     sets.midcast['Honor March'] = {range="Marsyas", hands="Fili Manchettes +2"}
 	sets.midcast.Mambo = {feet="Mousai Crackows"} -- feet="Mousai Crackows +1"
@@ -70,6 +64,7 @@ function init_gear_sets()
 		body="Fili Hongreline +2",
 		hands="Fili Manchettes +2",
 		ring1="Defending Ring",
+		--ring2="Shadow Ring", -- when +3
 		ring2="Gelatinous Ring +1",
 		back=maccFCIntarabus,
 		waist="Carrier's Sash",
@@ -86,9 +81,9 @@ function init_gear_sets()
 		range="Gjallarhorn",
 		head="Brioso Roundlet +3",
 		neck="Moonbow Whistle +1",
-		ear1="Enchanter's Earring +1",
+		ear1="Regal Earring",
 		--ear1="Fili Earring +2",
-		ear2="Regal Earring",
+		ear2="Fili Earring +1",
 		body="Fili Hongreline +2",
 		hands="Brioso Cuffs +3",
 		ring1="Metamorph Ring +1",
@@ -100,9 +95,11 @@ function init_gear_sets()
 	}
 	
 	sets.midcast.SongDebuff.Enmity = {
-		--main="Mafic Cudgel",
+		--main="Ungeri Staff",
+		--sub="Alber Strap",
 		main="Daybreak",
 		sub="Genmei Shield",
+		--head="Halitus Helm",
 		head="Nyame Helm",
 		neck="Unmoving Collar +1",
 		ear1="Trux Earring",
@@ -119,16 +116,14 @@ function init_gear_sets()
 	
 	sets.midcast.SongDebuff.DW = {sub="Kali"}
 	
-	sets.midcast['Enfeebling Magic'] = set_combine(sets.midcast.SongDebuff, {
-		legs="Brioso Cannions +3", body="Brioso Justaucorps +3", ear2="Crepuscular Earring",
-		back="Aurist's Cape +1"})
+	sets.midcast['Enfeebling Magic'] = set_combine(sets.midcast.SongDebuff, {back="Aurist's Cape +1"})
 		
 	sets.midcast.Dispelga = set_combine(sets.midcast['Enfeebling Magic'], {main="Daybreak", sub="Ammurapi Shield"})
 
     -- For song defbuffs (accuracy primary, duration secondary)
     sets.midcast.ResistantSongDebuff = set_combine(sets.midcast.SongDebuff, {
+		--legs="Fili Rhingrave +3",
 		legs="Brioso Cannions +3",
-		body="Brioso Justaucorps +3",
 		hands="Fili Manchettes +2"
 	})
 
@@ -146,8 +141,7 @@ function init_gear_sets()
 		--main="Mafic Cudgel",
 		sub="Genmei Shield",
 		head="Kaykaus Mitra +1",
-		body="Kaykaus Bliaut",
-		--body="Kaykaus Bliaut +1",
+		body="Kaykaus Bliaut +1",
 		hands="Kaykaus Cuffs +1",
 		ring1="Defending Ring",
 		ring2="Naji's Loop",
@@ -156,10 +150,10 @@ function init_gear_sets()
 		legs="Bunzi's Pants",
 		--legs="Kaykaus Tights +1",
 		feet="Kaykaus Boots +1",
-		neck="Loricate Torque +1",
+		--neck="Loricate Torque +1",
+		neck="Lasaia Pendant",
 		ear1="Odnowa Earring +1",
-		ear2="Enervating Earring",
-		--ear2="Fili Earring +2",
+		ear2="Fili Earring +1",
 		back=maccFCIntarabus
 	}
         
@@ -229,6 +223,7 @@ function init_gear_sets()
 		main="Daybreak",
 		sub="Genmei Shield",
 		head="Bunzi's Hat",
+		--head="Fili Calot +3",
 		neck="Warder's Charm +1", 
 		ear1="Hearty Earring",
 		ear2="Sanare Earring",
@@ -238,6 +233,7 @@ function init_gear_sets()
 		ring2="Shadow Ring",
 		back=maccFCIntarabus,
 		waist="Carrier's Sash",
+		--legs="Fili Rhingrave +3",
 		legs="Bunzi's Pants",
 		feet="Bunzi's Sabots"
 	})
@@ -259,11 +255,9 @@ function init_gear_sets()
     sets.engaged = {
 		--head="Bunzi's Hat", (when STP Aug)
 		--body="Ashera Harness",
-		--legs="Volte Tights",
-		--feet="Volte Spats",
 		--neck="Bard's Charm +2"
 		head="Blistering Sallet +1", neck="Bard's Charm", ear1="Telos Earring", ear2="Cessance Earring", 
-		body="Ayanmo Corazza +2", hands="Bunzi's Gloves", ring1="Chirich Ring +1", ring2="Chirich Ring +1",
+		body="Nyame Mail", hands="Bunzi's Gloves", ring1="Chirich Ring +1", ring2="Chirich Ring +1",
 		back=mereeIntarabus, waist="Sailfi Belt +1", legs="Nyame Flanchard", 
 		feet="Nyame Sollerets"}
 	
@@ -308,12 +302,12 @@ function init_gear_sets()
 		--neck="Bard's Charm +2",
 		--ear2="Fili Earring +2", (when CHR+11 aug)
 		head="Nyame Helm", neck="Bard's Charm", ear1="Regal Earring", ear2="Ishvara Earring", 
-		body="Bihu Justaucorps +3", hands="Nyame Gauntlets", ring1="Karieyh Ring +1",
+		body="Nyame Mail", hands="Nyame Gauntlets", ring1="Karieyh Ring +1",
 		ring2="Metamorph Ring +1", back=strWsdIntarabus, waist="Fotia Belt", 
 		legs="Nyame Flanchard", feet="Nyame Sollerets"}
 	
 	sets.precast.WS['Aeolian Edge'] = {
-		head="Nyame Helm", neck="Baetyl Pendant", ear1="Moonshade Earring", 
+		head="Nyame Helm", neck="Sibyl Scarf", ear1="Moonshade Earring", 
 		ear2="Friomisi Earring", body="Nyame Mail", hands="Nyame Gauntlets", 
 		ring1="Karieyh Ring +1", ring2="Shiva Ring +1", back=dexWsdIntarabus,
 		waist="Refoccilation Stone", legs="Nyame Flanchard", feet="Nyame Sollerets"
@@ -328,11 +322,10 @@ function init_gear_sets()
 					
 	sets.precast.WS['Savage Blade'] = {
 		head="Nyame Helm",
-		neck="Combatant's Torque",
-		--neck=Bard's Charm +2",
+		neck="Republican Platinum Medal",
 		ear1="Ishvara Earring",
 		ear2="Moonshade Earring",
-		body="Bihu Justaucorps +3",
+		body="Nyame Mail",
 		hands="Nyame Gauntlets",
 		ring1="Karieyh Ring +1",
 		ring2="Rufescent Ring",

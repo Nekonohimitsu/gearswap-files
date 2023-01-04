@@ -9,9 +9,10 @@ function init_gear_sets()
 	--Base defense set. No specific damage incoming.
 	--HP: 3010
 	sets.defense = {
+		--main="Burtgang",
 		main="Malignance Sword",
 		sub="Ochain", 
-		ammo={name="Happy Egg",priority=3},
+		ammo="Staunch Tathlum +1",
 		head={name="Sakpata's Helm",priority=2}, 
 		neck={name="Unmoving Collar +1",priority=3},
 		ear1={name="Tuisto Earring",priority=3}, 
@@ -32,7 +33,6 @@ function init_gear_sets()
     --------------------------------------
 	-- Defense set with emphasis on blocking physical damage.
 	-- F10 to turn mode on. Ctrl-F12 to turn mode off. Ctrl-F10 to cycle mode between BlockRate, Reraise, Doom.
-	--HP: 3010
 	sets.defense.BlockRate = set_combine(sets.defense, {})
 	
 	-- Defense set with emphasis on reducing magical damage.
@@ -60,7 +60,7 @@ function init_gear_sets()
 	sets.defense.ReRaise = {head="Twilight Helm", body="Twilight Mail"}
 	
 	-- F10 to turn mode on. Ctrl-F12 to turn mode off. Ctrl-F10 to cycle mode between BlockRate, Reraise, Doom.
-	sets.defense.Doom = {ring2="Eshmun's Ring", ring1="Eshmun's Ring", neck="Nicander's Necklace"}
+	sets.defense.Doom = {ring2="Eshmun's Ring", ring1="Eshmun's Ring", neck="Nicander's Necklace", waist="Gishdubar Sash"}
 	
 	--------------------------------------
     -- Extra Defense Mode sets
@@ -91,8 +91,7 @@ function init_gear_sets()
 	-- HP: 3018
 	sets.MP = set_combine(sets.defense, {
 		ammo="Staunch Tathlum +1",
-		--head={name="Chevalier's Armet +3",priority=2},
-		head={name="Chevalier's Armet +2",priority=2},
+		head={name="Chevalier's Armet +3",priority=2},
 		ear2="Ethereal Earring",
 		ring2={name="Moonlight Ring",priority=3},
 		waist="Flume Belt",
@@ -120,12 +119,6 @@ function init_gear_sets()
     --------------------------------------
     -- Precast sets
     --------------------------------------
-	
-    -- add mnd for Chivalry
-    sets.precast.JA['Chivalry'] = {ammo={name="Egoist's Tathlum",priority=2}, head={name="Souveran Schaller +1",priority=2},
-			neck={name="Bloodbead Gorget",priority=2}, ear1={name="Tuisto Earring",priority=2}, ear2="Nourishing Earring +1", body={name="Reverence Surcoat +3",priority=2},
-			hands="Caballarius Gauntlets +3", ring1="Stikini Ring +1", ring2={name="Moonlight Ring",priority=2}, back=gear.EnmRudiMantle,
-			waist={name="Creed Baudrier",priority=2}, legs="Carmine Cuisses +1", feet="Carmine Greaves"}
 
     -- Fast cast sets for spells
     sets.precast.FC = {
@@ -206,12 +199,24 @@ function init_gear_sets()
     sets.midcast.Stun = sets.midcast.Flash
     
     sets.midcast.Cure = {
-		main="Deacon Sword", sub={name="Srivatsa",priority=2},
-		head={name="Souveran Schaller +1",priority=2}, neck="Moonbeam Necklace", 
-		ear1={name="Tuisto Earring",priority=2}, ear2={name="Odnowa Earring +1",priority=2},
-		body={name="Souveran Cuirass +1",priority=2}, hands="Sakpata's Gauntlets", 
-		ring2={name="Moonlight Ring",priority=2}, ring1="Defending Ring", 
-		back=gear.EnmRudiMantle, waist="Resolute Belt", legs="Founder's Hose",
+		main={name="Sakpata's Sword",priority=2},
+		sub={name="Srivatsa",priority=2},
+		ammo="Staunch Tathlum +1",
+		head={name="Souveran Schaller +1",priority=2}, 
+		--neck="Moonlight Necklace",
+		neck="Moonbeam Necklace", 
+		ear1="Knightly Earring",
+		--ear2="Chevalier's Earring +2",
+		ear2="Chevalier's Earring +1",
+		body={name="Souveran Cuirass +1",priority=2},
+		--hands="Macabre Gauntlets +1", -- when Moonlight
+		hands="Regal Gauntlets", 
+		ring2={name="Moonlight Ring",priority=2},
+		--ring1={name="Gelatinous Ring +1", priority=2}, -- when Moonlight
+		ring1="Supershear Ring", 
+		back=gear.EnmRudiMantle,
+		waist="Audumbla Sash",
+		legs="Caballarius Breeches +3",
 		feet=gear.OdyGreavesDT
 	}
 
@@ -221,14 +226,15 @@ function init_gear_sets()
 			ammo="Staunch Tathlum +1",
 			head="Odyssean Helm",
 			neck="Loricate Torque +1",
-			ear1={name="Tuisto Earring",priority=3}, 
+			ear1="Sanare Earring",
 			ear2={name="Odnowa Earring +1",priority=3},
+			--body="Odyssean Chestplate",
 			body={name="Sakpata's Plate",priority=2},
 			hands={name="Souveran Handschuhs +1",priority=2},
 			ring2="Apeile Ring +1",
 			ring1={name="Gelatinous Ring +1",priority=3},
 			back="Weard Mantle",
-			waist="Creed Baudrier",
+			waist="Carrier's Sash",
 			legs="Sakpata's Cuisses",
 			feet={name="Souveran Schuhs +1",priority=2}
 	}
@@ -244,19 +250,16 @@ function init_gear_sets()
 			ear1={name="Tuisto Earring",priority=3},
 			--ear2="Knightly Earring",
 			ear2={name="Odnowa Earring +1",priority=3},
-			--body="Chevalier's Cuirass +3",
-			body="Sakpata's Plate",
+			body="Chevalier's Cuirass +3",
 			hands={name="Souveran Handschuhs +1",priority=3},
 			ring2="Evanescence Ring", -- 5%
 			ring1={name="Gelatinous Ring +1",priority=3},
 			back="Weard Mantle",
-			--waist="Audumbla Sash",
-			waist="Resolute Belt", -- 8%
+			waist="Audumbla Sash",
 			--legs="Sakpata's Cuisses", (when Audumbla, Knightly, Moonlight, Halasz)
 			legs="Founder's Hose",
-			--feet={name="Souveran Schuhs +1",priority=3} (when Audumbla, Knightly, Moonlight, Halasz)
-			feet=gear.OdyGreavesDT -- 20%
-			-- 94/92%
+			feet={name="Souveran Schuhs +1",priority=3}
+			-- 96/92%
 	}
 	
 	-- Shield Barrier trait increases DEF of Protect based on Shield's DEF value. Srivatsa gives Protect DEF+150.
@@ -271,18 +274,20 @@ function init_gear_sets()
 		main="Brilliance",
 		sub={name="Srivatsa",priority=2},
 		ammo="Staunch Tathlum +1", 
-		head={name="Souveran Schaller +1",priority=2},
+		head="Loess Barbuta +1",
+		--neck="Moonlight Necklace",
 		neck="Moonbeam Necklace",
 		ear1={name="Tuisto Earring",priority=2},
-		ear2="Cryptic Earring",
+		ear2="Knightly Earring",
 		body={name="Souveran Cuirass +1",priority=2},
-		hands="Yorium Gauntlets", 
-		ring2={name="Moonlight Ring",priority=2},
+		hands="Regal Gauntlets", 
+		--ring2="Apeile Ring +1", -- when Moonlight
+		ring2="Evanescence Ring",
 		ring1={name="Gelatinous Ring +1",priority=2},
 		back=gear.EnmRudiMantle,
-		waist="Resolute Belt",
+		waist="Audumbla Sash",
 		legs="Founder's Hose",
-		feet=gear.OdyGreavesDT
+		feet="Eschite Greaves"
 	}
 	
 	sets.midcast['Blue Magic'].NoSIRD = sets.midcast.Enmity
@@ -301,6 +306,8 @@ function init_gear_sets()
 	sets.midcast.Swipe = sets.midcast.Provoke
 	sets.midcast.Lunge = sets.midcast.Provoke
 	
+    -- add mnd for Chivalry
+    sets.precast.JA['Chivalry'] = {}
 	sets.precast.JA['Invincible'] = set_combine(sets.midcast.Enmity, {legs="Caballarius Breeches +3"})
     sets.precast.JA['Holy Circle'] = set_combine(sets.midcast.Enmity, {feet="Reverence Leggings +3"})
     sets.precast.JA['Shield Bash'] = set_combine(sets.midcast.Enmity, {hands="Caballarius Gauntlets +3"})

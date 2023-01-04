@@ -97,8 +97,9 @@ function init_gear_sets()
     sets.precast.FC = {
         ranged="Dunna", --3
         main=grioFC, --11
+		--sub="Clerisy Strap +1", -- 3
         sub="Clerisy Strap", --2
-        head="Amalric Hood +1", --11
+        head="Amalric Coif +1", --11
         body="Agwu's Robe", --8
         hands="Volte Gloves", --6, 
         legs="Geomancy Pants +3", --13
@@ -119,17 +120,21 @@ function init_gear_sets()
     -- Default set for any weaponskill that isn't any more specifically defined
     sets.precast.WS = {
 		head="Nyame Helm",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
-		ring2="Karieyh Ring +1",
+		neck="Fotia Gorget",
 		ear1="Ishvara Earring",
 		ear2="Moonshade Earring",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		ring1="Niqmaddu Ring",
+		ring2="Karieyh Ring +1",
+		back=nantoMatk,
+		waist="Fotia Belt",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
     }
 	
 	sets.precast.WS['Black Halo'] = set_combine(sets.precast.WS, {
-		--neck="Republican Platinum Medal",
+		neck="Republican Platinum Medal",
 		waist="Grunfeld Rope",
 		ring1="Rufescent Ring",
 		--back=strWsdNanto
@@ -148,12 +153,9 @@ function init_gear_sets()
 		ammo="Dunna",
 		head="Azimuth Hood +2",
         body="Vedic Coat",
-		hands="Volte Gloves",
-		--hands="Azimuth Gloves +2",
+		hands="Azimuth Gloves +2",
 		legs="Vanya Slops",
 		feet="Azimuth Gaiters +2",
-        ear1="Calamitous Earring",
-        ear2="Gifted Earring",
         neck="Bagua Charm +1",
 		--neck="Bagua Charm +2",
         ring2="Defending Ring",
@@ -181,12 +183,12 @@ function init_gear_sets()
         neck="Incanter's Torque",
         ear1="Calamitous Earring",
         ring1="Lebeche Ring", --3/(-5)
-        ring2="Mephitas's Ring +1",
+        ring2="Naji's Loop",
         waist="Hachirin-no-Obi"
     }
 
     sets.midcast.Curaga = set_combine(sets.midcast.Cure, {
-        })
+    })
 
     sets.midcast.Cursna = set_combine(sets.precast.FC, {
         neck="Debilis Medallion",
@@ -256,15 +258,19 @@ function init_gear_sets()
     sets.midcast.MndEnfeebles = {
         main="Contemplator +1",
         sub="Kaja Grip",
+		--head="Azimuth Hood +3",
         head="Geomancy Galero +3",
+		--body="Azimuth Coat +3",
         body="Geomancy Tunic +3",
-        hands="Regal Cuffs",
-		--hands="Azimuth Gloves +2",
+		--hands="Azimuth Gloves +3",
+		hands="Azimuth Gloves +2",
+		--legs="Azimuth Tights +3",
         legs="Geomancy Pants +3",
+		--feet="Azimuth Gaiters +3",
         feet="Geomancy Sandals +3",
         neck="Bagua Charm +1",
-        ear1="Regal Earring",
-        ear2="Malignance Earring",
+        ear1="Malignance Earring",
+        ear2="Azimuth Earring +1",
 		--ear2="Azimuth Earring +2",
         ring1="Metamorph Ring +1",
         ring2="Stikini Ring +1",
@@ -272,13 +278,15 @@ function init_gear_sets()
         waist="Acuity Belt +1",
         } -- MND/Magic accuracy
 
-    sets.midcast.IntEnfeebles = set_combine(sets.midcast.MndEnfeebles, {}) -- INT/Magic accuracy
+    sets.midcast.IntEnfeebles = set_combine(sets.midcast.MndEnfeebles, {
+		main="Bunzi's Rod",
+		sub="Ammurapi Shield",
+	}) -- INT/Magic accuracy
 	
 	sets.midcast.Dispelga = set_combine(sets.midcast.IntEnfeebles, {main="Daybreak", sub="Ammurapi Shield"})
 
     sets.midcast['Dark Magic'] = set_combine(sets.midcast.IntEnfeebles, {
 		ring1="Evanescence Ring",
-		--legs="Azimuth Tights +2",
 		neck="Erra Pendant"
         })
 
@@ -287,7 +295,7 @@ function init_gear_sets()
 		sub="Ammurapi Shield",
         head="Bagua Galero +3",
 		neck="Erra Pendant",
-		hands="Geomancy Mitaines +3",
+		body="Geomancy Tunic +3",
 		ring1="Evanescence Ring",
 		ring2="Archon Ring",
 		waist="Fucho-no-Obi",
@@ -305,13 +313,12 @@ function init_gear_sets()
         main="Bunzi's Rod",
         sub="Ammurapi Shield",
         head="Agwu's Cap",
+		--body="Azimuth Coat +3",
         body="Agwu's Robe",
-        hands="Amalric Gages +1",
-		--hands="Agwu's Gages",
+		hands="Agwu's Gages",
         legs="Agwu's Slops",
         feet="Agwu's Pigaches",
-        neck="Saevus Pendant +1",
-		--neck="Sibyl Scarf",
+		neck="Sibyl Scarf",
         ear2="Malignance Earring",
         ear1="Regal Earring",
 		--ear2="Azimuth Earring +2",
@@ -319,17 +326,13 @@ function init_gear_sets()
         ring2="Freke Ring",
         back=nantoMatk,
         waist="Acuity Belt +1",
-        }
+    }
 
     sets.midcast['Elemental Magic'].Resistant = set_combine(sets.midcast['Elemental Magic'], {
     })
 
     sets.magic_burst = {
-		neck="Mizukage-no-Kubikazari",
-		head="Ea Hat +1",
-		--body="Ea Houppelande +1",
-        hands="Amalric Gages +1", --(5)
-		legs="Ea Slops +1"
+		head="Ea Hat +1"
     }
 
     sets.midcast.GeoElem = set_combine(sets.midcast['Elemental Magic'], {})
@@ -352,11 +355,11 @@ function init_gear_sets()
         sub="Oneiros Grip",
 		range="Dunna",
         head="Volte Beret",
-        neck="Loricate Torque +1",
-		--neck="Sibyl Scarf",
+		neck="Sibyl Scarf",
         ear1="Odnowa Earring +1",
-        ear2="Etiolation Earring",
+        ear2="Azimuth Earring +1",
 		--ear2="Azimuth Earring +2",
+		--body="Azimuth Coat +3",
         body="Jhakri Robe +2",
         hands="Bagua Mitaines +3",
         ring1="Defending Ring",
@@ -400,9 +403,9 @@ function init_gear_sets()
         feet="Bagua Sandals +3",
         neck="Bagua Charm +1",
 		--neck="Bagua Charm +2",
-        ear1="Etiolation Earring",
+        ear1="Odnowa Earring +1",
 		--ear1="Azimuth Earring +2",
-        ear2="Genmei Earring",
+        ear2="Azimuth Earring +1",
 		--ear2="Hypaspist Earring",
         ring1="Defending Ring",
 		--ring1="Stikini Ring +1",
@@ -424,9 +427,7 @@ function init_gear_sets()
         feet="Bagua Sandals +3", 
         neck="Bagua Charm +1",
 		--neck="Bagua Charm +2",
-        ear1="Etiolation Earring",
 		--ear1="Azimuth Earring +2",
-        ear2="Odnowa Earring +1", 
         ring1="Defending Ring", 
 		ring2="Shadow Ring",
         back=nantoPet, 

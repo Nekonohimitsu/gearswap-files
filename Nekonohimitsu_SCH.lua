@@ -39,6 +39,7 @@ end
 function init_gear_sets()
 	lughMacc = {name="Lugh's Cape", augments={'INT+20', 'Mag. Acc+10', '"Fast Cast"+10%', 'Mag. Acc.+20/Mag. Dmg.+20', 'Damage Taken -5%'}}
 	lughMeva = {name="Lugh's Cape", augments={'Eva.+20/Mag.Eva.+20', 'Damage Taken -5%'}}
+	lughNuke = {name="Lugh's Cape", augments={'INT+20','INT+10'}}
 	merlinicHoodFC = {name="Merlinic Hood", augments={"Fast Cast +5%"}}
 	vanyaHoodConserveMp = {name="Vanya Hood", augments={'"Conserve MP"+6'}}
 	grioFC = {name="Grioavolr", augments={"Fast Cast +7%"}}
@@ -67,6 +68,7 @@ function init_gear_sets()
 		ear1="Loquacious Earring", -- 2
 		ear2="Malignance Earring", -- 4
 		body="Zendik Robe", -- 13
+		--hands="Academic's Bracers +3", -- 9
 		hands="Academic's Bracers +2", -- 8
 		ring1="Lebeche Ring",
 		ring2="Kishar Ring", -- 4
@@ -92,30 +94,28 @@ function init_gear_sets()
 		back="Fi Follet Cape +1",
 	})
 
-	sets.midcast.ConserveMP = {
-		main="Grioavolr",
-		sub="Giuoco Grip",
-		ammo="Pemphredo Tathlum",
-		head=vanyaHoodConserveMp,
-		neck="Incanter's Torque",
-		ear1="Calamitous Earring",
-		ear2="Gifted Earring",
-		body="Vedic Coat",
-		hands="Academic's Bracers +2",
-		ring1="Mephitas's Ring +1",
-		back="Fi Follet Cape +1",
-		waist="Shinjutsu-No-Obi +1",
-		legs="Vanya Slops",
-		feet="Kaykaus Boots +1"
+	sets.midcast.ConserveMP = { -- CAP:100%, TRAIT: 28%
+		ammo="Pemphredo Tathlum", -- 4%
+		head=vanyaHoodConserveMp, -- 12%
+		neck="Incanter's Torque", 
+		ear1="Calamitous Earring", -- 4%
+		body="Vedic Coat", -- 10%
+		--hands="Academic's Bracers +3", -- 8%
+		hands="Academic's Bracers +2", -- 6% 
+		ring1="Mephitas's Ring +1", -- 8/15%
+		back="Fi Follet Cape +1", -- 5%
+		waist="Hachirin-no-Obi", 
+		legs="Vanya Slops", -- 12% 
+		feet="Kaykaus Boots +1" -- 7%
 	}
 
     sets.midcast.Cure = set_combine(sets.midcast.ConserveMP, {
 		main="Tamaxchi",
+		--sub="Genmei Shield",
 		sub="Sors Shield",
-		ammo="Esper Stone +1", -- Remove when Enmity OK.
+		ammo="Pemphredo Tathlum",
 		head="Kaykaus Mitra +1",
-		--body="Kaykaus Bliaut +1",
-		body="Kaykaus Bliaut",
+		body="Kaykaus Bliaut +1",
 		hands="Pedagogy Bracers +3",
 		ring2="Naji's Loop",
 		legs="Pedagogy Pants +3",
@@ -170,7 +170,7 @@ function init_gear_sets()
 
 	-- Want 500 Enhancing Magic Skill
     sets.midcast['Enhancing Magic'] = set_combine(sets.midcast.EnhancingDuration, {
-		-- Base Duration Set gives 533 with Light Arts.
+		-- Base Duration Set gives 509 with Light Arts.
 	})
 	
 	-- Want 500 Enhancing Magic Skill
@@ -185,7 +185,7 @@ function init_gear_sets()
 	
 	sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
 		body="Telchine Chasuble",
-		head="Arbatel Bonnet +2",
+		head="Arbatel Bonnet +3",
 		back="Bookworm's Cape"
 	})
 	
@@ -228,8 +228,8 @@ function init_gear_sets()
 		head="Academic's Mortarboard +3",
 		--neck="Argute Stole +2",
 		neck="Argute Stole +1",
-		ear1="Regal Earring",
-		ear2="Malignance Earring",
+		ear2="Regal Earring",
+		ear1="Malignance Earring",
 		--ear2="Arbatel Earring +2",
 		--body="Academic's Gown +3",
 		body="Academic's Gown +2",
@@ -239,26 +239,25 @@ function init_gear_sets()
 		--ring1="Stikini Ring +1",
 		back="Aurist's Cape +1",
 		waist="Obstinate Sash",
-		legs="Arbatel Pants +2",
-		--feet="Academic's Loafers +3",
-		feet="Academic's Loafers +2"
+		legs="Arbatel Pants +3",
+		feet="Arbatel Loafers +3"
 	}
 
     sets.midcast.IntEnfeebles = set_combine(sets.midcast.MndEnfeebles, {
-		ring1="Metamorph Ring +1",
-	})
-	
-    sets.midcast.Impact = set_combine(sets.midcast.IntEnfeebles, {
 		main="Bunzi's Rod",
 		sub="Ammurapi Shield",
+		ring1="Metamorph Ring +1",
+		--hands="Arbatel Bracers +3"
+	})
+	
+	sets.midcast.ElementalMagicAccuracy = set_combine(sets.midcast.IntEnfeebles, {
+		waist="Acuity Belt +1"
+	})
+	
+	sets.midcast.Impact = set_combine(sets.midcast.ElementalMagicAccuracy, {
 		head=empty,
 		body="Crepuscular Cloak",
-		hands="Regal Cuffs",
-		--hands="Academic's Bracers +3",
         ring2="Archon Ring",
-		waist="Acuity Belt +1",
-		legs="Arbatel Pants +2",
-		feet="Arbatel Loafers +3"
 	})
 	
 	sets.midcast.Dispelga = set_combine(sets.midcast.IntEnfeebles, {
@@ -266,23 +265,21 @@ function init_gear_sets()
 		sub="Ammurapi Shield"
 	})
 
-    sets.midcast.ElementalEnfeeble = set_combine(sets.midcast.IntEnfeebles, {legs="Agwu's Slops"})
+	-- Burn, Rasp, Choke, etc.
+    sets.midcast.ElementalEnfeeble = set_combine(sets.midcast.ElementalMagicAccuracy, {legs="Agwu's Slops"})
 
     sets.midcast['Dark Magic'] = set_combine(sets.midcast.IntEnfeebles, {
-		main="Bunzi's Rod",
-		sub="Ammurapi Shield",
-		neck="Argute Stole +1",
-		--neck="Argute Stole +2",
-		hands="Academic's Bracers +2",
-		--hands="Academic's Bracers +3",
-		waist="Acuity Belt +1",
+		waist="Acuity Belt +1"
 	})
 
     sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {
 		main="Rubicundity",
 		sub="Ammurapi Shield",
 		head="Pixie Hairpin +1",
+		neck="Erra Pendant",
+		ear1="Mani Earring",
 		legs="Pedagogy Pants +3",
+		ring1="Evanescence Ring",
 		ring2="Archon Ring",
 		waist="Fucho-no-Obi",
 		back="Bookworm's Cape",
@@ -320,26 +317,27 @@ function init_gear_sets()
         sub="Ammurapi Shield",
 		ammo="Pemphredo Tathlum",		
 		--ammo="Ghastly Tathlum +1",
-		head="Pedagogy Mortarboard +3",
-		--head="Agwu's Cap",
-		--neck="Argute Stole +2",
+		head="Arbatel Bonnet +3",
         neck="Argute Stole +1",
         ear2="Malignance Earring",
 		--ear2="Arbatel Earring +2",
         ear1="Regal Earring",
-		body="Agwu's Robe",
-        hands="Amalric Gages +1",
-		--hands="Agwu's Gages",
-        legs="Agwu's Slops",
-        feet="Agwu's Pigaches",
+		body="Arbatel Gown +3",
+        hands="Agwu's Gages",
+		--hands="Arbatel Bracers +3",
+		legs="Arbatel Pants +3",
+        --legs="Agwu's Slops", -- R30
+        feet="Arbatel Loafers +3",
         ring1="Metamorph Ring +1",
         ring2="Freke Ring",
-        back=lughMacc,
+        back=lughNuke,
 		waist="Acuity Belt +1"
 	}
 	
 	sets.midcast.Burst = set_combine(sets.midcast['Elemental Magic'], {
-		head="Pedagogy Mortarboard +3",
+		head="Agwu's Cap",
+		hands="Agwu's Gages",
+		legs="Agwu's Slops"
 	})
 	
     sets.midcast.Kaustra = set_combine(sets.midcast['Elemental Magic'], {
@@ -363,15 +361,15 @@ function init_gear_sets()
 		ear1="Malignance Earring",
 		--ear2="Arbatel Earring +2",
 		ear2="Regal Earring",
-		body="Agwu's Robe",
-		hands="Amalric Gages +1",
-		--hands="Agwu's Gages",
+		body="Arbatel Gown +3",
+		--hands="Arbatel Gloves +3",
+		hands="Agwu's Gages",
 		ring1="Freke Ring",
 		ring2="Metamorph Ring +1",
-		back=lughMacc,
+		back=lughNuke,
 		waist="Acuity Belt +1",
 		--waist="Skrymir Cord +1",
-		legs="Agwu's Slops",
+		legs="Arbatel Pants +3",
 		feet="Agwu's Pigaches"
 	}
 	
@@ -385,7 +383,9 @@ function init_gear_sets()
 	})
 	
 	sets.midcast.HelixBurst = set_combine(sets.midcast.Helix, {
-		head="Pedagogy Mortarboard +3",
+		hands="Agwu's Gages",
+		legs="Agwu's Slops",
+		feet="Arbatel Loafers +3"
 	})
 	
 	sets.midcast.NoctoBurst = set_combine(sets.midcast.HelixBurst, {
@@ -403,12 +403,11 @@ function init_gear_sets()
 		sub="Oneiros Grip",
 		ammo="Homiliary",
 		head="Volte Beret",
-		body="Arbatel Gown +2",
+		body="Arbatel Gown +3",
 		hands="Volte Gloves",
 		legs="Volte Brais",
 		feet="Volte Gaiters",
-		--neck="Sibyl Scarf",
-		neck="Loricate Torque +1",
+		neck="Sibyl Scarf",
 		ear1="Odnowa Earring +1",
 		ear2="Etiolation Earring",
 		back=lughMeva,
@@ -420,7 +419,7 @@ function init_gear_sets()
 	
 	sets.idle.PDT = set_combine(sets.idle, {
 		ammo="Staunch Tathlum +1",
-		head="Arbatel Bonnet +2",
+		head="Arbatel Bonnet +3",
 		neck="Warder's Charm +1",
 		ear2="Sanare Earring",
 		ring1="Defending Ring",
@@ -450,7 +449,7 @@ function init_gear_sets()
 		ring2="Shadow Ring",
 		back=lughMeva,
 		waist="Carrier's Sash",
-		legs="Agwu's Slops",
+		legs="Arbatel Pants +3",
 		feet="Nyame Sollerets"
 	}
 
@@ -459,9 +458,17 @@ function init_gear_sets()
     sets.latent_refresh = {waist="Fucho-no-obi"}
 
     -- -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
-    sets.buff['Rapture'] = {head="Arbatel Bonnet +2"}
+    sets.buff['Rapture'] = {head="Arbatel Bonnet +3"}
     sets.buff['Perpetuance'] = {hands="Arbatel Bracers +2"}
 	sets.buff['Klimaform'] = {feet="Arbatel Loafers +3"}
+    sets.buff['Immanence'] = set_combine(sets.midcast.FastRecast, {
+		main="Ternion Dagger +1",
+		sub="Genmei Shield",
+		head="Blistering Sallet +1",
+		ear2="Odnowa Earring +1",
+		legs="Academic's Pants +2",
+		feet="Academic's Loafers +2"
+	})
 
     sets.Kiting = {feet="Herald's Gaiters"}
 	sets.Weather = {waist="Hachirin-no-Obi"}

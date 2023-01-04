@@ -45,8 +45,9 @@ function init_gear_sets()
 	camuSnapshot = {name="Camulus's Mantle", augments={'"Snapshot"+10'}}
 	camuRacc = {name="Camulus's Mantle", augments={'AGI+10', 'AGI+20', 'Rng. Acc.+20 /Rng. Atk.+20', '"Store TP"+10'}}
 	camuDa = {name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10',}}
-	camuMabWsd = {name="Camulus's Mantle", augments={'AGI+20', 'Mag. Acc.+10', 'Mag. Acc.+20/Mag. Dmg.+20', 'Weapon skill damage +10%'}}
+	camuMabWsd = {name="Camulus's Mantle", augments={'AGI+20', 'AGI+10', 'Mag. Acc.+20/Mag. Dmg.+20', 'Weapon skill damage +10%'}}
 	camuRatkWsd = {name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+10','Weapon skill damage +10%'}}
+	camuSavage = {name="Camulus's Mantle", augments={'STR+20', 'STR+10'}}
 
 	mabHercHelm= {name="Herculean Helm", augments={'INT+4'}}
 	mabAgiHercHelm = {name="Herculean Helm", augments={"AGI+9"}}
@@ -64,34 +65,24 @@ function init_gear_sets()
 	sets.DoubleFold = {hands="Lanun Gants +3"}
 	sets.LongRangeDoubleUp = {ring1="Luzaf's Ring"}
 		
-	sets.precast.FC = {
-		head="Carmine Mask",
-		neck="Orunmila's Torque",
-		ear1="Loquac. Earring",
-		ear2="Enchntr. Earring +1",
-		body="Dread Jupon",
-		hands="Leyline Gloves",
-		ring1="Kishar ring",
-		ring2="Prolix Ring",
-		feet="Carmine Greaves"
-	}
+	sets.precast.FC = {}
 	
 -- Preshot Set--
 	sets.precast.RA = {
 		--Cap: 70% Snapshot, 99% Rapid Shot
 		--Gifts: 10% / 30%
 		ammo="Chrono Bullet"
-		,head="Taeon Chapeau" -- 10% / 0%
-		--,head="Chasseur's Tricorne +2" -- 0% / 16%
-		,body="Pursuer's Doublet" --6% / 0%
-		--,body="Oshosi Vest +1" --14% / 0%
+		,head="Chasseur's Tricorne +2" -- 0% / 16%
+		,body="Oshosi Vest" --12% / 0%
 		,hands="Carmine Finger Gauntlets +1" --8% / 11%
+		,ring1="Crepuscular Ring" -- 3%
 		,back=camuSnapshot -- 10% / 0%
 		,waist="Impulse Belt" --3% / 0%
-		,legs="Adhemar Kecks +1" -- 10% / 0% (not path D)
+		,legs="Adhemar Kecks +1" -- 10% / 13%
 		,feet="Meghanada Jambeaux +2" -- 10% / 0%
+		--,neck="Commodore Charm +2", -- 4% / 0%
 		,neck="Commodore Charm +1" -- 3% / 0%
-		--Result: 70% Snapshot, 41% Rapid Shot (70% goal)
+		--Result: 69% Snapshot, 70% Rapid Shot
 	}
 	
 	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {
@@ -100,15 +91,15 @@ function init_gear_sets()
 		--Flurry 1: 15%
 		body="Laksamana's Frac +3", -- 0% / 20%
 		waist="Yemaya Belt" -- 0% / 5%
-		--Result: 76% Snapshot, 66% Rapid Shot
+		--Result: 69% Snapshot, 95% Rapid Shot
 	})
 	sets.precast.RA.Flurry2 = set_combine(sets.precast.RA.Flurry, {
 		--Cap: 70% Snapshot, 99% Rapid Shot
 		--Gifts: 10% / 30%
 		--Flurry 2: 30%
-		head="Chasseur's Tricorne +2", -- 0% / 14% (Remove once base set good)
+		ring1="Defending Ring", -- 0% / 0%
 		legs="Pursuer's Pants" -- 0% / 19%
-		--Result: 71% Snapshot, 99% Rapid Shot
+		--Result: 74% Snapshot, 101% Rapid Shot
 	})
 					
 	sets.precast.CorsairRoll = {
@@ -118,7 +109,7 @@ function init_gear_sets()
 		neck="Regal Necklace",
 		ear1="Odnowa Earring +1",
 		ear2="Etiolation Earring",
-		body="Chassuer's Frac +2",
+		body="Chasseur's Frac +2",
 		hands="Chasseur's Gants +2",
 		ring1="Purity Ring",
 		ring2="Defending Ring",
@@ -133,7 +124,7 @@ function init_gear_sets()
 	})
 	
 	sets.precast.CorsairRoll["Caster's Roll"] = set_combine(sets.precast.CorsairRoll, {
-		legs="Chasseur's Culottes +2"
+		legs="Chasseur's Culottes +3"
 	})
 	
 	sets.precast.CorsairRoll["Courser's Roll"] = set_combine(sets.precast.CorsairRoll, {
@@ -166,8 +157,7 @@ function init_gear_sets()
 	}
 	
 	sets.precast.CorsairShot.TP = set_combine(sets.precast.CorsairShot, {
-		head="Malignance Chapeau",
-		--head=Ikenga's Hat",
+		head="Ikenga's Hat",
 		neck="Vim Torque +1",
 		ear1="Telos Earring",
 		ear2="Crepuscular Earring",
@@ -178,8 +168,7 @@ function init_gear_sets()
 		ring2="Crepuscular ring",
 		back=camuRacc,
 		waist="Tellen Belt",
-		--waist="Gerdr Belt +1",
-		legs="Chasseur's Culottes +2",
+		legs="Chasseur's Culottes +3",
 		feet="Malignance Boots"
 	})
 	
@@ -193,15 +182,13 @@ function init_gear_sets()
 		ear1="Crepuscular Earring",
 		ear2="Dignitary's Earring",
 		--ear2="Chasseur's Earring +2",
-		body="Chassuer's Frac +2",
-		--body="Oshosi Vest +1",
+		body="Chasseur's Frac +2",
 		hands="Laksamana's Gants +3",
 		ring1="Metamorph Ring +1",
 		ring2="Regal Ring",
 		back=camuMabWsd,
 		waist="K. Kachina Belt +1",
-		legs="Chassuer's Culottes +2",
-		--legs="Oshosi Trousers +1",
+		legs="Chasseur's Culottes +3",
 		feet="Laksamana's Bottes +3"
 	}
 	sets.precast.CorsairShot['Dark Shot'] = sets.precast.CorsairShot['Light Shot']
@@ -221,8 +208,7 @@ function init_gear_sets()
 		,ring2="Dingir Ring"
 		,back=camuRacc
 		,waist="Tellen Belt"
-		,legs="Adhemar Kecks +1"
-		--,legs="Ikenga's Trousers"
+		,legs="Chasseur's Culottes +3"
 		,feet="Malignance Boots"
 	}
 					
@@ -236,7 +222,7 @@ function init_gear_sets()
 			head="Oshosi Mask +1",
 			body="Chasseur's Frac +2",
 			hands="Lanun Gants +3",
-			--legs="Oshosi Trousers +1",
+			legs="Oshosi Trousers +1",
 			feet="Oshosi Leggings +1"
    })
    
@@ -318,7 +304,7 @@ function init_gear_sets()
 	ring1="Karieyh Ring +1",
 	--ring1="Epaminondas's Ring",
 	ring2="Regal Ring",
-	back=camuRatkWsd,
+	back=camuSavage,
 	waist="Sailfi Belt +1",
 	legs="Nyame Flanchard",
 	feet="Nyame Sollerets"
