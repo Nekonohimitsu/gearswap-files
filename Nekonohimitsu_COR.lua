@@ -72,7 +72,7 @@ function init_gear_sets()
 		--Cap: 70% Snapshot, 99% Rapid Shot
 		--Gifts: 10% / 30%
 		ammo="Chrono Bullet"
-		,head="Chasseur's Tricorne +2" -- 0% / 16%
+		,head="Chasseur's Tricorne +3" -- 0% / 16%
 		,body="Oshosi Vest" --12% / 0%
 		,hands="Carmine Finger Gauntlets +1" --8% / 11%
 		,ring1="Crepuscular Ring" -- 3%
@@ -109,7 +109,7 @@ function init_gear_sets()
 		neck="Regal Necklace",
 		ear1="Odnowa Earring +1",
 		ear2="Etiolation Earring",
-		body="Chasseur's Frac +2",
+		body="Chasseur's Frac +3",
 		hands="Chasseur's Gants +2",
 		ring1="Purity Ring",
 		ring2="Defending Ring",
@@ -120,7 +120,7 @@ function init_gear_sets()
 	}
 	
 	sets.precast.CorsairRoll["Blitzer's Roll"] = set_combine(sets.precast.CorsairRoll, {
-		head="Chasseur's Tricorne +2"
+		head="Chasseur's Tricorne +3"
 	})
 	
 	sets.precast.CorsairRoll["Caster's Roll"] = set_combine(sets.precast.CorsairRoll, {
@@ -132,7 +132,7 @@ function init_gear_sets()
 	})
 	
 	sets.precast.CorsairRoll["Tactician's Roll"] = set_combine(sets.precast.CorsairRoll, {
-		body="Chasseur's Frac +2"
+		body="Chasseur's Frac +3"
 	})
 	
 	sets.precast.CorsairRoll["Allies Roll"] = set_combine(sets.precast.CorsairRoll, {
@@ -182,7 +182,7 @@ function init_gear_sets()
 		ear1="Crepuscular Earring",
 		ear2="Dignitary's Earring",
 		--ear2="Chasseur's Earring +2",
-		body="Chasseur's Frac +2",
+		body="Chasseur's Frac +3",
 		hands="Laksamana's Gants +3",
 		ring1="Metamorph Ring +1",
 		ring2="Regal Ring",
@@ -220,7 +220,7 @@ function init_gear_sets()
 -- Triple Shot Set --
    sets.TripleShot = set_combine(sets.midcast.RA, {
 			head="Oshosi Mask +1",
-			body="Chasseur's Frac +2",
+			body="Chasseur's Frac +3",
 			hands="Lanun Gants +3",
 			legs="Oshosi Trousers +1",
 			feet="Oshosi Leggings +1"

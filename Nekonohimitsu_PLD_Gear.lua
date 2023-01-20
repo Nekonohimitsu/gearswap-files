@@ -138,7 +138,7 @@ function init_gear_sets()
 		waist={name="Creed Baudrier",priority=2},
 		legs="Eschite Cuisses",
 		--feet="Chevalier's Sabatons +3"
-		feet="Chevalier's Sabatons +2"
+		feet="Chevalier's Sabatons +3"
 	}
 	
     --------------------------------------
@@ -170,7 +170,7 @@ function init_gear_sets()
 		body="Reverence Surcoat +3",
 		waist="Goading Belt",
 		--feet="Chevalier's Sabatons +3",
-		feet="Chevalier's Sabatons +2",
+		feet="Chevalier's Sabatons +3",
 	})
 	
 	sets.midcast.FlashSentinel = {
@@ -190,7 +190,7 @@ function init_gear_sets()
 		waist={name="Creed Baudrier",priority=2},
 		legs="Souveran Diechlings +1",
 		--feet="Chevalier's Sabatons +3",
-		feet="Chevalier's Sabatons +2"
+		feet="Chevalier's Sabatons +3"
 	}
 
 	
@@ -204,7 +204,7 @@ function init_gear_sets()
 		ammo="Staunch Tathlum +1",
 		head={name="Souveran Schaller +1",priority=2}, 
 		--neck="Moonlight Necklace",
-		neck="Moonbeam Necklace", 
+		neck="Moonlight Necklace", 
 		ear1="Knightly Earring",
 		--ear2="Chevalier's Earring +2",
 		ear2="Chevalier's Earring +1",
@@ -276,7 +276,7 @@ function init_gear_sets()
 		ammo="Staunch Tathlum +1", 
 		head="Loess Barbuta +1",
 		--neck="Moonlight Necklace",
-		neck="Moonbeam Necklace",
+		neck="Moonlight Necklace",
 		ear1={name="Tuisto Earring",priority=2},
 		ear2="Knightly Earring",
 		body={name="Souveran Cuirass +1",priority=2},
@@ -314,7 +314,7 @@ function init_gear_sets()
     sets.precast.JA['Sentinel'] = set_combine(sets.midcast.Enmity, {feet="Caballarius Leggings +3"})
     sets.precast.JA['Rampart'] = set_combine(sets.midcast.Enmity, {head="Caballarius Coronet +1"})
     sets.precast.JA['Fealty'] = set_combine(sets.midcast.Enmity, {body="Caballarius Surcoat"})
-    sets.precast.JA['Divine Emblem'] = set_combine(sets.midcast.Enmity, {feet="Chevalier's Sabatons +2"})
+    sets.precast.JA['Divine Emblem'] = set_combine(sets.midcast.Enmity, {feet="Chevalier's Sabatons +3"})
     sets.precast.JA['Cover'] = set_combine(sets.midcast.Enmity, {head="Reverence Coronet +3"})
 	
     --------------------------------------

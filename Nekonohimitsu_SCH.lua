@@ -459,7 +459,7 @@ function init_gear_sets()
 
     -- -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
     sets.buff['Rapture'] = {head="Arbatel Bonnet +3"}
-    sets.buff['Perpetuance'] = {hands="Arbatel Bracers +2"}
+    sets.buff['Perpetuance'] = {hands="Arbatel Bracers +3"}
 	sets.buff['Klimaform'] = {feet="Arbatel Loafers +3"}
     sets.buff['Immanence'] = set_combine(sets.midcast.FastRecast, {
 		main="Ternion Dagger +1",
