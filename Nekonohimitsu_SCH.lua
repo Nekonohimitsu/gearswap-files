@@ -29,9 +29,11 @@ function user_setup()
     state.IdleMode:options('Normal', 'PDT')
 
     state.MagicBurst = M(false, 'Magic Burst')
+	send_command('bind !- gs c toggle MagicBurst')
 end
 
 function user_unload()
+	send_command('unbind !- gs c toggle MagicBurst')
 end
 
 
@@ -111,15 +113,14 @@ function init_gear_sets()
 
     sets.midcast.Cure = set_combine(sets.midcast.ConserveMP, {
 		main="Tamaxchi",
-		--sub="Genmei Shield",
-		sub="Sors Shield",
-		ammo="Pemphredo Tathlum",
+		sub="Genmei Shield",
+		ammo="Esper Stone +1",
 		head="Kaykaus Mitra +1",
+		ear2="Gifted Earring",
 		body="Kaykaus Bliaut +1",
 		hands="Pedagogy Bracers +3",
 		ring2="Naji's Loop",
-		legs="Pedagogy Pants +3",
-		--legs="Kaykaus Tights +1",
+		legs="Kaykaus Tights +1",
 		feet="Kaykaus Boots +1"
 	})
 
@@ -127,12 +128,7 @@ function init_gear_sets()
 		main="Chatoyant Staff",
 		sub="Kaja Grip",
 		--sub="Khonsu",
-		ammo="Esper Stone +1",
-		ear1="Enervating Earring", -- Remove when Enmity OK.
-		--ear1="Mendicant's Earring",
-		ring1="Lebeche Ring", -- Remove when Enmity OK.
 		neck="Lasaia Pendant", -- Remove when Enmity OK.
-		legs="Academic's Pants +2", -- Remove when Enmity OK.
 		waist="Hachirin-no-Obi"
 	})
 	
@@ -472,6 +468,31 @@ function init_gear_sets()
 
     sets.Kiting = {feet="Herald's Gaiters"}
 	sets.Weather = {waist="Hachirin-no-Obi"}
+	
+	-- Melee sets
+	sets.engaged = {
+		ammo="",
+		head="Nyame Helm",
+		neck="Combatant's Torque",
+		ear1="Cessance Earring",
+		ear2="Brutal Earring",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		ring1="Chirich Ring +1",
+		ring2="Chirich Ring +1",
+		back="Aurist's Cape +1",
+		waist="Goading Belt",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets"
+	}
+	
+	sets.precast.WS['Omniscience'] = set_combine(sets.midcast.Kaustra, {
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets"
+	})
+	sets.precast.WS['Cataclysm'] = sets.precast.WS['Omniscience']
 	
 end
 

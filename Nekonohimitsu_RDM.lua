@@ -36,7 +36,12 @@ function user_setup()
     state.IdleMode:options('Normal', 'DT')
 	
     state.MagicBurst = M(false, 'Magic Burst')
+	send_command('bind !- gs c toggle MagicBurst')
 	update_combat_form()
+end
+
+function user_unload()
+	send_command('unbind !- gs c toggle MagicBurst')
 end
 
 
@@ -90,8 +95,7 @@ function init_gear_sets()
 		main="Tamaxchi", sub="Sors Shield", ammo="Pemphredo Tathlum", head="Kaykaus Mitra +1",
 		neck="Incanter's Torque", ear1="Malignance Earring", ear2="Etiolation Earring",
 		body="Kaykaus Bliaut +1", hands="Kaykaus Cuffs +1", ring1="Naji's Loop", ring2="Mephitas's Ring +1", 
-		back="Fi Follet Cape +1", waist="Shinjutsu-no-obi +1", legs="Bunzi's Pants", feet="Kaykaus Boots +1"
-		--legs="Kaykaus Tights +1"
+		back="Fi Follet Cape +1", waist="Shinjutsu-no-obi +1", legs="Kaykaus Tights +1", feet="Kaykaus Boots +1"
 	}
         
     sets.midcast.Curaga = sets.midcast.Cure

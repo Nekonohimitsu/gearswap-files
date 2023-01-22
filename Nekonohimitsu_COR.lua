@@ -32,7 +32,7 @@ function user_setup()
 	state.QDTP = M(false, 'QD TP Mode')
 	
 	-- This is a flag to specify if you are using QD to Boost elemental damage.
-	-- True means you want to wear AF Feet, False means to focus on damage. Default is damage.
+	-- True means you want to wear Empy Feet, False means to focus on damage. Default is damage.
 	state.QDDmgBoost = M(false, 'QD Dmg Boost Mode')
 	
 	-- Since we only know Flurry is on, this flag is to tell the LUA
@@ -77,12 +77,11 @@ function init_gear_sets()
 		,hands="Carmine Finger Gauntlets +1" --8% / 11%
 		,ring1="Crepuscular Ring" -- 3%
 		,back=camuSnapshot -- 10% / 0%
-		,waist="Impulse Belt" --3% / 0%
+		,waist="Impulse Belt" -- 3% / 0%
 		,legs="Adhemar Kecks +1" -- 10% / 13%
 		,feet="Meghanada Jambeaux +2" -- 10% / 0%
-		--,neck="Commodore Charm +2", -- 4% / 0%
-		,neck="Commodore Charm +1" -- 3% / 0%
-		--Result: 69% Snapshot, 70% Rapid Shot
+		,neck="Commodore Charm +2", -- 4% / 0%
+		--Result: 70% Snapshot, 75% Rapid Shot
 	}
 	
 	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {
@@ -91,7 +90,7 @@ function init_gear_sets()
 		--Flurry 1: 15%
 		body="Laksamana's Frac +3", -- 0% / 20%
 		waist="Yemaya Belt" -- 0% / 5%
-		--Result: 69% Snapshot, 95% Rapid Shot
+		--Result: 73% Snapshot, 95% Rapid Shot
 	})
 	sets.precast.RA.Flurry2 = set_combine(sets.precast.RA.Flurry, {
 		--Cap: 70% Snapshot, 99% Rapid Shot

@@ -71,8 +71,13 @@ function user_setup()
 
     state.WeaponLock = M(false, 'Weapon Lock')
     state.MagicBurst = M(false, 'Magic Burst')
+	send_command('bind !- gs c toggle MagicBurst')
 end
 
+
+function user_unload()
+	send_command('unbind !- gs c toggle MagicBurst')
+end
 
 -- Define sets and vars used by this job file.
 function init_gear_sets()

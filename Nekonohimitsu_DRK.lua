@@ -340,7 +340,7 @@ function define_spell_and_ja_sets()
 	-- place this gear on top of the set being used for the spell at cast time.
 	--------------------------------------
 	-- Upgrading to Fallen's Burgeonet +3 will give 37 more MACC.
-	sets.buff['Dark Seal'] = {head="Fallen's Burgeonet"}
+	sets.buff['Dark Seal'] = {head="Fallen's Burgeonet +1"}
 	
 	sets.midcast['Drain III'].DarkSeal = set_combine(sets.buff['Dark Seal'], {
 		body="Carmine Scale Mail" -- temporary while Drain III uses cloak.
