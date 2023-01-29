@@ -243,7 +243,7 @@ function init_gear_sets()
 		main="Bunzi's Rod",
 		sub="Ammurapi Shield",
 		ring1="Metamorph Ring +1",
-		--hands="Arbatel Bracers +3"
+		hands="Arbatel Bracers +3"
 	})
 	
 	sets.midcast.ElementalMagicAccuracy = set_combine(sets.midcast.IntEnfeebles, {
@@ -319,8 +319,7 @@ function init_gear_sets()
 		--ear2="Arbatel Earring +2",
         ear1="Regal Earring",
 		body="Arbatel Gown +3",
-        hands="Agwu's Gages",
-		--hands="Arbatel Bracers +3",
+		hands="Arbatel Bracers +3",
 		legs="Arbatel Pants +3",
         --legs="Agwu's Slops", -- R30
         feet="Arbatel Loafers +3",
@@ -358,8 +357,7 @@ function init_gear_sets()
 		--ear2="Arbatel Earring +2",
 		ear2="Regal Earring",
 		body="Arbatel Gown +3",
-		--hands="Arbatel Gloves +3",
-		hands="Agwu's Gages",
+		hands="Arbatel Bracers +3",
 		ring1="Freke Ring",
 		ring2="Metamorph Ring +1",
 		back=lughNuke,
@@ -471,7 +469,8 @@ function init_gear_sets()
 	
 	-- Melee sets
 	sets.engaged = {
-		ammo="",
+		ammo="Oshasha's Treastise",
+		--head="Blistering Sallet +1",
 		head="Nyame Helm",
 		neck="Combatant's Torque",
 		ear1="Cessance Earring",
@@ -487,10 +486,13 @@ function init_gear_sets()
 	}
 	
 	sets.precast.WS['Omniscience'] = set_combine(sets.midcast.Kaustra, {
-		body="Nyame Mail",
+		ammo="Oshasha's Treastise",
+		body="Arbatel Gown +3",
 		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets"
+		ring2="Karieyh Ring +1",
+		waist="Luminary Sash",
+		legs="Arbatel Pants +3",
+		feet="Agwu's Pigaches"
 	})
 	sets.precast.WS['Cataclysm'] = sets.precast.WS['Omniscience']
 	

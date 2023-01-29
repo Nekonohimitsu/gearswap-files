@@ -467,7 +467,12 @@ function define_caladbolg_sets()
 	-- 4-hit: 105 
 	-- 5-hit: 64
 	-- 6-hit: 37
-	sets.engaged.Caladbolg = set_combine(sets.engaged, {})
+	sets.engaged.Caladbolg = set_combine(sets.engaged, {
+		head="Flamma Zucchetto +2",
+		ring1="Chirich Ring +1",
+		ear1="Crepuscular Earring",
+		ear2="Telos Earring"
+	})
 	sets.engaged.Caladbolg.DT = set_combine(sets.engaged.DT, {})
 	sets.engaged.Caladbolg.Acc = set_combine(sets.engaged.Acc, {})
 	sets.engaged.Caladbolg.Acc.DT = set_combine(sets.engaged.Acc.DT, {})

@@ -109,7 +109,7 @@ function init_gear_sets()
 		ear1="Odnowa Earring +1",
 		ear2="Etiolation Earring",
 		body="Chasseur's Frac +3",
-		hands="Chasseur's Gants +2",
+		hands="Chasseur's Gants +3",
 		ring1="Purity Ring",
 		ring2="Defending Ring",
 		back=camuDT,
@@ -127,7 +127,7 @@ function init_gear_sets()
 	})
 	
 	sets.precast.CorsairRoll["Courser's Roll"] = set_combine(sets.precast.CorsairRoll, {
-		feet="Chasseur's Bottes +2"
+		feet="Chasseur's Bottes +3"
 	})
 	
 	sets.precast.CorsairRoll["Tactician's Roll"] = set_combine(sets.precast.CorsairRoll, {
@@ -135,7 +135,7 @@ function init_gear_sets()
 	})
 	
 	sets.precast.CorsairRoll["Allies Roll"] = set_combine(sets.precast.CorsairRoll, {
-		hands="Chasseur's Gants +2"
+		hands="Chasseur's Gants +3"
 	})
 		
 	sets.precast.CorsairShot = {
@@ -152,7 +152,7 @@ function init_gear_sets()
 		waist="Eschan Stone",
 		--waist="Skrymir Cord +1",
 		legs="Herculean Trousers",
-		feet="Lanun Bottes +3"
+		feet="Chasseur's Bottes +3"
 	}
 	
 	sets.precast.CorsairShot.TP = set_combine(sets.precast.CorsairShot, {
@@ -171,7 +171,7 @@ function init_gear_sets()
 		feet="Malignance Boots"
 	})
 	
-	sets.QDDmg = {head="Laksamana's Tricorne +3", feet="Chasseur's Bottes +2", body="Mirke Wardecors"}
+	sets.QDDmg = {head="Laksamana's Tricorne +3", feet="Chasseur's Bottes +3", body="Mirke Wardecors"}
 	
 	sets.precast.CorsairShot['Light Shot'] = {
 		ammo="Animikii Bullet",
@@ -275,7 +275,7 @@ function init_gear_sets()
 	ear1="Moonshade Earring",
 	--ear2="Chasseur's Earring +2",
 	body="Laksamana's Frac +3",
-	hands="Chasseur's Gants +2",
+	hands="Chasseur's Gants +3",
 	ring1="Dingir Ring",
 	--ring1="Epaminondas's Ring",
 	ring2="Regal Ring",
