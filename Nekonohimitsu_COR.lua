@@ -7,6 +7,14 @@ function get_sets()
 end
 
 function user_setup()
+	weaponTable = {
+		['Melee'] = {main='Naegling', sub="Gleti's Knife", range='Anarchy +2'},
+		['PhysRange'] = {main='Kustawi +1', sub='Nusku Shield', range='Fomalhaut'},
+		['MagRange'] = {main='Naegling', sub='Tauret', range='Death Penalty'},
+		['MeleeShield'] = {main='Naegling', sub="Nusku Shield", range='Anarchy +2'},
+		['PhysRangeShield'] = {main='Kustawi +1', sub='Nusku Shield', range='Fomalhaut'},
+		['MagRangeShield'] = {main='Naegling', sub='Nusku Shield', range='Death Penalty'}
+	}
 
 	--Alt-F9 to Cycle
     state.RangedMode:options('Normal', 'Acc')
@@ -14,6 +22,14 @@ function user_setup()
 	state.OffenseMode:options('Normal', 'Acc')
 	
 	state.HybridMode:options('Normal', 'DT')
+	
+	-- This is a flag to specify if you are using QD for Damage or TP.
+	state.QDMode = M{['description'] = 'QDMode', 'Damage', 'TP'}
+	
+	-- This is a flag to specify if you are using QD to Boost elemental damage.
+	-- True means you want to wear Empy Feet, False means to focus on damage.
+	-- This will equip on top of your QD set specified above (TP, Damage).
+	state.QDDmgBoost = M(true, 'QD Dmg Boost Mode')
 	
 	--This matches the Offense or Ranged modes according to WS used if it can.
 	state.WeaponskillMode:options('Normal', 'Acc')
@@ -25,15 +41,7 @@ function user_setup()
 	state.DoubleFold = M(false, 'Double Fold')
 	
 	--Enables Luzaf's Roll to double roll range
-	state.LongRangeDoubleUp = M(false, 'Long Range Double-Up')
-	
-	-- This is a flag to specify if you are using QD for Damage or TP.
-	-- True means you prefer TP, False means prefer damage. Default is damage.
-	state.QDTP = M(false, 'QD TP Mode')
-	
-	-- This is a flag to specify if you are using QD to Boost elemental damage.
-	-- True means you want to wear Empy Feet, False means to focus on damage. Default is damage.
-	state.QDDmgBoost = M(false, 'QD Dmg Boost Mode')
+	state.LongRangeDoubleUp = M(true, 'Long Range Double-Up')
 	
 	-- Since we only know Flurry is on, this flag is to tell the LUA
 	-- if the Flurry you have on is 1 or 2. Default to Flurry II.
@@ -51,13 +59,6 @@ function init_gear_sets()
 
 	mabHercHelm= {name="Herculean Helm", augments={'INT+4'}}
 	mabAgiHercHelm = {name="Herculean Helm", augments={"AGI+9"}}
-	
-	weaponTable = {
-		['Melee'] = {main='Naegling', sub="Gleti's Knife", range='Anarchy +2'},
-		['PhysRange'] = {main='Kustawi +1', sub='Nusku Shield', range='Fomalhaut'},
-		['MagRange'] = {main='Naegling', sub='Tauret', range='Death Penalty'},
-		['DefaultShield'] = {sub='Nusku Shield'}
-	}
 	
 	sets.precast.JA['Wild Card'] = {feet="Lanun Bottes +3"}
 	sets.precast.JA['Random Deal'] = {body="Lanun Frac +3"}
@@ -404,7 +405,7 @@ function init_gear_sets()
 			   				              
 end
 
-function job_post_precast(spell, action, spellMap, eventArgs)
+function job_precast(spell,action,spellMap,eventArgs)
 	if (spell.english == 'Double-Up' or spell.type == 'CorsairRoll') and state.LongRangeDoubleUp.value == true then
 		equip(sets.LongRangeDoubleUp)
 	elseif spell.english == 'Fold' and state.DoubleFold.value == true then
@@ -416,11 +417,14 @@ function job_post_precast(spell, action, spellMap, eventArgs)
 			equip(sets.precast.RA.Flurry)
 		end
 	end
+	if spell.type == 'CorsairShot' and spell.english ~= 'Light Shot' and spell.english ~= 'Dark Shot' and state.QDMode.value == 'TP' then
+		equip(sets.precast.CorsairShot.TP)
+	end
+end
+
+function job_post_precast(spell, action, spellMap, eventArgs)
 	if (spell.element == world.day_element or spell.element == world.weather_element) then
 		equip(sets.Weather)
-	end
-	if spell.type == 'CorsairShot' and spell.english ~= 'Light Shot' and spell.english ~= 'Dark Shot' and state.QDTP.value == true then
-		equip(sets.precast.CorsairShot.TP)
 	end
 	if spell.type == 'CorsairShot' and state.QDDmgBoost.value == true then
 		equip(sets.QDDmg)
@@ -436,10 +440,32 @@ end
 function job_post_aftercast(spell, action, spellMap, eventArgs)
 	-- Change weapons back to normal after roll
 	if spell.type == 'CorsairRoll' then
-		if(weaponTable[state.WeaponMode.value]) then
+		update_weapons()
+	end
+end
+
+-- Handle notifications of general user state change.
+function job_state_change(stateField, newValue, oldValue)
+    if stateField == 'Weapon Mode' then
+		update_weapons()
+	end
+end
+
+function update_weapons()
+	if(weaponTable[state.WeaponMode.value]) then
+		if (can_dual_wield()) then
 			equip(weaponTable[state.WeaponMode.value])
+		else
+			equip(weaponTable[state.WeaponMode.value.."Shield"])
 		end
 	end
+end
+
+function can_dual_wield()
+    if (player.sub_job == 'NIN' or player.sub_job == 'DNC') and not buffactive['SJ Restriction'] then
+		return true
+    end
+	return false
 end
 
 function customize_idle_set(idleSet)
