@@ -70,8 +70,7 @@ function init_gear_sets()
 		ear1="Loquacious Earring", -- 2
 		ear2="Malignance Earring", -- 4
 		body="Zendik Robe", -- 13
-		--hands="Academic's Bracers +3", -- 9
-		hands="Academic's Bracers +2", -- 8
+		hands="Academic's Bracers +3", -- 9
 		ring1="Lebeche Ring",
 		ring2="Kishar Ring", -- 4
 		back="Perimede Cape",
@@ -83,7 +82,7 @@ function init_gear_sets()
 	-- For when casting with a matching Art (White Magic w/ Light Arts) and no Strategem
 	sets.GrimoireCasting = { -- 62% FC
 		head="Pedagogy Mortarboard +3",
-		feet="Academic's Loafers +2"
+		feet="Academic's Loafers +3"
 	}
 
     sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty,body="Crepuscular Cloak"})
@@ -102,8 +101,7 @@ function init_gear_sets()
 		neck="Incanter's Torque", 
 		ear1="Calamitous Earring", -- 4%
 		body="Vedic Coat", -- 10%
-		--hands="Academic's Bracers +3", -- 8%
-		hands="Academic's Bracers +2", -- 6% 
+		hands="Academic's Bracers +3", -- 8%
 		ring1="Mephitas's Ring +1", -- 8/15%
 		back="Fi Follet Cape +1", -- 5%
 		waist="Hachirin-no-Obi", 
@@ -147,8 +145,7 @@ function init_gear_sets()
 		ring2="Haoma's Ring",
 		back="Oretania's Cape +1",
 		waist="Bishop's Sash",
-		legs="Academic's Pants +2",
-		--legs="Academic's Pants +3",
+		legs="Academic's Pants +3",
 		feet="Gendewitha Galoshes +1"
 	}
 	
@@ -227,8 +224,7 @@ function init_gear_sets()
 		ear2="Regal Earring",
 		ear1="Malignance Earring",
 		--ear2="Arbatel Earring +2",
-		--body="Academic's Gown +3",
-		body="Academic's Gown +2",
+		body="Academic's Gown +3",
 		hands= "Kaykaus Cuffs +1",
 		ring2="Stikini Ring +1",
 		ring1= "Metamorph Ring +1",
@@ -296,8 +292,7 @@ function init_gear_sets()
 		ear1="Malignance Earring",
 		--ear2="Arbatel Earring +2",
 		body="Zendik Robe",
-		hands="Volte Gloves",
-		--hands="Academic's Bracers +3",
+		hands="Academic's Bracers +3",
 		ring1="Kishar Ring",
 		ring2="Metamorph Ring +1",
 		back=lughMacc,
@@ -310,9 +305,8 @@ function init_gear_sets()
 
     sets.midcast['Elemental Magic'] = {
 		main="Bunzi's Rod",
-        sub="Ammurapi Shield",
-		ammo="Pemphredo Tathlum",		
-		--ammo="Ghastly Tathlum +1",
+        sub="Ammurapi Shield",	
+		ammo="Ghastly Tathlum +1",
 		head="Arbatel Bonnet +3",
         neck="Argute Stole +1",
         ear2="Malignance Earring",
@@ -348,8 +342,7 @@ function init_gear_sets()
 	sets.midcast.Helix = {
 		main="Bunzi's Rod",
 		sub="Culminus",
-		--ammo="Ghastly Tathlum +1",
-		ammo="Pemphredo Tathlum",
+		ammo="Ghastly Tathlum +1",
 		head="Agwu's Cap",
 		--neck="Argute Stole +2",
 		neck="Argute Stole +1",
@@ -454,14 +447,15 @@ function init_gear_sets()
     -- -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
     sets.buff['Rapture'] = {head="Arbatel Bonnet +3"}
     sets.buff['Perpetuance'] = {hands="Arbatel Bracers +3"}
+	sets.buff['Ebullience'] = {head="Arbatel Bonnet +3"}
 	sets.buff['Klimaform'] = {feet="Arbatel Loafers +3"}
     sets.buff['Immanence'] = set_combine(sets.midcast.FastRecast, {
 		main="Ternion Dagger +1",
 		sub="Genmei Shield",
 		head="Blistering Sallet +1",
 		ear2="Odnowa Earring +1",
-		legs="Academic's Pants +2",
-		feet="Academic's Loafers +2"
+		legs="Academic's Pants +3",
+		feet="Academic's Loafers +3"
 	})
 
     sets.Kiting = {feet="Herald's Gaiters"}
@@ -469,7 +463,7 @@ function init_gear_sets()
 	
 	-- Melee sets
 	sets.engaged = {
-		ammo="Oshasha's Treastise",
+		ammo="Oshasha's Treatise",
 		--head="Blistering Sallet +1",
 		head="Nyame Helm",
 		neck="Combatant's Torque",
@@ -486,7 +480,7 @@ function init_gear_sets()
 	}
 	
 	sets.precast.WS['Omniscience'] = set_combine(sets.midcast.Kaustra, {
-		ammo="Oshasha's Treastise",
+		ammo="Oshasha's Treatise",
 		body="Arbatel Gown +3",
 		hands="Nyame Gauntlets",
 		ring2="Karieyh Ring +1",
@@ -505,6 +499,7 @@ function job_post_precast(spell, action, spellMap, eventArgs)
 	if spell.action_type == 'Magic' then
 		check_grimoire_casting(spell)
 	end
+	eventArgs.handled = true
 end
 
 -- Run after the general midcast() is done.
@@ -579,7 +574,7 @@ function job_get_spell_map(spell, default_spell_map)
                 return 'IntEnfeebles'
             end
 		elseif spell.skill == 'Enhancing Magic' then
-			if potencyBasedEnancing:contains(spell.english) and not buffactive['Light Arts'] then
+			if potencyBasedEnancing:contains(spell.english) and not buffactive['Light Arts'] and not buffactive['Addendum: White'] then
 				return 'EnhNoLightArts'
 			end
 			if not default_spell_map then

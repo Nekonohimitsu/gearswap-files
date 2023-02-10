@@ -176,8 +176,7 @@ function init_gear_sets()
 	sets.precast.CorsairShot['Light Shot'] = {
 		ammo="Animikii Bullet",
 		head="Laksa. Tricorne +3",
-		neck="Commodore Charm +1",
-		--neck="Commodore Charm +2",
+		neck="Commodore Charm +2",
 		ear1="Crepuscular Earring",
 		ear2="Dignitary's Earring",
 		--ear2="Chasseur's Earring +2",
@@ -244,8 +243,7 @@ function init_gear_sets()
    sets.precast.WS['Wildfire'] = {
 	ammo="Living Bullet",
 	head="Nyame Helm",
-	neck="Commodore Charm +1",
-	--neck="Commodore Charm +2",
+	neck="Commodore Charm +2",
 	ear1="Crematio Earring",
 	ear2="Friomisi Earring",
 	body="Lanun Frac +3",
@@ -293,8 +291,7 @@ function init_gear_sets()
    
    sets.precast.WS['Savage Blade'] = {
 	head="Nyame Helm",
-	neck="Commodore Charm +1",
-	--neck="Commodore Charm +2",
+	neck="Commodore Charm +2",
 	ear2="Ishvara Earring",
 	--ear2="Commodore Earring +2",
 	ear1="Moonshade Earring",

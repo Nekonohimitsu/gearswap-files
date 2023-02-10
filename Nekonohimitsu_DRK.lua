@@ -81,7 +81,7 @@ function define_spell_and_ja_sets()
 		body="Crepuscular Cloak",
 	})
 	
-	sets.precast.JA['Nether Void'] = {legs="Heathen's Flanchard +1"}
+	sets.precast.JA['Nether Void'] = {legs="Heathen's Flanchard +2"}
 	sets.precast.JA['Weapon Bash'] = {hands="Ignominy Gauntlets +3"}
 	sets.precast.JA['Arcane Circle'] = {feet="Ignominy Sollerets +3"}
 	sets.precast.JA['Blood Weapon'] = {body="Fallen's Cuirass +3"}
@@ -90,15 +90,14 @@ function define_spell_and_ja_sets()
 		ammo="Coiste Bodhar",
 		head="Hjarrandi Helm",
 		neck="Vim Torque +1",
-		--ear1="Dedition Earring",
-		ear1="Telos Earring",
+		ear1="Brutal Earring",
 		ear2="Schere Earring",
-		body="Valorous Mail",
+		body="Hjarrandi Breastplate",
 		hands="Sakpata's Gauntlets",
 		ring1="Chirich Ring +1",
 		ring2="Chirich Ring +1",
 		back=ankouTP,
-		waist="Goading Belt",
+		waist="Ioskeha Belt",
 		legs="Odyssean Cuisses",
 		--feet="Ostro Greaves",
 		feet="Carmine Greaves"
@@ -124,8 +123,7 @@ function define_spell_and_ja_sets()
 		waist="Eschan Stone",
 		--legs="Heathen's Flanchard +3",
 		legs="Fallen's Flanchard +3",
-		--feet="Heathen's Sollerets +3",
-		feet="Ignominy Sollerets +3"
+		feet="Heathen's Sollerets +3"
 	}
 	
 	sets.midcast['Dark Magic'].DT = set_combine(sets.midcast['Dark Magic'], {
@@ -158,7 +156,7 @@ function define_spell_and_ja_sets()
 	
 	sets.midcast.Absorb['Absorb-TP'] = set_combine(sets.midcast['Dark Magic'], {
 		--hands="Heathen's Gauntlets +3",
-		hands="Heathen's Gauntlets +1"
+		hands="Heathen's Gauntlets +2"
 	})
 	sets.midcast.Absorb['Absorb-TP'].DT = sets.midcast['Dark Magic'].DT
 	sets.midcast.Absorb['Absorb-TP'].Resistant = sets.midcast['Dark Magic']
@@ -219,8 +217,7 @@ function define_spell_and_ja_sets()
 		waist="Eschan Stone",
 		--legs="Heathen's Flanchard +3",
 		legs="Nyame Flanchard",
-		--feet="Heathen's Sollerets +3",
-		feet="Ignominy Sollerets +3"
+		feet="Heathen's Sollerets +3"
 	}
 	sets.midcast['Enfeebling Magic'].DT = set_combine(sets.midcast['Enfeebling Magic'], {
 		-- When Heathen's Body/Hands/Legs (35%): Defending Ring only.
@@ -258,8 +255,7 @@ function define_spell_and_ja_sets()
 		back=ankouINTMACC,
 		waist="Eschan Stone",
 		legs="Nyame Flanchard",
-		--feet="Heathen's Sollerets +3",
-		feet="Nyame Sollerets"
+		feet="Heathen's Sollerets +3"
 	}
 	
 	-- Buffs
@@ -296,7 +292,7 @@ function define_spell_and_ja_sets()
 	
 	sets.MaxHPDread = {
 		--body="Heathen's Cuirass +3",
-		body="Heathen's Cuirass +1",
+		body="Heathen's Cuirass +2",
 	}
 	
 	sets.midcast['Dread Spikes'] = set_combine(sets.MaxHPDread, {
@@ -769,8 +765,7 @@ function define_ws_sets()
 		back=ankouSTRWS,
 		waist="Sailfi Belt +1",
 		legs="Nyame Flanchard",
-		--feet="Heathen's Sollerets +3",
-		feet="Nyame Sollerets",
+		feet="Heathen's Sollerets +3"
 	}
 	
 	sets.precast.WS.Acc = set_combine(sets.precast.WS, {
@@ -917,7 +912,7 @@ function define_ws_sets()
 		back=ankouSTRWS,
 		waist="Eschan Stone",
 		legs="Nyame Flanchard",
-		feet="Nyame Sollerets"
+		feet="Heathen's Sollerets +3"
 	}
 
 	sets.precast.WS['Infernal Scythe'] = set_combine(sets.precast.MagicWS, {

@@ -93,7 +93,7 @@ function init_gear_sets()
 
     -- Precast sets to enhance JAs
     sets.precast.JA.Bolster = {body="Bagua Tunic"}
-    sets.precast.JA['Full Circle'] = {head="Azimuth Hood +2", hands="Bagua Mitaines +3"}
+    sets.precast.JA['Full Circle'] = {head="Azimuth Hood +3", hands="Bagua Mitaines +3"}
     sets.precast.JA['Life Cycle'] = {body="Geomancy Tunic +3", back="Nantosuelta's Cape",}
 	sets.precast.JA['Concentric Pulse'] = {head="Bagua Galero +3"}
 
@@ -156,11 +156,11 @@ function init_gear_sets()
         main="Idris",
         sub="Chanter's Shield",
 		ammo="Dunna",
-		head="Azimuth Hood +2",
+		head="Azimuth Hood +3",
         body="Vedic Coat",
 		hands="Azimuth Gloves +2",
 		legs="Vanya Slops",
-		feet="Azimuth Gaiters +2",
+		feet="Azimuth Gaiters +3",
         neck="Bagua Charm +1",
 		--neck="Bagua Charm +2",
         ring2="Defending Ring",
@@ -170,10 +170,10 @@ function init_gear_sets()
         }
 
     sets.midcast.Geomancy.Indi = set_combine(sets.midcast.Geomancy, {
-		head="Azimuth Hood +2",
+		head="Azimuth Hood +3",
 		neck="Incanter's Torque",
 		legs="Bagua Pants +3",
-        feet="Azimuth Gaiters +2",
+        feet="Azimuth Gaiters +3",
         back="Lifestream Cape"
     })
 
@@ -381,13 +381,13 @@ function init_gear_sets()
     })
 
     sets.idle.DT = set_combine(sets.idle, {
-		head="Azimuth Hood +2", -- 11% / 0% / 0%
+		head="Azimuth Hood +3", -- 11% / 0% / 0%
 		neck="Loricate Torque +1", -- 6% / 0% / 0%
 		ear1="Odnowa Earring +1", -- 3% / 0% / 2%
 		--ear2="Azimuth Earring +2", -- 7% / 0% / 0%
 		ring1="Defending Ring", -- 10% / 0% / 0%
 		legs="Agwu's Slops", -- 7% / 0% / 0%
-		feet="Azimuth Gaiters +2", -- 10% / 0% / 0% --Remove when Azimuth Earring +2 obtained.
+		feet="Azimuth Gaiters +3", -- 10% / 0% / 0% --Remove when Azimuth Earring +2 obtained.
 		back=nantoPet, -- 5% / 0% / 0%
 		------------------------------------------
 		-- 52% / 0% / 2%
@@ -398,7 +398,7 @@ function init_gear_sets()
         main="Idris", 
         sub="Genmei Shield", 
 		ammo="Dunna", 
-		head="Azimuth Hood +2",
+		head="Azimuth Hood +3",
         body="Jhakri Robe +2", 
 		--body="Telchine Chas.",
         hands="Geo. Mitaines +3",
@@ -425,7 +425,7 @@ function init_gear_sets()
         main="Idris", 
         sub="Genmei Shield",
 		ammo="Dunna", 
-		head="Azimuth Hood +2",
+		head="Azimuth Hood +3",
         body="Nyame Mail", 
         hands="Geo. Mitaines +3", 
         legs="Agwu's Slops", 
