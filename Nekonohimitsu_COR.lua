@@ -16,6 +16,43 @@ function user_setup()
 		['MagRangeShield'] = {main='Naegling', sub='Nusku Shield', range='Death Penalty'}
 	}
 
+	currentRoll = ""
+
+	rollMaps = {
+		["Corsair's Roll"] = {['Lucky'] = 5, ['Unlucky'] = 9, ['Effect'] = "EXP+"},
+		["Ninja's Roll"] = {['Lucky'] = 4, ['Unlucky'] = 8, ['Effect'] = "EVA+"},
+		["Hunter's Roll"] = {['Lucky'] = 4, ['Unlucky'] = 8, ['Effect'] = "ACC+"},
+		["Chaos Roll"] = {['Lucky'] = 4, ['Unlucky'] = 8, ['Effect'] = "ATK+"},
+		["Magus's Roll"] = {['Lucky'] = 2, ['Unlucky'] = 6, ['Effect'] = "MDB+"},
+		["Healer's Roll"] = {['Lucky'] = 3, ['Unlucky'] = 7, ['Effect'] = "Cure Rec+"},
+		["Drachen Roll"] = {['Lucky'] = 4, ['Unlucky'] = 8, ['Effect'] = "Pet: ACC+"},
+		["Choral Roll"] = {['Lucky'] = 2, ['Unlucky'] = 6, ['Effect'] = "SIRD+"},
+		["Monk's Roll"] = {['Lucky'] = 3, ['Unlucky'] = 7, ['Effect'] = "SB+"},
+		["Beast Roll"] = {['Lucky'] = 4, ['Unlucky'] = 8, ['Effect'] = "Pet: ATK+"},
+		["Samurai Roll"] = {['Lucky'] = 2, ['Unlucky'] = 6, ['Effect'] = "STP+"},
+		["Evoker's Roll"] = {['Lucky'] = 5, ['Unlucky'] = 9, ['Effect'] = "Refresh+"},
+		["Rogue's Roll"] = {['Lucky'] = 5, ['Unlucky'] = 9, ['Effect'] = "Crit+"},
+		["Warlock's Roll"] = {['Lucky'] = 4, ['Unlucky'] = 8, ['Effect'] = "MACC+"},
+		["Fighter's Roll"] = {['Lucky'] = 5, ['Unlucky'] = 9, ['Effect'] = "DA+"},
+		["Puppet Roll"] = {['Lucky'] = 3, ['Unlucky'] = 7, ['Effect'] = "Pet: MACC/MAB+"},
+		["Gallant's Roll"] = {['Lucky'] = 3, ['Unlucky'] = 7, ['Effect'] = "DEF+"},
+		["Wizard's Roll"] = {['Lucky'] = 5, ['Unlucky'] = 9, ['Effect'] = "MATK+"},
+		["Dancer's Roll"] = {['Lucky'] = 3, ['Unlucky'] = 7, ['Effect'] = "Regen+"},
+		["Scholar's Roll"] = {['Lucky'] = 2, ['Unlucky'] = 6, ['Effect'] = "CMP+"},
+		["Naturalist's Roll"] = {['Lucky'] = 3, ['Unlucky'] = 7, ['Effect'] = "Enh Dur+"},
+		["Runeist's Roll"] = {['Lucky'] = 4, ['Unlucky'] = 8, ['Effect'] = "MEVA+"},
+		["Bolter's Roll"] = {['Lucky'] = 3, ['Unlucky'] = 9, ['Effect'] = "Movement+"},
+		["Caster's Roll"] = {['Lucky'] = 2, ['Unlucky'] = 7, ['Effect'] = "FC+"},
+		["Courser's Roll"] = {['Lucky'] = 3, ['Unlucky'] = 9, ['Effect'] = "Snapshot+"},
+		["Blitzer's Roll"] = {['Lucky'] = 4, ['Unlucky'] = 9, ['Effect'] = "Delay-"},
+		["Tactician's Roll"] = {['Lucky'] = 5, ['Unlucky'] = 8, ['Effect'] = "Regain+"},
+		["Allies' Roll"] = {['Lucky'] = 3, ['Unlucky'] = 10, ['Effect'] = "SCDmg+"},
+		["Miser's Roll"] = {['Lucky'] = 5, ['Unlucky'] = 7, ['Effect'] = "SaveTP+"},
+		["Companion's Roll"] = {['Lucky'] = 2, ['Unlucky'] = 10, ['Effect'] = "Pet:Regen/Regain+"},
+		["Avenger's Roll"] = {['Lucky'] = 4, ['Unlucky'] = 8, ['Effect'] = "Counter+"},
+	}
+	
+	
 	--Alt-F9 to Cycle
     state.RangedMode:options('Normal', 'Acc')
 	--F9 to Cycle
@@ -406,8 +443,18 @@ function init_gear_sets()
 end
 
 function job_precast(spell,action,spellMap,eventArgs)
-	if (spell.english == 'Double-Up' or spell.type == 'CorsairRoll') and state.LongRangeDoubleUp.value == true then
-		equip(sets.LongRangeDoubleUp)
+	if (spell.english == 'Double-Up' or spell.type == 'CorsairRoll') then
+		rangeText = "8 yalms"
+		if spell.type == 'CorsairRoll' then 
+			currentRoll = spell.english
+		end
+		if state.LongRangeDoubleUp.value == true then
+			equip(sets.LongRangeDoubleUp)
+			rangeText = "16 yalms"
+		end
+		if (currentRoll ~= "") then
+			add_to_chat(060, "Lucky: " .. rollMaps[currentRoll].Lucky .. ", Unlucky: " .. rollMaps[currentRoll].Unlucky .. " (" .. rollMaps[currentRoll].Effect .. ", " .. rangeText .. ")")
+		end
 	elseif spell.english == 'Fold' and state.DoubleFold.value == true then
 		equip(sets.DoubleFold)
 	elseif spell.english == 'Ranged' and buffactive['Flurry'] then
@@ -473,4 +520,10 @@ function customize_idle_set(idleSet)
         idleSet = set_combine(idleSet, sets.idle.refresh)
     end
     return idleSet
+end
+
+function job_buff_change(buff, gain)
+	if (buff == 'Double-Up Chance' and not gain) then
+		currentRoll = ""
+	end
 end
