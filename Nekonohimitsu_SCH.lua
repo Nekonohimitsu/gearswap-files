@@ -24,7 +24,7 @@ end
 
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
-    state.OffenseMode:options('None', 'Normal')
+    state.OffenseMode:options('None', 'Normal', 'Acc')
     state.CastingMode:options('Normal', 'Resistant')
     state.IdleMode:options('Normal', 'PDT')
 
@@ -42,7 +42,6 @@ function init_gear_sets()
 	lughMacc = {name="Lugh's Cape", augments={'INT+20', 'Mag. Acc+10', '"Fast Cast"+10%', 'Mag. Acc.+20/Mag. Dmg.+20', 'Damage Taken -5%'}}
 	lughMeva = {name="Lugh's Cape", augments={'Eva.+20/Mag.Eva.+20', 'Damage Taken -5%'}}
 	lughNuke = {name="Lugh's Cape", augments={'INT+20','INT+10'}}
-	merlinicHoodFC = {name="Merlinic Hood", augments={"Fast Cast +5%"}}
 	vanyaHoodConserveMp = {name="Vanya Hood", augments={'"Conserve MP"+6'}}
 	grioFC = {name="Grioavolr", augments={"Fast Cast +7%"}}
 	gadaEnhDur = {name="Gada", augments={"Enh. Mag. eff. dur. +5"}}
@@ -61,11 +60,9 @@ function init_gear_sets()
 
     sets.precast.FC = { -- 81%
 		main=grioFC, -- 11
-		sub="Clerisy Strap", -- 2
-		--sub="Clerisy Strap +1",
+		sub="Clerisy Strap +1", -- 3
 		ammo="Impatiens",
-		head=merlinicHoodFC, -- 13
-		--head="Amalric Coif +1", -- 11 (when strap +1)
+		head="Amalric Coif +1", -- 11
 		neck="Orunmila's Torque", -- 5
 		ear1="Loquacious Earring", -- 2
 		ear2="Malignance Earring", -- 4
@@ -282,8 +279,7 @@ function init_gear_sets()
 
     sets.midcast.Stun = {
 		main="Mpaca's Staff",
-		sub="Clerisy Strap",
-		--sub="Clerisy Strap +1",
+		sub="Clerisy Strap +1",
 		ammo="Pemphredo Tathlum",
 		head="Academic's Mortarboard +3",
 		neck="Orunmila's Torque",
@@ -462,6 +458,10 @@ function init_gear_sets()
 	sets.Weather = {waist="Hachirin-no-Obi"}
 	
 	-- Melee sets
+	sets.MeleeWeapons = {
+		main="Mpaca's Staff",
+		sub="Kaja Grip"
+	}
 	sets.engaged = {
 		ammo="Oshasha's Treatise",
 		--head="Blistering Sallet +1",
@@ -479,11 +479,21 @@ function init_gear_sets()
 		feet="Nyame Sollerets"
 	}
 	
+	sets.engaged.Acc = set_combine(sets.engaged, {
+		head="Arbatel Bonnet +3",
+		ear1="Telos Earring",
+		ear2="Dominance Earring +1",
+		body="Arbatel Gown +3",
+		hands="Arbatel Bracers +3",
+		legs="Arbatel Pants +3",
+		feet="Arbatel Loafers +3"
+	})
+	
 	sets.precast.WS['Omniscience'] = set_combine(sets.midcast.Kaustra, {
 		ammo="Oshasha's Treatise",
 		body="Arbatel Gown +3",
 		hands="Nyame Gauntlets",
-		ring2="Karieyh Ring +1",
+		ring2="Cornelia's Ring",
 		waist="Luminary Sash",
 		legs="Arbatel Pants +3",
 		feet="Agwu's Pigaches"
@@ -546,7 +556,8 @@ end
 -- Handle notifications of general user state change.
 function job_state_change(stateField, newValue, oldValue)
     if stateField == 'Offense Mode' then
-        if newValue == 'Normal' then
+        if newValue == 'Normal' or newValue == 'Acc' then
+			equip(sets.MeleeWeapons)
             disable('main','sub','range')
         else
             enable('main','sub','range')

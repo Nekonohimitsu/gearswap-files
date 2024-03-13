@@ -41,10 +41,11 @@ end
 -- Job-specific hooks for standard casting events.
 -------------------------------------------------------------------------------------------------------------------
 function job_precast(spell, action, spellMap, eventArgs)
-    if state.DefenseMode.value ~= 'None' then
-        handle_equipping_gear(player.status)
-        eventArgs.handled = true
-    end
+    -- if state.DefenseMode.value ~= 'None' then
+        -- handle_equipping_gear(player.status)
+        -- eventArgs.handled = true
+		-- return
+    -- end
 end
 
 function job_midcast(spell, action, spellMap, eventArgs)
@@ -55,9 +56,10 @@ function job_midcast(spell, action, spellMap, eventArgs)
     -- Exclude Job Abilities from this restriction, as we probably want
     -- the enhanced effect of whatever item of gear applies to them,
     -- and only one item should be swapped out.
-    if state.DefenseMode.value ~= 'None' then
+    if state.DefenseMode.value ~= 'None' and spell.name ~= "Flash" and spell.action_type ~= "Ability" then
         handle_equipping_gear(player.status)
         eventArgs.handled = true
+		return
     end
 	
 	if state.Buff.Sentinel and spell.name == 'Flash' then

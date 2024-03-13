@@ -14,6 +14,9 @@ function user_setup()
 	state.HybridMode:options('Normal', 'DT')
 	state.IdleMode:options('Normal', 'Regen', 'Refresh')
 	
+	-- This is a flag to specify what PDL mode you want
+	state.PDLMode = M{['description'] = 'PDLMode', 'LastResortOnly', 'AllWS', 'None'}
+	
 	if not buffactive['Auspice'] then
 		classes.CustomMeleeGroups:append('NoAuspice')
 	end
@@ -36,7 +39,14 @@ function user_setup()
 	
 	update_subjob_mode()
 	update_combat_weapon()
+	
+	send_command('bind !- gs c cycle PDLMode')
 end
+
+function user_unload()
+	send_command('unbind !- gs c cycle PDLMode')
+end
+
 
 function init_gear_sets()	
 	ankouTP = {name="Ankou's mantle", augments={'DEX+20', 'DEX+10', '"Dbl.Atk."+10'}}	
@@ -52,6 +62,11 @@ function init_gear_sets()
 	define_ws_sets()
 	define_engaged_sets()
 	define_idle_dt_sets()   
+	
+	sets.PDL = {
+		head="Heathen's Burgeonet +3",
+		ear2="Heathen's Earring +1",
+	}
 end
 
 --------------------------------------
@@ -81,7 +96,7 @@ function define_spell_and_ja_sets()
 		body="Crepuscular Cloak",
 	})
 	
-	sets.precast.JA['Nether Void'] = {legs="Heathen's Flanchard +2"}
+	sets.precast.JA['Nether Void'] = {legs="Heathen's Flanchards +3"}
 	sets.precast.JA['Weapon Bash'] = {hands="Ignominy Gauntlets +3"}
 	sets.precast.JA['Arcane Circle'] = {feet="Ignominy Sollerets +3"}
 	sets.precast.JA['Blood Weapon'] = {body="Fallen's Cuirass +3"}
@@ -107,40 +122,30 @@ function define_spell_and_ja_sets()
 	sets.midcast['Dark Magic'] = {
 		-- Ankou's Mantle (INT+20 MACC+30) provides 40 more MACC over Niht
 		ammo="Pemphredo Tathlum",
-		--head="Heathen's Burgeonet +3",
-		head="",
+		head="Heathen's Burgeonet +3",
 		neck="Erra Pendant",
 		ear1="Malignance Earring",
 		--ear2="Heathen's Earring +2",
 		ear2="Heathen's Earring +1",
-		--body="Heathen's Cuirass +3",
-		body="Crepuscular Cloak",
-		--hands="Heathen's Gauntlets +3",
-		hands="Fallen's Finger Gauntlets +3",
+		body="Heathen's Cuirass +3",
+		hands="Heathen's Gauntlets +3",
 		ring1="Stikini Ring +1",
 		ring2="Metamorph Ring +1",
 		back=ankouINTMACC,
 		waist="Eschan Stone",
-		--legs="Heathen's Flanchard +3",
-		legs="Fallen's Flanchard +3",
+		legs="Heathen's Flanchards +3",
 		feet="Heathen's Sollerets +3"
 	}
 	
 	sets.midcast['Dark Magic'].DT = set_combine(sets.midcast['Dark Magic'], {
 		head="Sakpata's Helm", -- 7% remove when ankou
-		body="Nyame Mail", -- 9% remove when heathen +3
-		hands="Sakpata's Gauntlets", --8% remove when heathen +3
-		legs="Nyame Flanchard", -- 8% remove when heathen +3
-		feet="Nyame Sollerets", -- 7% remove when heathen +3
 		ring1="Defending Ring" -- 10%
 	})
 	
 	sets.midcast.Absorb = set_combine(sets.midcast['Dark Magic'], {
 		head="Ignominy Burgeonet +3",
-		body="Nyame Mail", -- Remove when get Heathen Body +3
 		ring2="Kishar Ring",
-		--feet="Ratri Sollerets +1"
-		feet="Ratri Sollerets"
+		feet="Ratri Sollerets +1"
 	})
 	
 	sets.midcast.Absorb.DT = set_combine(sets.midcast.Absorb, {
@@ -155,8 +160,7 @@ function define_spell_and_ja_sets()
 	sets.midcast.Absorb.Resistant = sets.midcast['Dark Magic']
 	
 	sets.midcast.Absorb['Absorb-TP'] = set_combine(sets.midcast['Dark Magic'], {
-		--hands="Heathen's Gauntlets +3",
-		hands="Heathen's Gauntlets +2"
+		hands="Heathen's Gauntlets +3"
 	})
 	sets.midcast.Absorb['Absorb-TP'].DT = sets.midcast['Dark Magic'].DT
 	sets.midcast.Absorb['Absorb-TP'].Resistant = sets.midcast['Dark Magic']
@@ -194,40 +198,28 @@ function define_spell_and_ja_sets()
 	sets.midcast.Aspir.Resistant = sets.midcast.Drain.Resistant
 	
 	sets.midcast['Drain III'] = set_combine(sets.midcast.Drain, {
-		--Upgrading to Ratri +1 will give 5% more duration and 10 more MACC.
-		--feet="Ratri Sollerets +1",
-		feet="Ratri Sollerets"
+		feet="Ratri Sollerets +1"
 	})
 		
 	-- Enfeebling Magic
 	sets.midcast['Enfeebling Magic'] = {
 		ammo="Pemphredo Tathlum",
-		--head="Heathen's Burgeonet +3",
-		head="",
+		head="Heathen's Burgeonet +3",
 		neck="Erra Pendant",
 		ear1="Malignance Earring",
 		ear2="Heathen's Earring +1",
-		--body="Heathen's Cuirass +3",
-		body="Crepuscular Cloak",
-		--hands="Heathen's Gauntlets +3",
-		hands="Sakpata's Gauntlets",
+		body="Heathen's Cuirass +3",
+		hands="Heathen's Gauntlets +3",
 		ring1="Metamorph Ring +1",
 		ring2="Stikini Ring +1",
 		back=ankouINTMACC,
 		waist="Eschan Stone",
-		--legs="Heathen's Flanchard +3",
-		legs="Nyame Flanchard",
+		legs="Heathen's Flanchards +3",
 		feet="Heathen's Sollerets +3"
 	}
 	sets.midcast['Enfeebling Magic'].DT = set_combine(sets.midcast['Enfeebling Magic'], {
 		-- When Heathen's Body/Hands/Legs (35%): Defending Ring only.
-		head="Sakpata's Helm", -- 7%
-		neck="Loricate Torque +1", -- 6%
-		body="Nyame Mail", -- 9%
-		hands="Sakpata's Gauntlets", -- 8%
-		back=ankouINTDA, --5%
-		legs="Nyame Flanchard", -- 8%
-		feet="Nyame Sollerets" -- 7%
+		ring2="Defending Ring"
 	})
 	
 	sets.midcast.Impact = set_combine(sets.midcast['Enfeebling Magic'], {
@@ -263,7 +255,6 @@ function define_spell_and_ja_sets()
 		-- Casso Sash will give +5 more Dark Skill
 		-- Dark Earring will give +3 more Dark Skill
 		-- Carmine Body +1 will give +3 more Dark Skill
-		-- Ratri +1 will give 5% more duration
 		head="Ignominy Burgeonet +3",
 		neck="Erra Pendant",
 		ear1="Mani Earring",
@@ -275,9 +266,8 @@ function define_spell_and_ja_sets()
 		ring1="Stikini Ring +1",
 		back="Niht Mantle",
 		--waist="Casso Sash",
-		legs="Eschite Cuisses",
-		--feet="Ratri Sollerets +1",
-		feet="Ratri Sollerets"
+		legs="Heathen's Flanchards +3",
+		feet="Ratri Sollerets +1"
 	}
 	sets.midcast['Endark II'].DT = set_combine(sets.midcast['Endark II'], {
 		ammo="Staunch Tathlum +1", -- 3%
@@ -291,8 +281,7 @@ function define_spell_and_ja_sets()
 	})
 	
 	sets.MaxHPDread = {
-		--body="Heathen's Cuirass +3",
-		body="Heathen's Cuirass +2",
+		body="Heathen's Cuirass +3",
 	}
 	
 	sets.midcast['Dread Spikes'] = set_combine(sets.MaxHPDread, {
@@ -310,8 +299,7 @@ function define_spell_and_ja_sets()
 		waist="Carrier's Sash",
 		--legs="Ratri Cuisses +1",
 		legs="Ratri Cuisses",
-		--feet="Ratri Sollerets +1",
-		feet="Ratri Sollerets"
+		feet="Ratri Sollerets +1"
 	})
 	
 	sets.midcast['Dread Spikes'].DT = set_combine(sets.midcast['Dread Spikes'], {
@@ -379,6 +367,8 @@ function define_engaged_sets()
 		body="Sakpata's Breastplate", --10%
 		hands="Sakpata's Gauntlets", --8%
 		ring1="Moonlight Ring", -- 5%
+		ring2="Shadow Ring", -- temp for Kalunga
+		neck="Warder's Charm +1", -- temp for Kalunga
 		back=ankouTP, -- 5%
 		legs="Sakpata's Cuisses", -- 9%
 		feet="Sakpata's Leggings" -- 6%
@@ -741,7 +731,7 @@ function define_ws_sets()
 		body="Sakpata's Plate",
 		hands="Sakpata's Gauntlets",
 		ring2="Metamorph Ring +1",
-		ring1="Karieyh Ring +1",
+		ring1="Cornelia's Ring",
 		back=ankouTP,
 		waist="Kentarch Belt +1",
 		legs="Sakpata's Cuisses",
@@ -760,8 +750,8 @@ function define_ws_sets()
 		ear1="Moonshade Earring",
 		body="Nyame Mail",
 		hands="Nyame Gauntlets",
-		ring1="Karieyh Ring +1",
-		ring2="Niqmaddu Ring",
+		ring1="Cornelia's Ring",
+		ring2="Sroda Ring",
 		back=ankouSTRWS,
 		waist="Sailfi Belt +1",
 		legs="Nyame Flanchard",
@@ -790,6 +780,7 @@ function define_ws_sets()
 	
 	--- 1-hit, 60% STR / MND, No ATK Mod, No fTP carry, Ignore Def varies with TP
 	sets.precast.WS['Quietus'] = set_combine(sets.precast.WS, {
+		ring2="Beithir Ring",
 		--head="Ratri Sallet +1",
 		--hands="Ratri Gauntlets +1",
 	})
@@ -808,7 +799,9 @@ function define_ws_sets()
 	
 	-- 1-hit, 40% STR / INT, No ATK Mod, No fTP carry, No vary with TP
 	sets.precast.WS['Catastrophe'] = set_combine(sets.precast.WS, {
-		ear2="Schere Earring",
+		ear2="Heathen's Earring +1",
+		ear1="Thrud Earring",
+		ring1="Beithir Ring",
 		--head="Ratri Sallet +1",
 		--hands="Ratri Gauntlets +1",
 	})
@@ -866,6 +859,7 @@ function define_ws_sets()
 	
 	-- 5-hit, 85% STR, 0.85 ATK Mod, fTP carry, DMG varies with TP
 	sets.precast.WS['Resolution'] = set_combine(sets.precast.WS, {
+		ammo="Seething Bomblet +1",
 		head="Sakpata's Helm",
 		ear1="Schere Earring",
 		body="Nyame Mail",
@@ -888,7 +882,8 @@ function define_ws_sets()
 		head="Sakpata's Helm",
 		body="Nyame Mail",
 		hands="Sakpata's Gauntlets",
-		ring1="Regal Ring",
+		ring1="Beithir Ring",
+		ear2="Schere Earring",
 		back=ankouSTRDA,
 		waist="Fotia Belt",
 		legs="Ignominy Flanchard +3",
@@ -907,7 +902,7 @@ function define_ws_sets()
 		ear2="Malignance Earring",
 		body="Fallen's Cuirass +3",
 		hands="Fallen's Finger Gauntlets +3",
-		ring1="Karieyh Ring +1",
+		ring1="Cornelia's Ring",
 		ring2="Fenrir Ring +1",
 		back=ankouSTRWS,
 		waist="Eschan Stone",
@@ -991,10 +986,27 @@ end
 
 --------------------------------------
 -- Special Logic
---------------------------------------		
+--------------------------------------
+function job_precast(spell, action, spellMap, eventArgs)
+	if spell.type == 'WeaponSkill' then
+		if (player.TP < 1000) then
+			eventArgs.handled = true
+			return
+		end
+	end
+end
+	
 function job_post_precast(spell, action, spellMap, eventArgs)
-	if debuffWSList:contains(spell.name) then
-		equip(sets.precast.DebuffWS)
+	if spell.type == 'WeaponSkill' then
+		if debuffWSList:contains(spell.name) then
+			equip(sets.precast.DebuffWS)
+		else
+			if state.PDLMode.value == 'AllWS' then
+				equip(sets.PDL)
+			elseif state.PDLMode.value == 'LastResortOnly' and buffactive['Last Resort'] then
+				equip(sets.PDL)
+			end
+		end
 	end
 end
 
@@ -1048,11 +1060,31 @@ function job_update(cmdParams, eventArgs)
 end
 
 function job_buff_change(buff, gain)
+	gainLost = "gained"
+	if (not gain) then gainLost = "lost" end
+	--add_to_chat(002, "buff " .. gainLost .. ": " .. buff)
 	if (buff == 'Auspice') then 
 		if gain then
 			classes.CustomMeleeGroups:clear()
 		else
 			classes.CustomMeleeGroups:append('NoAuspice')
+		end
+	elseif buff == "weakness" then
+		add_to_chat(002, "weakness buff gained")
+		if gain then
+			equip(
+			{
+				ammo="Egoist's Tathlum",
+				back="Moonlight Cape",
+				waist="Platinum Moogle Belt",
+				ear1="Odnowa Earring +1",
+				ear2="Tuisto Earring"
+			})
+			disable('ammo', 'back', 'waist', 'ear1', 'ear2')
+		else
+			enable('ammo', 'back', 'waist', 'ear1', 'ear2')
+			state.CombatWeapon:reset()
+			update_combat_weapon()
 		end
 	end
 end
@@ -1073,6 +1105,11 @@ function update_combat_weapon()
 			state.CombatWeapon:set(player.equipment.main)
 			add_to_chat(002, 'Weapon Mode updated to: '.. state.CombatWeapon.value)
 		end
+	elseif player.equipment.main == "Loxotic Mace +1" then
+			if(state.CombatWeapon.value ~= 'Loxotic') then
+				state.CombatWeapon:set('Loxotic')
+				add_to_chat(002, 'Weapon Mode updated to: '.. state.CombatWeapon.value)
+			end
 	elseif player.equipment.main == 'Kaja Chopper' then
 		if(state.CombatWeapon.value ~= 'Lycurgos') then
 			state.CombatWeapon:set('Lycurgos')

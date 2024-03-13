@@ -54,7 +54,7 @@ function user_setup()
 	
 	
 	--Alt-F9 to Cycle
-    state.RangedMode:options('Normal', 'Acc')
+    state.RangedMode:options('Normal', 'Acc', 'PDL')
 	--F9 to Cycle
 	state.OffenseMode:options('Normal', 'Acc')
 	
@@ -69,7 +69,7 @@ function user_setup()
 	state.QDDmgBoost = M(true, 'QD Dmg Boost Mode')
 	
 	--This matches the Offense or Ranged modes according to WS used if it can.
-	state.WeaponskillMode:options('Normal', 'Acc')
+	state.WeaponskillMode:options('Normal', 'Acc', 'PDL')
 	
 	state.WeaponMode = M{['description'] = 'Weapon Mode'}
 	state.WeaponMode:options('Melee', 'PhysRange', 'MagRange')
@@ -83,6 +83,9 @@ function user_setup()
 	-- Since we only know Flurry is on, this flag is to tell the LUA
 	-- if the Flurry you have on is 1 or 2. Default to Flurry II.
 	state.Flurry2 = M(true, 'Flurry II Buff')
+	
+	-- Informs LUA when to use the PDL gear / sets
+	state.PDL = M(true, 'Physical Damage Limit')
 end
 
 function init_gear_sets()	
@@ -232,13 +235,11 @@ function init_gear_sets()
 	-- Shooting Base Set --
 	sets.midcast.RA = {
 		ammo="Chrono Bullet"
-		,head="Malignance Chapeau"
-		--,head="Ikenga's Hat"
+		,head="Ikenga's Hat"
 		,ear1="Telos Earring"
 		,ear2="Enervating Earring"
 		,neck="Iskur Gorget"
-		,body="Malignance Tabard"
-		--,body="Ikenga's Vest"
+		,body="Ikenga's Vest"
 		,hands="Malignance Gloves"
 		,ring1="Ilabrat Ring"
 		,ring2="Dingir Ring"
@@ -251,6 +252,9 @@ function init_gear_sets()
 	sets.midcast.RA.Acc = set_combine(sets.midcast.RA, {
 		waist="Kwahu Kachina Belt +1"
 		,ear2="Beyla Earring"
+	})
+	
+	sets.midcast.RA.PDL = set_combine(sets.midcast.RA, {
 	})
 
 -- Triple Shot Set --
@@ -310,7 +314,7 @@ function init_gear_sets()
 	ear2="Ishvara Earring",
 	ear1="Moonshade Earring",
 	--ear2="Chasseur's Earring +2",
-	body="Laksamana's Frac +3",
+	body="Ikenga's Vest",
 	hands="Chasseur's Gants +3",
 	ring1="Dingir Ring",
 	--ring1="Epaminondas's Ring",
@@ -324,6 +328,9 @@ function init_gear_sets()
    sets.precast.WS['Last Stand'].Acc = set_combine(sets.precast.WS['Last Stand'], {
    })
    
+   sets.precast.WS['Last Stand'].PDL = set_combine(sets.precast.WS['Last Stand'], {
+   })
+   
    sets.precast.WS['Slug Shot'] = sets.precast.WS['Last Stand']
    sets.precast.WS['Detonator'] = sets.precast.WS['Last Stand']
    
@@ -335,9 +342,8 @@ function init_gear_sets()
 	ear1="Moonshade Earring",
 	body="Nyame Mail",
 	hands="Nyame Gauntlets",
-	ring1="Karieyh Ring +1",
-	--ring1="Epaminondas's Ring",
-	ring2="Regal Ring",
+	ring1="Cornelia's Ring",
+	ring2="Sroda Ring",
 	back=camuSavage,
 	waist="Sailfi Belt +1",
 	legs="Nyame Flanchard",
@@ -352,8 +358,7 @@ function init_gear_sets()
 	 ear2="Friomisi Earring",
 	 body="Nyame Mail",
 	 hands="Nyame Gauntlets",
-	 ring1="Karieyh Ring +1",
-	 --ring1="Epaminondas's Ring",
+	 ring1="Cornelia's Ring",
 	 ring2="Dingir Ring",
 	 back=camuRatkWsd,
 	 waist="Fotia Belt",
@@ -442,8 +447,8 @@ function init_gear_sets()
 			   				              
 end
 
-function job_precast(spell,action,spellMap,eventArgs)
-	if (spell.english == 'Double-Up' or spell.type == 'CorsairRoll') then
+function job_post_precast(spell, action, spellMap, eventArgs)
+		if (spell.english == 'Double-Up' or spell.type == 'CorsairRoll') then
 		rangeText = "8 yalms"
 		if spell.type == 'CorsairRoll' then 
 			currentRoll = spell.english
@@ -467,9 +472,7 @@ function job_precast(spell,action,spellMap,eventArgs)
 	if spell.type == 'CorsairShot' and spell.english ~= 'Light Shot' and spell.english ~= 'Dark Shot' and state.QDMode.value == 'TP' then
 		equip(sets.precast.CorsairShot.TP)
 	end
-end
-
-function job_post_precast(spell, action, spellMap, eventArgs)
+	
 	if (spell.element == world.day_element or spell.element == world.weather_element) then
 		equip(sets.Weather)
 	end

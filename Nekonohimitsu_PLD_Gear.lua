@@ -11,7 +11,7 @@ function init_gear_sets()
 	sets.defense = {
 		--main="Burtgang",
 		main="Malignance Sword",
-		sub="Ochain", 
+		sub="Duban", 
 		ammo="Staunch Tathlum +1",
 		head={name="Sakpata's Helm",priority=2}, 
 		neck={name="Unmoving Collar +1",priority=3},
@@ -26,6 +26,11 @@ function init_gear_sets()
 		legs={name="Chevalier's Cuisses +3",priority=2},
 		feet={name="Sakpata's Leggings",priority=2}
 	}
+	
+    --------------------------------------
+    -- Spells
+    --------------------------------------
+    sets.midcast.FastRecast = sets.defense
 	
 	--------------------------------------
     -- Full Defense Mode sets
@@ -52,7 +57,8 @@ function init_gear_sets()
 		ring2="Shadow Ring",
 		back={name="Moonlight Cape",priority=3}, 
 		waist={name="Carrier's Sash",priority=2},
-		legs={name="Sakpata's Cuisses",priority=2},
+		legs={name="Chevalier's Cuisses +3",priority=2},
+		--legs={name="Sakpata's Cuisses",priority=2},
 		feet={name="Sakpata's Leggings",priority=2}
 	})
 	
@@ -70,7 +76,7 @@ function init_gear_sets()
 	--HP: 2997
 	sets.StatusResist = {
 		main="Malignance Sword",
-		sub="Adamas",
+		sub="Duban",
 		ammo="Staunch Tathlum +1",
 		head={name="Sakpata's Helm",priority=2},
 		neck={name="Unmoving Collar +1",priority=3},
@@ -90,6 +96,7 @@ function init_gear_sets()
 		
 	-- HP: 3018
 	sets.MP = set_combine(sets.defense, {
+		sub="Ochain",
 		ammo="Staunch Tathlum +1",
 		head={name="Chevalier's Armet +3",priority=2},
 		ear2="Ethereal Earring",
@@ -140,11 +147,6 @@ function init_gear_sets()
 		--feet="Chevalier's Sabatons +3"
 		feet="Chevalier's Sabatons +3"
 	}
-	
-    --------------------------------------
-    -- Spells
-    --------------------------------------
-    sets.midcast.FastRecast = sets.precast.FC
         
     sets.midcast.Enmity = {
 			main="Brilliance",
@@ -203,7 +205,6 @@ function init_gear_sets()
 		sub={name="Srivatsa",priority=2},
 		ammo="Staunch Tathlum +1",
 		head={name="Souveran Schaller +1",priority=2}, 
-		--neck="Moonlight Necklace",
 		neck="Moonlight Necklace", 
 		ear1="Knightly Earring",
 		--ear2="Chevalier's Earring +2",
@@ -212,8 +213,7 @@ function init_gear_sets()
 		--hands="Macabre Gauntlets +1", -- when Moonlight
 		hands="Regal Gauntlets", 
 		ring2={name="Moonlight Ring",priority=2},
-		--ring1={name="Gelatinous Ring +1", priority=2}, -- when Moonlight
-		ring1="Supershear Ring", 
+		ring1={name="Gelatinous Ring +1", priority=2},
 		back=gear.EnmRudiMantle,
 		waist="Audumbla Sash",
 		legs="Caballarius Breeches +3",
@@ -293,6 +293,8 @@ function init_gear_sets()
 	sets.midcast['Blue Magic'].NoSIRD = sets.midcast.Enmity
 	
 	sets.midcast.Sleepga = sets.midcast['Blue Magic']
+	sets.midcast.Raise = sets.midcast['Blue Magic']
+	sets.midcast.Banishga = sets.midcast['Blue Magic']
 	
 	--------------------------------------
     -- Job Abilities
@@ -343,7 +345,7 @@ function init_gear_sets()
     -- Default set for any weaponskill that isn't any more specifically defined
     sets.precast.WS = {head="Nyame Helm", body="Nyame Mail", hands="Nyame Gauntlets",
 					legs="Nyame Flanchard", feet="Nyame Sollerets",neck="Fotia Gorget", waist="Fotia Belt",
-					ear1="Moonshade Earring", ear2="Thrud Earring", ring1="Regal Ring", ring2="Karieyh Ring +1", back="Rudianos's Mantle"}
+					ear1="Moonshade Earring", ear2="Thrud Earring", ring1="Regal Ring", ring2="Cornelia's Ring", back="Rudianos's Mantle"}
 
     sets.precast.WS.Acc = {}
 

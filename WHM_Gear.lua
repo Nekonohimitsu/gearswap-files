@@ -12,6 +12,13 @@ function init_gear_sets()
 		hands="Fanatic Gloves", ring2="Kishar Ring", back="Fi Follet Cape +1", 
 		ring1="Mephitas's Ring +1", waist="Shinjutsu-No-Obi +1", legs="Vanya Slops",
 		feet="Kaykaus Boots +1" }
+	
+    -- Defense sets
+    sets.defense.PDT = { 
+		main="Daybreak", sub="Genmei Shield", ammo="Staunch Tathlum +1",
+		head="Nyame Helm", neck="Loricate Torque +1", ear1="Odnowa Earring +1", ear2="Genmei Earring",
+		body="Nyame Mail", hands="Nyame Gauntlets", ring1="Gelatinous Ring +1", ring2="Shadow Ring",
+		back=alaunMevaCure, waist="Carrier's Sash", legs="Nyame Flanchard", feet="Nyame Sollerets" }
 
 	define_fc_sets()
 	define_ja_buff_sets()
@@ -21,13 +28,6 @@ function init_gear_sets()
 	define_enfeebling_magic_sets()
     define_divine_magic_sets()
     define_idle_sets()
-	
-    -- Defense sets
-    sets.defense.PDT = { 
-		main="Daybreak", sub="Genmei Shield", ammo="Staunch Tathlum +1",
-		head="Nyame Helm", neck="Loricate Torque +1", ear1="Odnowa Earring +1", ear2="Genmei Earring",
-		body="Nyame Mail", hands="Nyame Gauntlets", ring1="Gelatinous Ring +1", ring2="Shadow Ring",
-		back=alaunMevaCure, waist="Carrier's Sash", legs="Nyame Flanchard", feet="Nyame Sollerets" }
 
     sets.defense.MDT = set_combine(sets.defense.PDT, {
 		head="Bunzi's Hat",
@@ -44,7 +44,7 @@ end
 
 function define_fc_sets()
     -- Fast cast sets for spells
-    sets.precast.FC = {main=grioFC, sub="Clerisy Strap", ammo="Impatiens",
+    sets.precast.FC = {main=grioFC, sub="Clerisy Strap +1", ammo="Impatiens",
         head="Bunzi's Hat",neck="Cleric's Torque", ear1="Malignance Earring",
 		ear2="Loquacious Earring", body="Inyanga Jubbah +2",hands="Fanatic Gloves",
 		ring1="Lebeche Ring", ring2="Kishar Ring", back="Perimede Cape", waist="Witful Belt", 
@@ -69,7 +69,7 @@ end
 function define_ja_buff_sets()
     -- -- Precast sets to enhance JAs
     sets.precast.JA.Benediction = { main="Septoptic +1", sub="Ammurapi Shield",
-		head="Pixie Hairpin +1", body="Ebers Bliaut +2", hands="Regal Cuffs",
+		head="Pixie Hairpin +1", body="Ebers Bliaut +3", hands="Regal Cuffs",
 		legs="Piety Pantaloons +3", neck="Cleric's Torque", back="Fi Follet Cape +1", 
 		ring1="Mephitas's Ring", ring2="Mephitas's Ring +1", ear1="Evans Earring",
 		ear2="Etiolation Earring", feet="Theophany Duckbills +3", waist="Shinjutsu-No-Obi +1" }
@@ -78,7 +78,7 @@ function define_ja_buff_sets()
 	sets.precast.JA.Devotion = {head="Piety Cap +3"}
 
     -- -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
-    sets.buff['Divine Caress'] = {hands="Ebers Mitts +2", back="Mending Cape"}
+    sets.buff['Divine Caress'] = {hands="Ebers Mitts +3", back="Mending Cape"}
 end
 
 function define_status_removal_sets()
@@ -88,7 +88,7 @@ function define_status_removal_sets()
 
     sets.midcast.Cursna = set_combine(sets.midcast.StatusRemoval, {
 		head="Kaykaus Mitra +1", neck="Debilis Medallion", ear1="Meili Earring",
-		ear2="Ebers Earring +1", body="Ebers Bliaut +2",hands="Fanatic Gloves",
+		ear2="Ebers Earring +1", body="Ebers Bliaut +3",hands="Fanatic Gloves",
 		ring1="Haoma's Ring",ring2="Haoma's Ring", back=alaunMaccFC, waist="Bishop's Sash",
 		--ring1="Menelaus's Ring",
 		--ear2="Ebers Earring +2",
@@ -112,7 +112,7 @@ function define_cure_sets()
 	-------------------------------------------------------------------------------------------------------------------
     sets.midcast.CureSolace = set_combine(sets.midcast.ConserveMP, {
 		main="Queller Rod", sub="Thuellaic Ecu +1", head="Kaykaus Mitra +1", 
-		ear2="Nourishing Earring +1",ear1="Glorious Earring", body="Ebers Bliaut +2",
+		ear2="Nourishing Earring +1",ear1="Glorious Earring", body="Ebers Bliaut +3",
 		hands="Theophany Mitts +3", ring2="Naji's Loop", back=alaunMevaCure,
 		legs="Ebers Pantaloons +3", feet="Kaykaus boots +1"
 	})
@@ -137,8 +137,7 @@ function define_cure_sets()
 	})
 	
 	sets.midcast.CureSolaceWeather.DT = set_combine(sets.midcast.CureSolaceWeather,{
-		sub="Giuoco Grip", --P1%
-		--sub="Mensch Strap +1",
+		sub="Mensch Strap +1", --P3%
 		ammo="Staunch Tathlum +1", -- 3%
 		ring1="Defending Ring", -- 10%
 	})
@@ -192,16 +191,38 @@ function define_cure_sets()
 end
 
 function define_enhancing_magic_sets()
-	sets.midcast.EnhancingDuration = set_combine(sets.midcast.ConserveMP, {main=gadaEnhDur,
-		sub="Ammurapi Shield", head="Telchine Cap", body="Telchine Chasuble",
-		hands="Telchine Gloves", legs="Telchine Braconi", feet="Theophany Duckbills +3",
-		waist="Embla Sash", ring1="Defending Ring", ring2="Gelatinous Ring +1",
-		neck="Loricate Torque +1", ammo="Staunch Tathlum +1", ear2="Ebers Earring +1",
-		ear1="Mimir Earring", neck="Incanter's Torque"
+	sets.midcast.EnhancingDuration = set_combine(sets.defense.PDT, {
+		main=gadaEnhDur,
+		sub="Ammurapi Shield",
+		head="Telchine cap",
+		body="Telchine chasuble",
+		hands="Telchine gloves",
+		legs="Telchine Braconi",
+		feet="Theophany Duckbills +3",
+		waist="Embla Sash",
+		ring1="Defending Ring",
+		ring2="Gelatinous Ring +1",
+		neck="Loricate Torque +1",
+		ammo="Staunch Tathlum +1",
+		ear2="Ebers Earring +1",
+		ear1="Mimir Earring",
+		neck="Incanter's Torque"
 		-- When ML40+ Remove Mimir Earring
+	})
+	
+	sets.midcast.EnhancingDurationDT = set_combine(sets.defense.PDT, {
+		main=gadaEnhDur,
+		sub="Ammurapi Shield",
+		feet="Theophany Duckbills +3",
+		waist="Embla Sash",
+		ring1="Defending Ring",
+		ring2="Gelatinous Ring +1",
+		neck="Loricate Torque +1",
+		ammo="Staunch Tathlum +1"
 	})
 
     sets.midcast['Enhancing Magic'] = set_combine(sets.midcast.EnhancingDuration, {})
+    sets.midcast['Enhancing Magic'].DT = set_combine(sets.midcast.EnhancingDurationDT, {})
 
     sets.midcast.Stoneskin = set_combine(sets.midcast.EnhancingDuration, {
 		neck="Nodens Gorget", ear1="Earthcry Earring",
@@ -212,21 +233,21 @@ function define_enhancing_magic_sets()
 		hands="Regal Cuffs", waist="Emphatikos Rope", legs="Shedir Seraweels"})
 
     sets.midcast.Auspice = set_combine(sets.midcast.EnhancingDuration, {
-		feet="Ebers Duckbills +2"
+		feet="Ebers Duckbills +3"
 	})
 
     sets.midcast.BarElement = set_combine(sets.midcast.EnhancingDuration, {
 		main="Beneficus",
-		sub="Ammurapi Shield", head="Ebers Cap +2", body="Ebers Bliaut +2",
-		hands="Ebers Mitts +2", back=alaunMaccFC, legs="Piety Pantaloons +3",
-		feet="Ebers Duckbills +2"
+		sub="Ammurapi Shield", head="Ebers Cap +3", body="Ebers Bliaut +3",
+		hands="Ebers Mitts +3", back=alaunMaccFC, legs="Piety Pantaloons +3",
+		feet="Ebers Duckbills +3"
 	})
 	
 	sets.midcast.BarAilment = set_combine(sets.midcast.EnhancingDuration, {neck="Sroda Necklace"})
 
     sets.midcast.Regen = set_combine(sets.midcast.ConserveMP, {main="Bolelabunga",
 		sub="Ammurapi Shield", head="Inyanga Tiara +2", body="Piety Bliaut +3",
-		hands="Ebers Mitts +2", legs="Theophany Pantaloons +3", feet="Bunzi's Sabots"})
+		hands="Ebers Mitts +3", legs="Theophany Pantaloons +3", feet="Bunzi's Sabots"})
 	
     sets.midcast.Protectra = set_combine(sets.midcast.EnhancingDuration, {ring1="Sheltered Ring"})
 
@@ -288,7 +309,7 @@ function define_idle_sets()
     sets.idle = {
 		main="Mpaca's Staff", sub="Oneiros Grip",ammo="Homiliary",
         head="Inyanga Tiara +2",neck="Sibyl Scarf",ear1="Hearty Earring",
-		ear2="Ebers Earring +1", body="Ebers Bliaut +2",hands="Volte Gloves",
+		ear2="Ebers Earring +1", body="Ebers Bliaut +3",hands="Volte Gloves",
 		ring1="Inyanga Ring",ring2="Stikini Ring +1", back=alaunMevaCure,
 		waist="Carrier's Sash", legs="Inyanga Shalwar +2",feet="Inyanga Crackows +2"
 	}

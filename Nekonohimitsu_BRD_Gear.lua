@@ -14,9 +14,9 @@ function init_gear_sets()
     -- Precast Sets
 
     -- Fast cast sets for spells
-    sets.precast.FC = {main=grioFC, sub="Clerisy Strap", head="Bunzi's Hat", neck="Orunmila's Torque",
+    sets.precast.FC = {main=grioFC, sub="Clerisy Strap +1", head="Bunzi's Hat", neck="Orunmila's Torque",
 				body="Inyanga Jubbah +2", hands="Volte Gloves", ring1="Kishar Ring", ring2="Lebeche Ring", 
-				back=maccFCIntarabus, waist="Witful Belt", legs="Volte Brais", feet="Fili Cothurnes +2"}
+				back=maccFCIntarabus, waist="Witful Belt", legs="Volte Brais", feet="Fili Cothurnes +3"}
 
     sets.precast.FC.Daurdabla = set_combine(sets.precast.FC, {range="Daurdabla"})
     sets.precast.FC['Honor March'] = set_combine(sets.precast.FC, {range="Marsyas"})
@@ -36,20 +36,20 @@ function init_gear_sets()
     sets.midcast.FastRecast = sets.precast.FC
         
     -- Gear to enhance certain classes of songs.
-    sets.midcast.Ballad = {range="Blurred Harp +1", legs="Fili Rhingrave +2"} --legs="Fili Rhingrave +3"
+    sets.midcast.Ballad = {range="Blurred Harp +1", legs="Fili Rhingrave +3"} --legs="Fili Rhingrave +3"
     sets.midcast.Lullaby = {range="Blurred Harp +1", hands="Brioso Cuffs +3"}
-    sets.midcast.Madrigal = {head="Fili Calot +2", back=maccFCIntarabus}
-    sets.midcast.March = {hands="Fili Manchettes +2"}
-    sets.midcast.Minuet = {body="Fili Hongreline +2"}
+    sets.midcast.Madrigal = {head="Fili Calot +3", back=maccFCIntarabus}
+    sets.midcast.March = {hands="Fili Manchettes +3"}
+    sets.midcast.Minuet = {body="Fili Hongreline +3"}
     sets.midcast.Minne = {legs="Mousai Seraweels +1"}
     sets.midcast.Paeon = {head="Brioso Roundlet +3"}
     sets.midcast.Carol = {hands="Mousai Gages +1"}
 	sets.midcast.Etude = {head="Mousai Turban +1"}
-    sets.midcast["Sentinel's Scherzo"] = {feet="Fili Cothurnes +2"}
-    sets.midcast['Honor March'] = {range="Marsyas", hands="Fili Manchettes +2"}
+    sets.midcast["Sentinel's Scherzo"] = {feet="Fili Cothurnes +3"}
+    sets.midcast['Honor March'] = {range="Marsyas", hands="Fili Manchettes +3"}
 	sets.midcast.Mambo = {feet="Mousai Crackows"} -- feet="Mousai Crackows +1"
 	sets.midcast.Prelude = {back=maccFCIntarabus}
-	sets.midcast.Threnody = {body="Mousai Manteel"} -- body="Mousai Manteel +1"
+	sets.midcast.Threnody = {body="Mousai Manteel +1"}
     
 
     -- For song buffs (duration and AF3 set bonus)
@@ -57,12 +57,12 @@ function init_gear_sets()
 		main="Carnwenhan",
 		sub="Genmei Shield",
 		range="Gjallarhorn",
-		head="Fili Calot +2",
+		head="Fili Calot +3",
 		neck="Moonbow Whistle +1",
 		ear1="Hearty Earring",
 		ear2="Odnowa Earring +1",
-		body="Fili Hongreline +2",
-		hands="Fili Manchettes +2",
+		body="Fili Hongreline +3",
+		hands="Fili Manchettes +3",
 		ring1="Defending Ring",
 		--ring2="Shadow Ring", -- when +3
 		ring2="Gelatinous Ring +1",
@@ -84,7 +84,7 @@ function init_gear_sets()
 		ear1="Regal Earring",
 		--ear1="Fili Earring +2",
 		ear2="Fili Earring +1",
-		body="Fili Hongreline +2",
+		body="Fili Hongreline +3",
 		hands="Brioso Cuffs +3",
 		ring1="Metamorph Ring +1",
 		ring2="Stikini Ring +1",
@@ -124,7 +124,7 @@ function init_gear_sets()
     sets.midcast.ResistantSongDebuff = set_combine(sets.midcast.SongDebuff, {
 		--legs="Fili Rhingrave +3",
 		legs="Brioso Cannions +3",
-		hands="Fili Manchettes +2"
+		hands="Fili Manchettes +3"
 	})
 
     -- Song-specific recast reduction
@@ -157,7 +157,7 @@ function init_gear_sets()
     sets.midcast.Curaga = sets.midcast.Cure
 	
 	sets.midcast.CureWeather = set_combine(sets.midcast.Cure, 
-		{main="Chatoyant Staff", sub="Clerisy Strap", waist="Hachirin-no-Obi"})
+		{main="Chatoyant Staff", sub="Clerisy Strap +1", waist="Hachirin-no-Obi"})
 	
 	sets.midcast.EnhancingDuration = {head="Telchine Cap", 
 				body="Telchine Chasuble", hands="Telchine Gloves", legs="Telchine Braconi",
@@ -237,7 +237,7 @@ function init_gear_sets()
 
     sets.defense.MDT = sets.defense.PDT
 
-    sets.Kiting = {feet="Fili Cothurnes +2"}
+    sets.Kiting = {feet="Fili Cothurnes +3"}
 
     sets.latent_refresh = {waist="Fucho-no-obi"}
 
@@ -265,7 +265,7 @@ function init_gear_sets()
 	-- WS Sets
 	
 	sets.precast.WS = {head="Nyame Helm", neck="Baetyl Pendant", ear1="Moonshade Earring", ear2="Friomisi Earring",
-					body="Nyame Mail", hands="Nyame Gauntlets", ring1="Karieyh Ring +1", ring2="Metamorph Ring +1", back=maccFCIntarabus,
+					body="Nyame Mail", hands="Nyame Gauntlets", ring1="Cornelia's Ring", ring2="Metamorph Ring +1", back=maccFCIntarabus,
 					waist="Eschan Stone", legs="Nyame Flanchard", feet="Nyame Sollerets"}
 	
 	sets.precast.WS['Evisceration'] = {
@@ -287,8 +287,7 @@ function init_gear_sets()
 		body="Bihu Justaucorps +3", 
 		hands="Nyame Gauntlets", 
 		ring1="Ilabrat Ring", 
-		ring2="Karieyh Ring +1",
-		--ring2="Epaminondas's Ring",
+		ring2="Cornelia's Ring",
 		back=dexWsdIntarabus, 
 		waist="Kentarch Belt +1", 
 		legs="Nyame Flanchard", 
@@ -299,14 +298,14 @@ function init_gear_sets()
 		--neck="Bard's Charm +2",
 		--ear2="Fili Earring +2", (when CHR+11 aug)
 		head="Nyame Helm", neck="Bard's Charm", ear1="Regal Earring", ear2="Ishvara Earring", 
-		body="Nyame Mail", hands="Nyame Gauntlets", ring1="Karieyh Ring +1",
+		body="Nyame Mail", hands="Nyame Gauntlets", ring1="Cornelia's Ring",
 		ring2="Metamorph Ring +1", back=strWsdIntarabus, waist="Fotia Belt", 
 		legs="Nyame Flanchard", feet="Nyame Sollerets"}
 	
 	sets.precast.WS['Aeolian Edge'] = {
 		head="Nyame Helm", neck="Sibyl Scarf", ear1="Moonshade Earring", 
 		ear2="Friomisi Earring", body="Nyame Mail", hands="Nyame Gauntlets", 
-		ring1="Karieyh Ring +1", ring2="Shiva Ring +1", back=dexWsdIntarabus,
+		ring1="Cornelia's Ring", ring2="Shiva Ring +1", back=dexWsdIntarabus,
 		waist="Refoccilation Stone", legs="Nyame Flanchard", feet="Nyame Sollerets"
 		--ring2="Epaminondas's Ring",
 		--waist="Orpheus's Sash",
@@ -324,9 +323,8 @@ function init_gear_sets()
 		ear2="Moonshade Earring",
 		body="Nyame Mail",
 		hands="Nyame Gauntlets",
-		ring1="Karieyh Ring +1",
-		ring2="Rufescent Ring",
-		--ring2="Epaminondas's Ring",
+		ring1="Cornelia's Ring",
+		ring2="Sroda Ring",
 		back=strWsdIntarabus,
 		waist="Sailfi Belt +1",
 		legs="Nyame Flanchard",

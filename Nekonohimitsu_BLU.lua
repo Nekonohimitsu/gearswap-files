@@ -409,7 +409,7 @@ function define_ws_sets()
 		ear2="Moonshade Earring",
 		body="Nyame Mail",
 		hands="Nyame Gauntlets",
-		ring1="Karieyh Ring +1",
+		ring1="Cornelia's Ring",
 		ring2="Beithir Ring",
 		back=rosmertaSTRWS,
 		waist="Sailfi Belt +1",

@@ -71,13 +71,23 @@ function job_get_spell_map(spell, default_spell_map)
 					return new_spell_map
 				end
 				if not potencyBasedEnancing:contains(spell.english) then
-					new_spell_map = "EnhancingDuration"
+					if state.CastingMode.value == "DT" then
+						new_spell_map = "EnhancingDurationDT"
+					else	
+						new_spell_map = "EnhancingDuration"
+					end
 				end
 			end
 		end
 	end
 	
 	return new_spell_map
+end
+
+function job_buff_change(buff, gain)
+	if (buff == "sleep") then
+		equip({main="Lorg Mor", sub="Genmei Shield"})
+	end
 end
 
 function job_post_midcast(spell, action, spellMap, eventArgs) 	
