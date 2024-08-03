@@ -401,13 +401,13 @@ function define_engaged_sets()
 		body="Dagon Breastplate", -- 10 II
 		hands="Sakpata's Gauntlets", -- 8
 		ring2="Niqmaddu Ring", -- 5 II
-		ring1="Chirich Ring +1", -- 10
-		feet="Sakpata's Leggings", -- 13
+		feet="Sakpata's Leggings", -- 15
 	})
 	sets.engaged.SubtleBlow.NoAuspice = set_combine(sets.engaged.SubtleBlow, {
-		-- Base: 31, 15 II
+		-- Base: 23, 15 II
 		ear1="Assuage Earring", -- 3
 		ear2="Dignitary's Earring", -- 5
+		ring1="Chirich Ring +1", -- 10
 		neck="Bathy Choker +1", -- 11
 	})
 	
@@ -830,6 +830,7 @@ function define_ws_sets()
 	-- 1-hit, 80% VIT, No ATK Mod, No fTP carry, DMG varies with TP
 	sets.precast.WS['Torcleaver'] = set_combine(sets.precast.WS, {
 		back=ankouVITWS,
+		ring2="Niqmaddu Ring",
 		ear2="Thrud Earring",
 		waist="Fotia Belt"
 	})
@@ -909,11 +910,11 @@ function define_ws_sets()
 		legs="Nyame Flanchard",
 		feet="Heathen's Sollerets +3"
 	}
-
-	sets.precast.WS['Infernal Scythe'] = set_combine(sets.precast.MagicWS, {
-		head="Pixie Hairpin +1",
-		ring2="Archon Ring"
-	})
+	sets.precast.WS['Infernal Scythe'] = set_combine(sets.precast.DebuffWS, {})
+	-- sets.precast.WS['Infernal Scythe'] = set_combine(sets.precast.MagicWS, {
+		-- head="Pixie Hairpin +1",
+		-- ring2="Archon Ring"
+	-- })
 	sets.precast.WS['Sanguine Blade'] = set_combine(sets.precast.WS['Infernal Scythe'], {})
 	sets.precast.WS['Flash Nova'] = set_combine(sets.precast.MagicWS, {})
 	sets.precast.WS['Herculean Slash'] = set_combine(sets.precast.MagicWS, {})

@@ -131,6 +131,10 @@ function init_gear_sets()
 	hands="Regal Cuffs", head="Vitiation Chapeau +3", waist="Obstinate Sash"
 	--neck=Duelist's Torque +2",
 	}
+	sets.midcast.StymieDuration = set_combine(sets.midcast.DurationEnfeebles, {})
+	sets.midcast.StymiePotency = set_combine(sets.midcast.Stymie, {
+		range="", ammo="Regal Gem", body="Lethargy Sayon +3", feet="Vitiation Boots +3", back=maccMatkSucCape, neck="Duelist's Torque +1"
+	})
 	
 	sets.midcast.Bind = set_combine(sets.midcast.IntEnfeebles, sets.midcast.DurationEnfeebles)
 	
@@ -204,7 +208,14 @@ function init_gear_sets()
 		body="Ea Houppelande +1",
 		legs="Ea Slops +1"
     }
-
+	
+	sets.midcast['Dark Magic'] = set_combine(sets.midcast.IntEnfeebles, {
+		head="Atrophy Chapeau +3",
+		waist="Acuity Belt +1",
+		legs="Lethargy Fuseau +3",
+		feet="Lethargy Houseaux +3",
+		ear2="Lethargy Earring +1",
+	})
 
     sets.midcast.Drain = set_combine(sets.midcast.IntEnfeebles, {
 		ring1="Evanescence Ring", main="Rubicundity", sub="Ammurapi Shield",
@@ -333,6 +344,12 @@ function init_gear_sets()
 	sets.engaged.Acc = set_combine(sets.engaged, {ear1="Telos Earring", neck="Combatant's Torque", waist="Grunfeld Rope"})
 	sets.engaged.DW.Acc = set_combine(sets.engaged.DW, {ear1="Telos Earring", neck="Combatant's Torque"})
 	
+	sets.precast.WS = {head="Nyame Helm", neck="Republican Platinum Medal", ear1="Ishvara Earring", ear2="Moonshade Earring",
+		body="Nyame Mail", hands="Nyame Gauntlets", ring1="Cornelia's Ring", ring2="Sroda Ring", back=savageSucCape, 
+		waist="Sailfi Belt +1", legs="Nyame Flanchard", feet="Nyame Sollerets", ammo="Coiste Bodhar"
+		--ear2="Lethargy Earring +2",
+	}
+	
 	-- WS Sets
 	sets.precast.WS['Evisceration'] = {head="Malignance Chapeau", neck="Fotia Gorget", ear1="Dominance Earring +1", ear2="Sherida Earring", 
 				hands="Malignance Gloves", ring1="Ilabrat Ring", ring2="Begrudging Ring", back=critSucCape, waist="Fotia Belt",
@@ -349,6 +366,23 @@ function init_gear_sets()
 		--ear2="Lethargy Earring +2",
 	}
 	sets.precast.WS['Death Blossom'] = sets.precast.WS['Savage Blade']
+	
+	sets.precast.WS['Black Halo'] = {
+		ammo="Crepuscular Pebble",
+		head="Nyame Helm",
+		neck="Duelist's Torque +1",
+		ear1="Moonshade Earring",
+		ear2="Regal Earring",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		ring1="Cornelia's Ring",
+		--ring2="Sroda Ring",
+		ring2="Karieyh Ring +1",
+		back=mndWsdSucCape,
+		waist="Sailfi Belt +1",
+		legs="Nyame Flanchard",
+		feet="Lethargy Houseaux +3"
+	}
 	
 	sets.precast.WS['Seraph Blade'] = {head="Nyame Helm", neck="Sibyl Scarf", ear1="Moonshade Earring", ear2="Malignance Earring",
 		body="Nyame Mail", hands="Jhakri Cuffs +2", ring1="Freke Ring", ring2="Cornelia's Ring", back=mndWsdSucCape, waist="Sacro Cord",
@@ -375,9 +409,20 @@ function job_post_midcast(spell, action, spellMap, eventArgs)
         if state.MagicBurst.value then
             equip(sets.magic_burst)
         end
-	end
-    if spell.skill == 'Enfeebling Magic' and state.Buff.Saboteur and not pure_macc_spells:contains(spell.english) and not duration_only:contains(spell.english) then
-        equip(sets.buff.Saboteur)
+    elseif spell.skill == 'Enfeebling Magic' then
+		-- If Stymie is active, prioritize enfeeble duration
+		if state.Buff.Stymie then
+			-- If potency-based spell, ensure the effect gear stays on
+			if spellMap == 'EffectMndEnfeebles' or spellMap == 'EffectIntEnfeebles' then
+				equip(sets.midcast.StymiePotency)
+			else
+				equip(sets.midcast.StymieDuration)
+			end
+		end
+		-- If Saboteur is active, equip Saboteur gear on top of previous changes
+		if state.Buff.Saboteur and not pure_macc_spells:contains(spell.english) and not duration_only:contains(spell.english) then
+			equip(sets.buff.Saboteur)
+		end
     elseif spell.skill == 'Enhancing Magic' then
 		if no_cap_enh_skill:contains(spell.english) then
 			equip(sets.midcast.NoCapEnhancingMagic)

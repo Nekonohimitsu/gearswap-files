@@ -147,8 +147,7 @@ function init_gear_sets()
 	}
 	
 	sets.midcast.EnhancingDuration = set_combine(sets.midcast.ConserveMP, {
-		--main="Musa",
-		main="Pedagogy Staff",
+		main="Musa",
 		sub="Giuoco Grip",
 		head="Telchine Cap",
 		body="Pedagogy Gown +3",
@@ -174,6 +173,7 @@ function init_gear_sets()
 	})
 	
 	sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
+		main="Pedagogy Staff", -- Remove when Musa R15+
 		body="Telchine Chasuble",
 		head="Arbatel Bonnet +3",
 		back="Bookworm's Cape"
