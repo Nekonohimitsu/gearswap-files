@@ -189,16 +189,18 @@ end
 function user_setup()
     state.OffenseMode:options('Normal', 'Acc')
 	state.HybridMode:options('Normal', 'DT')
-    state.WeaponskillMode:options('Normal', 'Acc')
+    state.WeaponskillMode:options('Normal', 'PDL', 'Acc')
     state.CastingMode:options('Normal', 'Resistant', 'LoseTP', 'LoseTPRes')
     state.IdleMode:options('Normal', 'Refresh')
+	
+	if not buffactive['Auspice'] then
+		classes.CustomMeleeGroups:append('NoAuspice')
+	end
 	
 	state.Learning = M(false, 'Learning Spells')
 	
 	storedMain = ""
 	storedSub = ""
-	
-    update_subjob_mode()
 end
 
 -- Set up gear sets.
@@ -214,36 +216,46 @@ function init_gear_sets()
 end
 
 function define_spell_and_ja_sets()
---------------------------------------
-    -- Start defining the sets
-    --------------------------------------
-
-    --sets.buff['Burst Affinity'] = {feet="Mavi Basmak +2"}
-    --sets.buff['Chain Affinity'] = {head="Mavi Kavuk +2"}
-    sets.buff.Diffusion = {feet="Luhlaza Charuqs +2"}
-    --sets.buff.Efflux = {legs="Mavi Tayt +2", back="Rosmerta's Cape"}
-
-    
-    -- Precast Sets
-    
-    -- Precast sets to enhance JAs
-    sets.precast.JA['Azure Lore'] = {hands="Luhlaza Bazubands +2"}
+	
+    -- Sets to enhance JAs
+    sets.buff.Diffusion = {
+		feet="Luhlaza Charuqs +2", -- Duration +5% per merit (max +45%)
+	}
+	sets.buff['Burst Affinity'] = {
+		--legs="Assimilator's Shalwar +3", -- WSC+0.16
+		feet="Hashishin Basmak +3", -- WSC+0.21
+	}
+	sets.buff['Chain Affinity'] = {
+		head="Hashishin Kavuk +3", -- DMG+28
+		--feet="Assimilator's Charuqs +3", -- DMG+24
+	}
+	sets.buff.Efflux = {
+		legs="Hashishin Tayt +3", -- TP Bonus +800
+		back=rosmertaSTRWS -- TP Bonus +250
+	}
+    sets.precast.JA['Azure Lore'] = {
+		hands="Luhlaza Bazubands +2", -- Extend duration by 10s.
+	}
  
     -- Fast cast sets for spells
-    sets.precast.FC = { -- 64%
+    sets.precast.FC = {
+		-- Total: FC: 70%, Quicken: 3%
+		-- Total (Goal): FC: 80%, Quicken: 3%
 		ammo="Sapience Orb", -- 2%
-		head="Amalric Coif +1", -- 11%
-		neck="Orunmila's Torque", -- 5%
-		ear1="Loquac. Earring", -- 2%
-		ear2="Enchntr. Earring +1", -- 2%
-		body="Luhlaza Jubbah +2", -- 8%
-		hands="Leyline Gloves", -- 8%
+		ear1="Loquacious Earring", -- 2%
+		ear2="Etiolation Earring", -- 1%
 		ring1="Kishar Ring", -- 4%
-		ring2="Prolix Ring", --2%
-		back="Fi Follet Cape +1", -- 4%
+		ring2="Prolix Ring", -- 2%
 		waist="Witful Belt", -- 3%
-		legs="Ayanmo Cosciales +2", -- 6%
+		neck="Orunmila's Torque", -- 5%
+		back=rosmertaMacc, -- 10%
 		feet="Carmine Greaves", -- 7%
+		head="Carmine Mask", -- 12% (Amalric Coif +1 is 11%)
+		hands="Leyline Gloves", -- 8%
+		--legs="Pinga Pants", -- 11%
+		legs="Ayanmo Cosciales +2", -- 6%
+		--body="Pinga Tunic", -- 13%
+		body="Luhlaza Jubbah +2", -- 8%
 	}
     
     -- Midcast Sets
@@ -253,9 +265,23 @@ function define_spell_and_ja_sets()
     
     -- Physical Spells --
     
-    sets.midcast['Blue Magic'].Physical = {}
+    sets.midcast['Blue Magic'].Physical = {
+		ammo="Coiste Bodhar",
+		head="Gleti's Mask",
+		neck="Mirage Stole +1",
+		ear1="Telos Earring",
+		ear2="Hashishin Earring +1",
+		body="Gleti's Cuirass",
+		hands="Gleti's Gauntlets",
+		ring1="Ilabrat Ring",
+		ring2="Beithir Ring",
+		back=rosmertaTP,
+		waist="Sailfi Belt +1",
+		legs="Gleti's Breeches",
+		feet="Gleti's Boots"
+	}
 
-    sets.midcast['Blue Magic'].PhysicalAcc = {}
+    sets.midcast['Blue Magic'].PhysicalAcc = set_combine(sets.midcast['Blue Magic'].Physical, {})
 
     sets.midcast['Blue Magic'].PhysicalStr = set_combine(sets.midcast['Blue Magic'].Physical, {})
 
@@ -273,38 +299,24 @@ function define_spell_and_ja_sets()
 
     sets.midcast['Blue Magic'].PhysicalHP = set_combine(sets.midcast['Blue Magic'].Physical, {})
 
-	sets.midcast['Blue Magic'].PhysicalMacc = set_combine(sets.midcast['Blue Magic'].Physical, {
-		ammo="Pemphredo Tathlum",
-		head="Malignance Chapeau",
-		neck="Sanctity Necklace",
-		ear1="Crepuscular Earring",
-		ear2="Dignitary's Earring",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		ring2="Stikini Ring +1",
-		ring1="Cacoethic Ring +1",
-		back=rosmertaTP,
-		waist="Kentarch Belt +1",
-		legs="Nyame Flanchard",
-		feet="Malignance Boots"
-	})
+	sets.midcast['Blue Magic'].PhysicalMacc = set_combine(sets.midcast['Blue Magic'].Physical, {})
 
     -- Magical Spells --
     
     sets.midcast['Blue Magic'].Magical = {
-		ammo="Pemphredo Tathlum",
-		head="Nyame Helm",
-		neck="Baetyl Pendant",
-		ear1="Regal Earring",
-		ear2="Friomisi Earring",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
+		ammo="Ghastly Tathlum +1",
+		head="Hashishin Kavuk +3",
+		neck="Sibyl Scarf",
+		ear1="Friomisi Earring",
+		ear2="Regal Earring",
+		body="Hashishin Mintan +3",
+		hands="Hashishin Bazubands +3",
 		ring1="Shiva Ring +1",
-		ring2="Fenrir Ring +1",
-		back="Aurist's Cape +1",
+		ring2="Metamorph Ring +1",
+		back=rosmertaMacc,
 		waist="Sacro Cord",
 		legs="Luhlaza Shalwar +2",
-		feet="Nyame Sollerets",
+		feet="Hashishin Basmak +3"
 	}
 
     sets.midcast['Blue Magic'].Magical.Resistant = set_combine(sets.midcast['Blue Magic'].Magical, {})
@@ -323,46 +335,74 @@ function define_spell_and_ja_sets()
 	
 	sets.midcast['Blue Magic']['Tenebral Crush'] = set_combine(sets.midcast['Blue Magic'].Magical, {
 		head="Pixie Hairpin +1",
-		ring1="Archon Ring"
+		ring2="Archon Ring"
 	})
 
     sets.midcast['Blue Magic'].MagicAccuracy = {
 		ammo="Pemphredo Tathlum",
-		head="Amalric Coif +1", -- AF+3 (Set) 
-		neck="Erra Pendant", -- JSE Neck +2 > +1
-		ear1="Crepuscular Earring",
-		ear2="Dignitary's Earring",
-		body="Amalric Doublet +1",
-		hands="Malignance Gloves", -- Raetic +1
-		ring1="Metamorph Ring +1",
-		ring2="Stikini Ring +1",
-		back=rosmertaMacc,
+		head="Hashishin Kavuk +3",
+		neck="Mirage Stole +1",
+		ear1="Dignitary's Earring",
+		ear2="Hashishin Earring +1",
+		body="Hashishin Mintan +3",
+		hands="Hashishin Bazubands +3",
+		ring1="Stikini Ring +1",
+		ring2="Metamorph Ring +1",
+		back="Aurist's Cape +1",
 		waist="Acuity Belt +1",
-		legs="Ayanmo Cosciales +2", -- AF+3 (Set) > AF+2(Set) > Malignance > AF+3 > Jhakri +2 = Ayanamo +2 = Luhlaza +3
-		feet="Malignance Boots",
+		legs="Hashishin Tayt +3",
+		feet="Hashishin Basmak +3"
 	}
 	
-	sets.midcast['Blue Magic'].MagicAccuracy.Resistant = set_combine(sets.midcast['Blue Magic'], {back="Aurist's Cape +1"})
+	sets.midcast['Blue Magic'].MagicAccuracy.Resistant = set_combine(sets.midcast['Blue Magic'], {})
 	
-	sets.midcast['Blue Magic'].MagicAccuracy.LoseTP = set_combine(sets.midcast['Blue Magic'].MagicAccuracy, {
-		main="Naegling", -- Sakpata's Sword (R20+)
-		sub="Bunzi's Rod",
-	})
-	sets.midcast['Blue Magic'].MagicAccuracy.LoseTPRes = set_combine(sets.midcast['Blue Magic'].MagicAccuracy.LoseTP, {back="Aurist's Cape +1"})
+	sets.MaccWeapons = {
+		main="Sakpata's Sword", -- R25: MACC+50 Skill+248
+		sub="Bunzi's Rod", -- R25: MACC+50 Skill+255
+	}
+	
+	sets.midcast['Blue Magic'].MagicAccuracy.LoseTP = set_combine(sets.midcast['Blue Magic'].MagicAccuracy, sets.MaccWeapons)
+	
+	sets.midcast['Blue Magic'].MagicAccuracy.LoseTPRes = set_combine(sets.midcast['Blue Magic'].MagicAccuracy.Resistant, sets.MaccWeapons)
 
     -- Breath Spells --
     
-    sets.midcast['Blue Magic'].Breath = {}
+    sets.midcast['Blue Magic'].Breath = {
+		ammo="Egoist's Tathlum",
+		head="Luhlaza Keffiyeh +2",
+		neck="Unmoving Collar +1",
+		ear1="Tuisto Earring",
+		ear2="Odnowa Earring +1",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		ring1="Supershear Ring",
+		ring2="Gelatinous Ring +1",
+		back="Moonlight Cape",
+		waist="Platinum Moogle Belt",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets"
+	}
 
     -- Other Types --
 	
     sets.midcast['Blue Magic'].Healing = {
-		back="Oretania's Cape +1",
-		ear1="Mendicant's Earring",
-		ring1="Lebeche Ring"
+		--head="Pinga Crown",
+		--body="Pinga Tunic",
+		ring1="Naji's Loop",
+		hands="Telchine Gloves"
+		--legs="Pinga Pants",
+		--feet="Pinga Pumps"
 	}
         
-    sets.midcast['Blue Magic']['White Wind'] = set_combine(sets.midcast['Blue Magic'].Healing, {})
+    sets.midcast['Blue Magic']['White Wind'] = set_combine(sets.midcast['Blue Magic'].Healing, {
+		ammo="Egoist's Tathlum",
+		neck="Unmoving Collar +1",
+		ear1="Tuisto Earring",
+		ear2="Odnowa Earring +1",
+		ring2="Gelatinous Ring +1",
+		back="Moonlight Cape",
+		waist="Platinum Moogle Belt",
+	})
 	
 	sets.midcast['Blue Magic']['Battery Charge'] = {
 		head="Amalric Coif +1",
@@ -371,12 +411,19 @@ function define_spell_and_ja_sets()
 
 
     sets.midcast['Blue Magic'].SkillBasedBuff = {
+		ammo="Mavi Tathlum",
 		head="Luhlaza Keffiyeh +2",
+		neck="Mirage Stole +1",
+		--ear1="Njordr Earring",
+		ear2="Hashishin Earring +1",
 		body="Magus Jubbah +1",
-		legs="Mavi Tayt +2",
-		feet="Luhlaza Charuqs +2",
+		--body="Assimilator's Jubbah +3",
+		--hands="Rawhide Gloves",
 		ring1="Stikini Ring +1",
-		ring2="Stikini Ring"
+		ring2="Stikini Ring +1",
+		back="Cornflower Cape",
+		legs="Hashishin Tayt +3",
+		feet="Luhlaza Charuqs +2"
 	}
 
     sets.midcast['Blue Magic'].Buff = {}
@@ -402,59 +449,112 @@ function define_ws_sets()
     -- Weaponskill sets
     -- Default set for any weaponskill that isn't any more specifically defined
     sets.precast.WS = {
-		ammo="Coiste Bodhar",
-		head="Nyame Helm",
-		neck="Fotia Gorget",
+		ammo="Oshasha's Treatise",
+		head="Hashishin Kavuk +3",
+		neck="Mirage Stole +1",
 		ear1="Ishvara Earring",
 		ear2="Moonshade Earring",
 		body="Nyame Mail",
 		hands="Nyame Gauntlets",
-		ring1="Cornelia's Ring",
-		ring2="Beithir Ring",
+		ring1="Karieyh Ring +1",
+		ring2="Cornelia's Ring",
 		back=rosmertaSTRWS,
 		waist="Sailfi Belt +1",
 		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
+		feet="Nyame Sollerets"
 	}
     
-    sets.precast.WS.Acc = set_combine(sets.precast.WS, {
-		ear1="Telos Earring",
-		ammo="Ginsen",
-		waist="Kentarch Belt +1",
+    sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
+	
+	sets.precast.WS.PDL = set_combine(sets.precast.WS, {
+		ammo="Crepuscular Pebble",
+		body="Gleti's Cuirass",
+		legs="Gleti's Breeches",
+		ring1="Sroda Ring"
 	})
+	
+	sets.precast.WS['Chant du Cygne'] = {
+		ammo="Coiste Bodhar",
+		head="Adhemar Bonnet +1",
+		neck="Mirage Stole +1",
+		ear1="Dominance Earring +1",
+		--ear1="Mache Earring +1",
+		ear2="Moonshade Earring",
+		--ear2="Odr Earring",
+		body="Gleti's Cuirass",
+		hands="Gleti's Gauntlets",
+		ring1="Epona's Ring",
+		ring2="Begrudging Ring",
+		back=rosmertaTP, 
+		waist="Fotia Belt",
+		legs="Gleti's Breeches",
+		feet="Gleti's Boots"
+	}
 end
 function define_engaged_sets()
+	sets.FullAccuracy = {
+		ring1="Cacoethic Ring +1"
+	}
+	sets.MinSubtleBlow = {
+		-- Assumes Auspice, requires 21 Subtle Blow
+		legs="Gleti's Breeches", -- 15
+		ring1="Chirich Ring +1", -- 6
+	}
+	sets.FullSubtleBlow = set_combine(sets.MinSubtleBlow, {
+		-- Requires 50 Subtle Blow to cap
+		-- Min set gives +21
+		neck="Bathy Choker +1", -- 11
+		ear1="Dignitary's Earring", -- 5
+		ring2="Chirich Ring +1", -- 6
+		ammo="Expeditious Pinion", -- 7
+	})
+	
+	-- Normal TP Sets
     sets.engaged = {
 		ammo="Coiste Bodhar",
 		head="Adhemar Bonnet +1",
-		neck="Combatant's Torque",
-		ear1="Cessance Earring",
-		ear2="Brutal Earring",
+		neck="Mirage Stole +1",
+		ear1="Telos Earring",
+		ear2="Suppanomimi",
 		body="Adhemar Jacket +1",
 		hands="Adhemar Wristbands +1",
 		ring1="Epona's Ring",
-		ring2="Hetairoi Ring",
+		ring2="Chirich Ring +1",
 		back=rosmertaTP,
 		waist="Sailfi Belt +1",
 		legs="Samnuha Tights",
-		feet="Herculean Boots",
+		feet="Herculean Boots"
 	}
 
-    sets.engaged.Acc = set_combine(sets.engaged, {
-		ammo="Ginsen",
+    sets.engaged.Acc = set_combine(sets.engaged, sets.FullAccuracy)
+	
+	sets.engaged.SubtleBlow = set_combine(sets.engaged, sets.MinSubtleBlow)
+	
+	sets.engaged.SubtleBlow.NoAuspice = set_combine(sets.engaged, sets.FullSubtleBlow)
+	
+	-- Hybrid TP Sets
+	
+	sets.engaged.DT = set_combine(sets.engaged, {
+		ammo="Coiste Bodhar",
 		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		legs="Gleti's Breeches",
-		waist="Reiki Yotai",
-		ring1="Cacoethic Ring +1",
-		ring2="Chirich Ring +1",
+		neck="Mirage Stole +1",
 		ear1="Telos Earring",
-		ear2="Crepuscular Earring"
+		ear2="Suppanomimi",
+		body="Malignance Tabard",
+		hands="Malignance Gloves",
+		ring1="Epona's Ring",
+		ring2="Defending Ring",
+		back=rosmertaTP,
+		waist="Reiki Yotai",
+		legs="Gleti's Breeches",
+		feet="Malignance Boots"
 	})
 
-    sets.engaged.DW = set_combine(sets.engaged)
-
-    sets.engaged.DW.Acc = set_combine(sets.engaged.Acc)
+    sets.engaged.DT.Acc = set_combine(sets.engaged.DT, sets.FullAccuracy)
+	
+	sets.engaged.DT.SubtleBlow = set_combine(sets.engaged.DT, sets.MinSubtleBlow)
+	
+	sets.engaged.DT.SubtleBlow.NoAuspice = set_combine(sets.engaged.DT, sets.FullSubtleBlow)
 end
 function define_idle_dt_sets() 
 
@@ -462,45 +562,59 @@ function define_idle_dt_sets()
 	
     -- Defense sets
     sets.defense.PDT = {
-		ammo="Staunch Tathlum +1", -- 3%
-		head="Nyame Helm", -- 7%
-		neck="Warder's Charm +1",
-		ear1="Odnowa Earring +1", -- 3%, 2%M
-		ear2="Sanare Earring",
-		body="Malignance Tabard", -- 9%
-		hands="Nyame Gauntlets", -- 7%
-		ring1="Defending Ring", -- 10%
-		ring2="Shadow Ring",
-		back=rosmertaTP,
-		waist="Carrier's Sash",
-		legs="Nyame Flanchard", -- 8%
-		feet="Nyame Sollerets", -- 7%
+		-- Total: DEF+772, VIT+205, PDT-69%, MDT-43%, MDEF+52
+		head="Gleti's Mask", -- DEF+152, VIT+30, PDT-6%, MDEF+13
+		body="Nyame Mail", -- DEF+189, VIT+35, DT-9%, MDEF+8
+		hands="Nyame Gauntlets", -- DEF+142, VIT+49, DT-7%, MDEF+4
+		legs="Gleti's Breeches", -- DEF+165, VIT+37, PDT-8%, MDEF+14
+		feet="Gleti's Boots", -- DEF+119, VIT+26, PDT-5%, MDEF+13
+		neck="Loricate Torque +1", -- DT-6%, DEF+55,
+		ammo="Staunch Tathlum +1", -- DT-3%
+		ear2="Tuisto Earring", --DEF+20, VIT+10
+		ear1="Odnowa Earring +1", -- DEF+30, VIT+3, MDT-2%, DT-3%,
+		ring1="Defending Ring",
+		ring2="Gelatinous Ring +1", -- VIT+15, PDT-7%, MDT+1%
+		waist="Platinum Moogle Belt",
+		back=rosmertaTP, -- DT-5%
 	}
 
-    sets.defense.MDT = set_combine(sets.defense.PDT)
+    sets.defense.MDT = set_combine(sets.defense.PDT, {
+		-- 45% DT, 5% MDT
+		body="Hashishin Mintan +3",
+		hands="Hashishin Bazubands +3",
+		neck="Warder's Charm +1",
+		waist="Carrier's Sash",
+		ear2="Etiolation Earring", 
+		ring2="Shadow Ring",
+		back="Moonlight Cape"
+	})
     
     -- Idle sets
-    sets.idle = set_combine(sets.defense.PDT, {
-		-- 22% DT => 22+36=58% PDT, 22+9=31% MDT
-		head="Gleti's Mask", -- 6%P (-7%)
-		neck="Loricate Torque +1", -- 6%
-		ear2="Etiolation Earring",
-		body="Gleti's Cuirass", -- 9% P (-9%)
-		hands="Gleti's Gauntlets", -- 7%P (-7%)
-		ring2="Karieyh Ring +1",
-		back="Engulfer Cape +1", -- 4%M
-		legs="Gleti's Breeches", -- 8%P (-8%)
-		feet="Gleti's Boots" --5%P (-7%)
-	})
+    sets.idle = {
+		--Total: PDT-56%, MDT-35%, Regain+14, Refresh+4
+		head="Gleti's Mask", -- PDT-6%, Regain+2
+		neck="Loricate Torque +1", -- DT-6%
+		body="Hashishin Mintan +3", -- DT-13%, Refresh+4
+		hands="Gleti's Gauntlets", -- PDT-7%, Regain+2
+		legs="Gleti's Breeches", -- PDT-8%, Regain+3
+		feet="Gleti's Boots", --PDT-5%, Regain+2
+		ring1="Karieyh Ring +1", --Regain+5
+		ring2="Sheltered Ring",
+		waist="Carrier's Sash",
+		back=rosmertaTP, -- DT-5%
+		ear1="Odnowa Earring +1", -- DT-3%, MDT-2%
+		ear2="Etiolation Earring", -- MDT-3%
+		ammo="Staunch Tathlum +1", -- DT-3%
+	}
 	
 	sets.idle.Refresh = set_combine(sets.idle, {
-		--head="Rawhide Mask",
+		neck="Sibyl Scarf",
 		ring1="Stikini Ring +1",
-		ring2="Sheltered Ring", -- (-10%)
-		body="Jhakri Robe +2",
 	})
 
     sets.Kiting = {legs="Carmine Cuisses +1"}
+	
+	sets.Learning = { hands="Magus Bazubands +1" }
 end 
 
 -------------------------------------------------------------------------------------------------------------------
@@ -515,7 +629,7 @@ function job_precast(spell, action, spellMap, eventArgs)
         windower.send_command('@input /ja "Unbridled Learning" <me>; wait 1.5; input /ma "'..spell.name..'" '..spell.target.name)
     end
 	
-	if (state.CastingMode.value == 'LoseTP') then
+	if (state.CastingMode.value == 'LoseTP' or state.CastingMode.value == 'LoseTPRes') then
 		storedMain = player.equipment.main
 		storedSub = player.equipment.sub
 	end
@@ -525,7 +639,7 @@ function job_state_change(state, new_state_value, old_state_value)
     if (state == 'Learning Spells') then
 		if (new_state_value == true) then
 			-- If in learning mode, keep on gear intended to help with that, regardless of action.
-			equip({ hands="Magus Bazubands +1" })
+			equip(sets.Learning)
 			disable('hands')
 		else
 			enable('hands')
@@ -567,6 +681,13 @@ function job_buff_change(buff, gain)
     if state.Buff[buff] ~= nil then
         state.Buff[buff] = gain
     end
+	if (buff == 'Auspice') then 
+		if gain then
+			classes.CustomMeleeGroups:clear()
+		else
+			classes.CustomMeleeGroups:append('NoAuspice')
+		end
+	end
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -592,20 +713,4 @@ function customize_idle_set(idleSet)
         set_combine(idleSet, sets.latent_refresh)
     end
     return idleSet
-end
-
-function job_update(cmdParams, eventArgs)
-    update_subjob_mode()
-end
-
-function update_subjob_mode()
-	if player.sub_job == 'NIN' or player.sub_job == 'DNC' or player.equipment.sub ~= "Genmei Shield" then
-		if (state.CombatForm.value ~= 'DW') then
-			state.CombatForm:set('DW')
-			add_to_chat(002, 'Combat Form updated to: '.. state.CombatForm.value)
-		end
-	else
-		state.CombatForm:reset()
-		add_to_chat(002, 'Combat Form reset')
-    end
 end
