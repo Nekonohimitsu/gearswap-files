@@ -74,6 +74,22 @@ end
 --------------------------------------
 function define_spell_and_ja_sets()
 
+	sets.enmity = {
+		ammo="Sapience Orb",
+		head="Loess Barbuta +1",
+		neck="Unmoving Collar +1",
+		ear1="Trux Earring",
+		ear2="Cryptic Earring",
+		body="Emet Harness +1",
+		hands="Heathen's Gauntlets +3",
+		ring1="Pernicous Ring",
+		ring2="Supershear Ring",
+		back=ankouINTMACC,
+		waist="Goading Belt",
+		legs="Zoar Subligar +1",
+		feet="Eschite Greaves"
+	}
+
 	sets.precast.FC = {	--72% FC
 		-- Carmine Mask +1 will give 3% additional FC.
 		ammo="Sapience Orb",
@@ -101,6 +117,7 @@ function define_spell_and_ja_sets()
 	sets.precast.JA['Arcane Circle'] = {feet="Ignominy Sollerets +3"}
 	sets.precast.JA['Blood Weapon'] = {body="Fallen's Cuirass +3"}
 	sets.precast.JA['Diabolic Eye'] = {hands="Fallen's Finger Gauntlets +3"}
+	sets.precast.JA['Souleater'] = set_combine(sets.enmity, {})
 	sets.precast.JA.Jump = {
 		ammo="Coiste Bodhar",
 		head="Hjarrandi Helm",
@@ -200,6 +217,8 @@ function define_spell_and_ja_sets()
 	sets.midcast['Drain III'] = set_combine(sets.midcast.Drain, {
 		feet="Ratri Sollerets +1"
 	})
+	
+	sets.midcast.Stun = set_combine(sets.enmity, {})
 		
 	-- Enfeebling Magic
 	sets.midcast['Enfeebling Magic'] = {
