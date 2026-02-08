@@ -49,47 +49,8 @@ function get_sets()
 end
 
 function job_setup()
-    -- Display and Random Lockstyle Generator options
-    DisplayPetBuffTimers = 'false'
-    DisplayModeInfo = 'false'
-    RandomLockstyleGenerator = 'false'
-
-    PetName = 'None';PetJob = 'None';PetInfo = 'None';ReadyMoveOne = 'None';ReadyMoveTwo = 'None';ReadyMoveThree = 'None';ReadyMoveFour = 'None'
-    pet_info_update()
-
-    -- Input Pet:TP Bonus values for Skirmish Axes used during Pet Buffs
-    TP_Bonus_Main = 200
-    TP_Bonus_Sub = 200
-
-    -- 1200 Job Point Gift Bonus (Set equal to 0 if below 1200 Job Points)
-    TP_Gift_Bonus = 40
-
-    -- (Adjust Run Wild Duration based on # of Job Points)
-    RunWildDuration = 340;RunWildIcon = 'abilities/00121.png'
-    RewardRegenIcon = 'spells/00023.png'
-    SpurIcon = 'abilities/00037.png'
-    BubbleCurtainDuration = 180;BubbleCurtainIcon = 'spells/00048.png'
-    ScissorGuardIcon = 'spells/00043.png'
-    SecretionIcon = 'spells/00053.png'
-    RageIcon = 'abilities/00002.png'
-    RhinoGuardIcon = 'spells/00053.png'
-    ZealousSnortIcon = 'spells/00057.png'
-
-    -- Display Mode Info as on-screen Text
-    TextBoxX = 1075
-    TextBoxY = 47
-    TextSize = 11
-
-    -- List of Equipment Sets created for Random Lockstyle Generator
-    -- (If you want to have the same Lockstyle every time, reduce the list to a single Equipset #)
-    random_lockstyle_list = {1,2,3,4,5,6,7,8,9,10,11,12,13}
-
     state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
     state.Buff['Killer Instinct'] = buffactive['Killer Instinct'] or false
-
-    if DisplayModeInfo == 'true' then
-        DisplayTrue = 1
-    end
 
     get_combat_form()
     get_melee_groups()
@@ -128,66 +89,58 @@ function user_setup()
     -- 'Out of Range' distance; Melee WSs will auto-cancel
     target_distance = 8
 
--- Categorized list of Ready moves
-physical_ready_moves = S{'Foot Kick','Whirl Claws','Sheep Charge','Lamb Chop','Head Butt','Wild Oats',
-    'Leaf Dagger','Claw Cyclone','Razor Fang','Crossthrash','Nimble Snap','Cyclotail','Rhino Attack',
-    'Power Attack','Mandibular Bite','Big Scissors','Grapple','Spinning Top','Double Claw','Frogkick',
-    'Blockhead','Brain Crush','Tail Blow','Scythe Tail','Ripper Fang','Chomp Rush','Needleshot',
-    'Recoil Dive','Sudden Lunge','Spiral Spin','Wing Slap','Beak Lunge','Suction','Back Heel',
-    'Fantod','Tortoise Stomp','Sensilla Blades','Tegmina Buffet','Pentapeck','Sweeping Gouge',
-    'Somersault','Tickling Tendrils','Pecking Flurry','Sickle Slash','Disembowel','Extirpating Salvo',
-    'Mega Scissors','Rhinowrecker','Hoof Volley','Fluid Toss','Fluid Spread'}
+	-- Categorized list of Ready moves
+	physical_ready_moves = S{'Foot Kick','Whirl Claws','Sheep Charge','Lamb Chop','Head Butt','Wild Oats',
+		'Leaf Dagger','Claw Cyclone','Razor Fang','Crossthrash','Nimble Snap','Cyclotail','Rhino Attack',
+		'Power Attack','Mandibular Bite','Big Scissors','Grapple','Spinning Top','Double Claw','Frogkick',
+		'Blockhead','Brain Crush','Tail Blow','Scythe Tail','Ripper Fang','Chomp Rush','Needleshot',
+		'Recoil Dive','Sudden Lunge','Spiral Spin','Wing Slap','Beak Lunge','Suction','Back Heel',
+		'Fantod','Tortoise Stomp','Sensilla Blades','Tegmina Buffet','Pentapeck','Sweeping Gouge',
+		'Somersault','Tickling Tendrils','Pecking Flurry','Sickle Slash','Disembowel','Extirpating Salvo',
+		'Mega Scissors','Rhinowrecker','Hoof Volley','Fluid Toss','Fluid Spread'}
 
-magic_atk_ready_moves = S{'Dust Cloud','Cursed Sphere','Venom','Toxic Spit','Bubble Shower','Drainkiss',
-    'Silence Gas','Dark Spore','Fireball','Plague Breath','Snow Cloud','Charged Whisker','Corrosive Ooze',
-    'Aqua Breath','Stink Bomb','Nectarous Deluge','Nepenthic Plunge','Pestilent Plume','Foul Waters',
-    'Acid Spray','Infected Leech','Gloom Spray','Venom Shower'}
+	magic_atk_ready_moves = S{'Dust Cloud','Cursed Sphere','Venom','Toxic Spit','Bubble Shower','Drainkiss',
+		'Silence Gas','Dark Spore','Fireball','Plague Breath','Snow Cloud','Charged Whisker','Corrosive Ooze',
+		'Aqua Breath','Stink Bomb','Nectarous Deluge','Nepenthic Plunge','Pestilent Plume','Foul Waters',
+		'Acid Spray','Infected Leech','Gloom Spray','Venom Shower'}
 
-magic_acc_ready_moves = S{'Sheep Song','Scream','Dream Flower','Roar','Predatory Glare','Gloeosuccus',
-    'Palsy Pollen','Soporific','Geist Wall','Toxic Spit','Numbing Noise','Spoil','Hi-Freq Field',
-    'Sandpit','Sandblast','Venom Spray','Filamented Hold','Queasyshroom','Numbshroom','Spore','Shakeshroom',
-    'Infrasonics','Chaotic Eye','Blaster','Purulent Ooze','Intimidate','Noisome Powder','Acid Mist',
-    'Choke Breath','Jettatura','Nihility Song','Molting Plumage','Swooping Frenzy','Spider Web'}
+	magic_acc_ready_moves = S{'Sheep Song','Scream','Dream Flower','Roar','Predatory Glare','Gloeosuccus',
+		'Palsy Pollen','Soporific','Geist Wall','Toxic Spit','Numbing Noise','Spoil','Hi-Freq Field',
+		'Sandpit','Sandblast','Venom Spray','Filamented Hold','Queasyshroom','Numbshroom','Spore','Shakeshroom',
+		'Infrasonics','Chaotic Eye','Blaster','Purulent Ooze','Intimidate','Noisome Powder','Acid Mist',
+		'Choke Breath','Jettatura','Nihility Song','Molting Plumage','Swooping Frenzy','Spider Web'}
 
-multi_hit_ready_moves = S{'Pentapeck','Tickling Tendrils','Sweeping Gouge','Chomp Rush','Wing Slap',
-    'Pecking Flurry'}
+	multi_hit_ready_moves = S{'Pentapeck','Tickling Tendrils','Sweeping Gouge','Chomp Rush','Wing Slap',
+		'Pecking Flurry'}
 
-tp_based_ready_moves = S{'Foot Kick','Dust Cloud','Snow Cloud','Sheep Song','Sheep Charge','Lamb Chop',
-    'Head Butt','Scream','Dream Flower','Wild Oats','Leaf Dagger','Claw Cyclone','Razor Fang','Roar',
-    'Gloeosuccus','Palsy Pollen','Soporific','Cursed Sphere','Somersault','Geist Wall','Numbing Noise',
-    'Frogkick','Nimble Snap','Cyclotail','Spoil','Rhino Attack','Hi-Freq Field','Sandpit','Sandblast',
-    'Mandibular Bite','Metallic Body','Bubble Shower','Grapple','Spinning Top','Double Claw','Spore',
-    'Filamented Hold','Blockhead','Fireball','Tail Blow','Plague Breath','Brain Crush','Infrasonics',
-    'Needleshot','Chaotic Eye','Blaster','Ripper Fang','Intimidate','Recoil Dive','Water Wall',
-    'Sudden Lunge','Noisome Powder','Wing Slap','Beak Lunge','Suction','Drainkiss','Acid Mist',
-    'TP Drainkiss','Back Heel','Jettatura','Choke Breath','Fantod','Charged Whisker','Purulent Ooze',
-    'Corrosive Ooze','Tortoise Stomp','Aqua Breath','Sensilla Blades','Tegmina Buffet','Sweeping Gouge',
-    'Tickling Tendrils','Pecking Flurry','Pestilent Plume','Foul Waters','Spider Web','Gloom Spray',
-    'Disembowel','Extirpating Salvo','Rhinowrecker','Venom Shower','Fluid Toss','Fluid Spread','Digest'}
+	tp_based_ready_moves = S{'Foot Kick','Dust Cloud','Snow Cloud','Sheep Song','Sheep Charge','Lamb Chop',
+		'Head Butt','Scream','Dream Flower','Wild Oats','Leaf Dagger','Claw Cyclone','Razor Fang','Roar',
+		'Gloeosuccus','Palsy Pollen','Soporific','Cursed Sphere','Somersault','Geist Wall','Numbing Noise',
+		'Frogkick','Nimble Snap','Cyclotail','Spoil','Rhino Attack','Hi-Freq Field','Sandpit','Sandblast',
+		'Mandibular Bite','Metallic Body','Bubble Shower','Grapple','Spinning Top','Double Claw','Spore',
+		'Filamented Hold','Blockhead','Fireball','Tail Blow','Plague Breath','Brain Crush','Infrasonics',
+		'Needleshot','Chaotic Eye','Blaster','Ripper Fang','Intimidate','Recoil Dive','Water Wall',
+		'Sudden Lunge','Noisome Powder','Wing Slap','Beak Lunge','Suction','Drainkiss','Acid Mist',
+		'TP Drainkiss','Back Heel','Jettatura','Choke Breath','Fantod','Charged Whisker','Purulent Ooze',
+		'Corrosive Ooze','Tortoise Stomp','Aqua Breath','Sensilla Blades','Tegmina Buffet','Sweeping Gouge',
+		'Tickling Tendrils','Pecking Flurry','Pestilent Plume','Foul Waters','Spider Web','Gloom Spray',
+		'Disembowel','Extirpating Salvo','Rhinowrecker','Venom Shower','Fluid Toss','Fluid Spread','Digest'}
 
--- List of Pet Buffs and Ready moves exclusively modified by Pet TP Bonus gear.
-pet_buff_moves = S{'Wild Carrot','Bubble Curtain','Scissor Guard','Secretion','Rage','Harden Shell',
-    'TP Drainkiss','Fantod','Rhino Guard','Zealous Snort','Frenzied Rage','Digest'}
+	-- List of Pet Buffs and Ready moves exclusively modified by Pet TP Bonus gear.
+	pet_buff_moves = S{'Wild Carrot','Bubble Curtain','Scissor Guard','Secretion','Rage','Harden Shell',
+		'TP Drainkiss','Fantod','Rhino Guard','Zealous Snort','Frenzied Rage','Digest'}
 
--- List of Jug Modes that will cancel if Call Beast is used (Bestial Loyalty-only jug pets, HQs generally).
-call_beast_cancel = S{'Vis. Broth','Ferm. Broth','Bubbly Broth','Windy Greens','Bug-Ridden Broth','Tant. Broth',
-    'Glazed Broth','Slimy Webbing','Deepwater Broth','Venomous Broth','Heavenly Broth'}
+	-- List of Jug Modes that will cancel if Call Beast is used (Bestial Loyalty-only jug pets, HQs generally).
+	call_beast_cancel = S{'Vis. Broth','Ferm. Broth','Bubbly Broth','Windy Greens','Bug-Ridden Broth','Tant. Broth',
+		'Glazed Broth','Slimy Webbing','Deepwater Broth','Venomous Broth','Heavenly Broth'}
 
--- List of abilities to reference for applying Treasure Hunter gear.
-abilities_to_check = S{'Feral Howl','Quickstep','Box Step','Stutter Step','Desperate Flourish',
-    'Violent Flourish','Animated Flourish','Provoke','Dia','Dia II','Flash','Bio','Bio II',
-    'Sleep','Sleep II','Drain','Aspir','Dispel','Stun','Steal','Mug'}
+	-- List of abilities to reference for applying Treasure Hunter gear.
+	abilities_to_check = S{'Feral Howl','Quickstep','Box Step','Stutter Step','Desperate Flourish',
+		'Violent Flourish','Animated Flourish','Provoke','Dia','Dia II','Flash','Bio','Bio II',
+		'Sleep','Sleep II','Drain','Aspir','Dispel','Stun','Steal','Mug'}
 
-enmity_plus_moves = S{'Provoke','Berserk','Warcry','Aggressor','Holy Circle','Sentinel','Last Resort',
-    'Souleater','Vallation','Swordplay'}
-
--- Random Lockstyle generator.
-    if RandomLockstyleGenerator == 'true' then
-        local randomLockstyle = random_lockstyle_list[math.random(1, #random_lockstyle_list)]
-        send_command('@wait 5;input /lockstyleset '.. randomLockstyle)
-    end
-
-    display_mode_info()
+	enmity_plus_moves = S{'Provoke','Berserk','Warcry','Aggressor','Holy Circle','Sentinel','Last Resort',
+		'Souleater','Vallation','Swordplay'}
 end
 
 function file_unload()
@@ -201,12 +154,6 @@ function file_unload()
     send_command('unbind @=')
     send_command('unbind @f8')
     send_command('unbind ^f11')
-
-    -- Removes any Text Info Boxes
-    send_command('text JugPetText delete')
-    send_command('text CorrelationText delete')
-    send_command('text AxeModeText delete')
-    send_command('text AccuracyText delete')
 end
 
 -- BST gearsets
@@ -1215,10 +1162,6 @@ end
 -- Job-specific hooks that are called to process player actions at specific points in time.
 -------------------------------------------------------------------------------------------------------------------
 
-function job_pretarget(spell)
-    --checkblocking(spell)
-end
-
 function job_precast(spell, action, spellMap, eventArgs)
     if spell.type == "Monster" and not spell.interrupted then
         equip_ready_gear(spell)
@@ -1287,7 +1230,6 @@ function job_precast(spell, action, spellMap, eventArgs)
     end
 
     if spell.english == 'Bestial Loyalty' or spell.english == 'Call Beast' then
-   --     jug_pet_info()
         if spell.english == "Call Beast" and call_beast_cancel:contains(JugInfo) then
             add_to_chat(123, spell.name..' Canceled: [HQ Jug Pet]')
             return
@@ -1374,17 +1316,6 @@ function job_aftercast(spell, action, spellMap, eventArgs)
     if spell.type == "Monster" or spell.name == "Sic" then
         equip_ready_gear(spell)
         eventArgs.handled = true
-    end
-
-    if spell.english == 'Fight' or spell.english == 'Bestial Loyalty' or spell.english == 'Call Beast' then
-        if not spell.interrupted then
-            pet_info_update()
-        end
-    end
-
-    if spell.english == "Leave" and not spell.interrupted then
-        clear_pet_buff_timers()
-        PetName = 'None';PetJob = 'None';PetInfo = 'None';ReadyMoveOne = 'None';ReadyMoveTwo = 'None';ReadyMoveThree = 'None';ReadyMoveFour = 'None'
     end
 
     if player.equipment.main == 'Aymur' then
@@ -1506,8 +1437,6 @@ end
 function job_update(cmdParams, eventArgs)
     get_combat_form()
     get_melee_groups()
-    pet_info_update()
-    update_display_mode_info()
     pet_only_equip_handling()
 end
 
@@ -1519,13 +1448,7 @@ function job_pet_status_change(newStatus, oldStatus, eventArgs)
         end
     end
 
-    if pet.hpp == 0 then
-        clear_pet_buff_timers()
-        PetName = 'None';PetJob = 'None';PetInfo = 'None';ReadyMoveOne = 'None';ReadyMoveTwo = 'None';ReadyMoveThree = 'None';ReadyMoveFour = 'None'
-    end
-
     customize_melee_set(meleeSet)
-    pet_info_update()
 end 
 
 function job_buff_change(status, gain, gain_or_loss)
@@ -1794,93 +1717,6 @@ function equip_ready_gear(spell)
     end
 end
 
-
-function pet_info_update()
-    if pet.isvalid then
-        PetName = pet.name
-
-        if pet.name == 'DroopyDortwin' or pet.name == 'PonderingPeter' or pet.name == 'HareFamiliar' or pet.name == 'KeenearedSteffi' then
-            PetInfo = "Rabbit, Beast";PetJob = 'Warrior';ReadyMoveOne = 'Foot Kick';ReadyMoveTwo = 'Whirl Claws';ReadyMoveThree = 'Wild Carrot';ReadyMoveFour = 'Dust Cloud'
-        elseif pet.name == 'LuckyLulush' then
-            PetInfo = "Rabbit, Beast";PetJob = 'Warrior';ReadyMoveOne = 'Foot Kick';ReadyMoveTwo = 'Whirl Claws';ReadyMoveThree = 'Wild Carrot';ReadyMoveFour = 'Snow Cloud'
-        elseif pet.name == 'SunburstMalfik' or pet.name == 'AgedAngus' or pet.name == 'HeraldHenry' or pet.name == 'CrabFamiliar' or pet.name == 'CourierCarrie' then
-            PetInfo = "Crab, Aquan";PetJob = 'Paladin';ReadyMoveOne = 'Big Scissors';ReadyMoveTwo = 'Scissor Guard';ReadyMoveThree = 'Bubble Curtain';ReadyMoveFour = 'Metallic Body'
-        elseif pet.name == 'P.CrabFamiliar' or pet.name == 'JovialEdwin' then
-            PetInfo = "Barnacle Crab, Aquan";PetJob = 'Paladin';ReadyMoveOne = 'Mega Scissors';ReadyMoveTwo = 'Venom Shower';ReadyMoveThree = 'Bubble Curtain';ReadyMoveFour = 'Metallic Body'
-        elseif pet.name == 'WarlikePatrick' or pet.name == 'LizardFamiliar' or pet.name == 'ColdbloodComo' or pet.name == 'AudaciousAnna' then
-            PetInfo = "Lizard, Lizard";PetJob = 'Warrior';ReadyMoveOne = 'Tail Blow';ReadyMoveTwo = 'Fireball';ReadyMoveThree = 'Brain Crush';ReadyMoveFour = 'Blockhead'
-        elseif pet.name == 'ScissorlegXerin' or pet.name == 'BouncingBertha' then
-            PetInfo = "Chapuli, Vermin";PetJob = 'Warrior';ReadyMoveOne = 'Sensilla Blades';ReadyMoveTwo = 'Tegmina Buffet';ReadyMoveThree = 'Tegmina Buffet';ReadyMoveFour = 'Tegmina Buffet'
-        elseif pet.name == 'RhymingShizuna' or pet.name == 'SheepFamiliar' or pet.name == 'LullabyMelodia' or pet.name == 'NurseryNazuna' then
-            PetInfo = "Sheep, Beast";PetJob = 'Warrior';ReadyMoveOne = 'Sheep Charge';ReadyMoveTwo = 'Rage';ReadyMoveThree = 'Sheep Song';ReadyMoveFour = 'Lamb Chop'
-        elseif pet.name == 'AttentiveIbuki' or pet.name == 'SwoopingZhivago' then
-            PetInfo = "Tulfaire, Bird";PetJob = 'Warrior';ReadyMoveOne = 'Swooping Frenzy';ReadyMoveTwo = 'Pentapeck';ReadyMoveThree = 'Molting Plumage';ReadyMoveFour = 'Molting Plumage'
-        elseif pet.name == 'AmiableRoche' or pet.name == 'TurbidToloi' then
-            PetInfo = "Pugil, Aquan";PetJob = 'Warrior';ReadyMoveOne = 'Recoil Dive';ReadyMoveTwo = 'Water Wall';ReadyMoveThree = 'Intimidate';ReadyMoveFour = 'Intimidate'
-        elseif pet.name == 'BrainyWaluis' or pet.name == 'FunguarFamiliar' or pet.name == 'DiscreetLouise' then
-            PetInfo = "Funguar, Plantoid";PetJob = 'Warrior';ReadyMoveOne = 'Frogkick';ReadyMoveTwo = 'Spore';ReadyMoveThree = 'Silence Gas';ReadyMoveFour = 'Dark Spore'
-        elseif pet.name == 'HeadbreakerKen' or pet.name == 'MayflyFamiliar' or pet.name == 'ShellbusterOrob' or pet.name == 'MailbusterCetas' then
-            PetInfo = "Fly, Vermin";PetJob = 'Warrior';ReadyMoveOne = 'Somersault';ReadyMoveTwo = 'Cursed Sphere';ReadyMoveThree = 'Venom';ReadyMoveFour = 'Venom'
-        elseif pet.name == 'RedolentCandi' or pet.name == 'AlluringHoney' then
-            PetInfo = "Snapweed, Plantoid";PetJob = 'Warrior';ReadyMoveOne = 'Tickling Tendrils';ReadyMoveTwo = 'Stink Bomb';ReadyMoveThree = 'Nectarous Deluge';ReadyMoveFour = 'Nepenthic Plunge'
-        elseif pet.name == 'CaringKiyomaro' or pet.name == 'VivaciousVickie' then
-            PetInfo = "Raaz, Beast";PetJob = 'Monk';ReadyMoveOne = 'Sweeping Gouge';ReadyMoveTwo = 'Zealous Snort';ReadyMoveThree = 'Zealous Snort';ReadyMoveFour = 'Zealous Snort'
-        elseif pet.name == 'HurlerPercival' or pet.name == 'BeetleFamiliar' or pet.name == 'PanzerGalahad' then
-            PetInfo = "Beetle, Vermin";PetJob = 'Paladin';ReadyMoveOne = 'Power Attack';ReadyMoveTwo = 'Rhino Attack';ReadyMoveThree = 'Hi-Freq Field';ReadyMoveFour = 'Rhino Guard'
-        elseif pet.name == 'Y.BeetleFamilia' or pet.name == 'EnergizedSefina' then
-            PetInfo = "Beetle (Horn), Vermin";PetJob = 'Paladin';ReadyMoveOne = 'Rhinowrecker';ReadyMoveTwo = 'Hi-Freq Field';ReadyMoveThree = 'Rhino Attack';ReadyMoveFour = 'Rhino Guard'
-        elseif pet.name == 'BlackbeardRandy' or pet.name == 'TigerFamiliar' or pet.name == 'SaberSiravarde' or pet.name == 'GorefangHobs' then
-            PetInfo = "Tiger, Beast";PetJob = 'Warrior';ReadyMoveOne = 'Razor Fang';ReadyMoveTwo = 'Crossthrash';ReadyMoveThree = 'Roar';ReadyMoveFour = 'Predatory Glare'
-        elseif pet.name == 'ColibriFamiliar' or pet.name == 'ChoralLeera' then
-            PetInfo = "Colibri, Bird";PetJob = 'Red Mage';ReadyMoveOne = 'Pecking Flurry';ReadyMoveTwo = 'Pecking Flurry';ReadyMoveThree = 'Pecking Flurry';ReadyMoveFour = 'Pecking Flurry'
-        elseif pet.name == 'SpiderFamiliar' or pet.name == 'GussyHachirobe' then
-            PetInfo = "Spider, Vermin";PetJob = 'Warrior';ReadyMoveOne = 'Sickle Slash';ReadyMoveTwo = 'Acid Spray';ReadyMoveThree = 'Spider Web';ReadyMoveFour = 'Spider Web'
-        elseif pet.name == 'GenerousArthur' or pet.name == 'GooeyGerard' then
-            PetInfo = "Slug, Amorph";PetJob = 'Warrior';ReadyMoveOne = 'Purulent Ooze';ReadyMoveTwo = 'Corrosive Ooze';ReadyMoveThree = 'Corrosive Ooze';ReadyMoveFour = 'Corrosive Ooze'
-        elseif pet.name == 'ThreestarLynn' or pet.name == 'DipperYuly' then
-            PetInfo = "Ladybug, Vermin";PetJob = 'Thief';ReadyMoveOne = 'Spiral Spin';ReadyMoveTwo = 'Sudden Lunge';ReadyMoveThree = 'Noisome Powder';ReadyMoveFour = 'Noisome Powder'
-        elseif pet.name == 'SharpwitHermes' or pet.name == 'SweetCaroline' or pet.name == 'FlowerpotBill' or pet.name == 'FlowerpotBen' or pet.name == 'Homunculus' or pet.name == 'FlowerpotMerle' then
-            PetInfo = "Mandragora, Plantoid";PetJob = 'Monk';ReadyMoveOne = 'Head Butt';ReadyMoveTwo = 'Leaf Dagger';ReadyMoveThree = 'Wild Oats';ReadyMoveFour = 'Scream'
-        elseif pet.name == 'AcuexFamiliar' or pet.name == 'FluffyBredo' then
-            PetInfo = "Acuex, Amorph";PetJob = 'Black Mage';ReadyMoveOne = 'Foul Waters';ReadyMoveTwo = 'Pestilent Plume';ReadyMoveThree = 'Pestilent Plume';ReadyMoveFour = 'Pestilent Plume'
-        elseif pet.name == 'FlytrapFamiliar' or pet.name == 'VoraciousAudrey' or pet.name == 'PrestoJulio' then
-            PetInfo = "Flytrap, Plantoid";PetJob = 'Warrior';ReadyMoveOne = 'Soporific';ReadyMoveTwo = 'Palsy Pollen';ReadyMoveThree = 'Gloeosuccus';ReadyMoveFour = 'Gloeosuccus'
-        elseif pet.name == 'EftFamiliar' or pet.name == 'AmbusherAllie' or pet.name == 'BugeyedBroncha' or pet.name == 'SuspiciousAlice' then
-            PetInfo = "Eft, Lizard";PetJob = 'Warrior';ReadyMoveOne = 'Nimble Snap';ReadyMoveTwo = 'Cyclotail';ReadyMoveThree = 'Geist Wall';ReadyMoveFour = 'Numbing Noise'
-        elseif pet.name == 'AntlionFamiliar' or pet.name == 'ChopsueyChucky' or pet.name == 'CursedAnnabelle' then
-            PetInfo = "Antlion, Vermin";PetJob = 'Warrior';ReadyMoveOne = 'Mandibular Bite';ReadyMoveTwo = 'Venom Spray';ReadyMoveThree = 'Sandblast';ReadyMoveFour = 'Sandpit'
-        elseif pet.name == 'MiteFamiliar' or pet.name == 'LifedrinkerLars' or pet.name == 'AnklebiterJedd' then
-            PetInfo = "Diremite, Vermin";PetJob = 'Dark Knight';ReadyMoveOne = 'Double Claw';ReadyMoveTwo = 'Spinning Top';ReadyMoveThree = 'Filamented Hold';ReadyMoveFour = 'Grapple'
-        elseif pet.name == 'AmigoSabotender' then
-            PetInfo = "Cactuar, Plantoid";PetJob = 'Warrior';ReadyMoveOne = 'Needle Shot';ReadyMoveTwo = '??? Needles';ReadyMoveThree = '??? Needles';ReadyMoveFour = '??? Needles'
-        elseif pet.name == 'CraftyClyvonne' then
-            PetInfo = "Coeurl, Beast";PetJob = 'Warrior';ReadyMoveOne = 'Blaster';ReadyMoveTwo = 'Chaotic Eye';ReadyMoveThree = 'Chaotic Eye';ReadyMoveFour = 'Chaotic Eye'
-        elseif pet.name == 'BloodclawShasra' then
-            PetInfo = "Lynx, Beast";PetJob = 'Warrior';ReadyMoveOne = 'Blaster';ReadyMoveTwo = 'Charged Whisker';ReadyMoveThree = 'Chaotic Eye';ReadyMoveFour = 'Chaotic Eye'
-        elseif pet.name == 'LynxFamiliar' or pet.name == 'VivaciousGaston' then
-            PetInfo = "Collared Lynx, Beast";PetJob = 'Warrior';ReadyMoveOne = 'Frenzied Rage';ReadyMoveTwo = 'Charged Whisker';ReadyMoveThree = 'Chaotic Eye';ReadyMoveFour = 'Blaster'
-        elseif pet.name == 'SwiftSieghard' or pet.name == 'FleetReinhard' then
-            PetInfo = "Raptor, Lizard";PetJob = 'Warrior';ReadyMoveOne = 'Scythe Tail';ReadyMoveTwo = 'Ripper Fang';ReadyMoveThree = 'Chomp Rush';ReadyMoveFour = 'Chomp Rush'
-        elseif pet.name == 'DapperMac' or pet.name == 'SurgingStorm' or pet.name == 'SubmergedIyo' then
-            PetInfo = "Apkallu, Bird";PetJob = 'Monk';ReadyMoveOne = 'Beak Lunge';ReadyMoveTwo = 'Wing Slap';ReadyMoveThree = 'Wing Slap';ReadyMoveFour = 'Wing Slap'
-        elseif pet.name == 'FatsoFargann' then
-            PetInfo = "Leech, Amorph";PetJob = 'Warrior';ReadyMoveOne = 'Suction';ReadyMoveTwo = 'TP Drainkiss';ReadyMoveThree = 'Drainkiss';ReadyMoveFour = 'Acid Mist'
-        elseif pet.name == 'Hip.Familiar' or pet.name == 'DaringRoland' or pet.name == 'FaithfulFalcorr' then
-            PetInfo = "Hippogryph, Bird";PetJob = 'Thief';ReadyMoveOne = 'Hoof Volley';ReadyMoveTwo = 'Fantod';ReadyMoveThree = 'Nihility Song';ReadyMoveFour = 'Back Heel'
-        elseif pet.name == 'CrudeRaphie' then
-            PetInfo = "Adamantoise, Lizard";PetJob = 'Paladin';ReadyMoveOne = 'Tortoise Stomp';ReadyMoveTwo = 'Harden Shell';ReadyMoveThree = 'Aqua Breath';ReadyMoveFour = 'Aqua Breath'
-        elseif pet.name == 'MosquitoFamilia' or pet.name == 'Left-HandedYoko' then
-            PetInfo = "Mosquito, Vermin";PetJob = 'Dark Knight';ReadyMoveOne = 'Infected Leech';ReadyMoveTwo = 'Gloom Spray';ReadyMoveThree = 'Gloom Spray';ReadyMoveFour = 'Gloom Spray'
-        elseif pet.name == 'WeevilFamiliar' or pet.name == 'StalwartAngelin' then
-            PetInfo = "Weevil, Vermin";PetJob = 'Thief';ReadyMoveOne = 'Disembowel';ReadyMoveTwo = 'Extirpating Salvo';ReadyMoveThree = 'Extirpating Salvo';ReadyMoveFour = 'Extirpating Salvo'
-        elseif pet.name == 'SlimeFamiliar' or pet.name == 'SultryPatrice' then
-            PetInfo = "Slime, Amorph";PetJob = 'Warrior';ReadyMoveOne = 'Fluid Toss';ReadyMoveTwo = 'Fluid Spread';ReadyMoveThree = 'Digest';ReadyMoveFour = 'Digest'
-        end
-    else
-        PetName = 'None';PetJob = 'None';PetInfo = 'None';ReadyMoveOne = 'None';ReadyMoveTwo = 'None';ReadyMoveThree = 'None';ReadyMoveFour = 'None'
-    end
-end
-
 function pet_only_equip_handling()
     if player.status == 'Engaged' and state.AxeMode.value == 'PetOnly' then
         if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
@@ -1906,136 +1742,6 @@ function pet_only_equip_handling()
                 else
                     equip(sets.idle.NE)
                 end
-            end
-        end
-    end
-end
-
-function pet_buff_timer(spell)
-    if spell.english == 'Reward' then
-        send_command('timers c "Pet: Regen" 180 down '..RewardRegenIcon..'')
-    elseif spell.english == 'Spur' then
-        send_command('timers c "Pet: Spur" 90 down '..SpurIcon..'')
-    elseif spell.english == 'Run Wild' then
-        send_command('timers c "'..spell.english..'" '..RunWildDuration..' down '..RunWildIcon..'')
-    end
-end
-
-function clear_pet_buff_timers()
-    send_command('timers c "Pet: Regen" 0 down '..RewardRegenIcon..'')
-    send_command('timers c "Pet: Spur" 0 down '..SpurIcon..'')
-    send_command('timers c "Run Wild" 0 down '..RunWildIcon..'')
-end
-
-function display_mode_info()
-    if DisplayModeInfo == 'true' and DisplayTrue == 1 then
-        local x = TextBoxX
-        local y = TextBoxY
-        send_command('text AccuracyText create Acc. Mode: '..state.OffenseMode.value..'')
-        send_command('text AccuracyText pos '..x..' '..y..'')
-        send_command('text AccuracyText size '..TextSize..'')
-        y = y + (TextSize + 6)
-        send_command('text CorrelationText create Corr. Mode: '..state.CorrelationMode.value..'')
-        send_command('text CorrelationText pos '..x..' '..y..'')
-        send_command('text CorrelationText size '..TextSize..'')
-        y = y + (TextSize + 6)
-        send_command('text AxeModeText create Axe Mode: '..state.AxeMode.value..'')
-        send_command('text AxeModeText pos '..x..' '..y..'')
-        send_command('text AxeModeText size '..TextSize..'')
-        y = y + (TextSize + 6)
-
-        DisplayTrue = DisplayTrue - 1
-    end
-end
-
-function update_display_mode_info()
-    if DisplayModeInfo == 'true' then
-        send_command('text AccuracyText text Acc. Mode: '..state.OffenseMode.value..'')
-        send_command('text CorrelationText text Corr. Mode: '..state.CorrelationMode.value..'')
-        send_command('text AxeModeText text Axe Mode: '..state.AxeMode.value..'')
-    end
-end
-
-function checkblocking(spell)
-    if buffactive.sleep or buffactive.petrification or buffactive.terror then 
-        --add_to_chat(3,'Canceling Action - Asleep/Petrified/Terror!')
-        cancel_spell()
-        return
-    end 
-    if spell.english == "Double-Up" then
-        if not buffactive["Double-Up Chance"] then 
-            add_to_chat(3,'Canceling Action - No ability to Double Up')
-            cancel_spell()
-            return
-        end
-    end
-    if spell.name ~= 'Ranged' and spell.type ~= 'WeaponSkill' and spell.type ~= 'Scholar' and spell.type ~= 'Monster' then
-        if spell.action_type == 'Ability' then
-            if buffactive.Amnesia then
-                cancel_spell()
-                add_to_chat(3,'Canceling Ability - Currently have Amnesia')
-                return
-            else
-                recasttime = windower.ffxi.get_ability_recasts()[spell.recast_id] 
-                if spell and (recasttime >= 1) then
-                    --add_to_chat(3,'Ability Canceled:'..spell.name..' - Waiting on Recast:(seconds) '..recasttime..'')
-                    cancel_spell()
-                    return
-                end
-            end
-        end
-    end
-    if spell.type == 'WeaponSkill' and player.tp < 1000 then
-        cancel_spell()
-        add_to_chat(3,'Canceled WS:'..spell.name..' - Current TP is less than 1000.')
-        return
-    end
-    if spell.type == 'WeaponSkill' and buffactive.Amnesia then
-        cancel_spell()
-        add_to_chat(3,'Canceling Ability - Currently have Amnesia.')
-        return	  
-    end
-    if spell.name == 'Utsusemi: Ichi' and (buffactive['Copy Image (3)'] or buffactive ['Copy Image (4+)']) then
-        cancel_spell()
-        add_to_chat(3,'Canceling Utsusemi - Already have maximum shadows (3).')
-        return
-    end
-    if spell.type == 'Monster' or spell.name == 'Reward' then
-        if pet.isvalid then
-            if spell.name == 'Fireball' and pet.status ~= "Engaged" then
-                cancel_spell()
-                send_command('input /pet Fight <t>')
-                return
-            end
-            local s = windower.ffxi.get_mob_by_target('me')
-            local pet = windower.ffxi.get_mob_by_target('pet')
-            local PetMaxDistance = 4
-            local pettargetdistance = PetMaxDistance + pet.model_size + s.model_size
-            if pet.model_size > 1.6 then 
-                pettargetdistance = PetMaxDistance + pet.model_size + s.model_size + 0.1
-            end
-            if pet.distance:sqrt() >= pettargetdistance then
-                --add_to_chat(3,'Canceling: '..spell.name..' - Outside valid JA Distance.')
-                cancel_spell()
-                return
-            end
-        else
-            add_to_chat(3,'Canceling: '..spell.name..' - That action requires a pet.')
-            cancel_spell()
-            return
-        end
-    end
-    if spell.name == 'Fight' then
-        if pet.isvalid then 
-            local t = windower.ffxi.get_mob_by_target('t') or windower.ffxi.get_mob_by_target('st')
-            local pet = windower.ffxi.get_mob_by_target('pet')
-            local PetMaxDistance = 32 
-            local DistanceBetween = ((t.x - pet.x)*(t.x-pet.x) + (t.y-pet.y)*(t.y-pet.y)):sqrt()
-            if DistanceBetween > PetMaxDistance then 
-                --add_to_chat(3,'Canceling: Fight - Replacing with Heel since target is 30 yalms away from pet.')
-                cancel_spell()
-                send_command('@wait .5; input /pet Heel <me>')
-                return
             end
         end
     end
