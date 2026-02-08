@@ -1758,14 +1758,6 @@ end
 
 pet_tp=0
 function job_self_command(cmdParams, eventArgs)
-    if cmdParams[1]:lower() == 'ready' then
-        if pet.status == "Engaged" then
-            ready_move(cmdParams)
-        else
-            send_command('input /pet "Fight" <t>')
-        end
-        eventArgs.handled = true
-    end
     if cmdParams[1]:lower() == 'gearhandle' then
         pet_only_equip_handling()
     end
@@ -1780,21 +1772,6 @@ function job_self_command(cmdParams, eventArgs)
 	    end
 	    add_to_chat(28,'Ready Recast:'..ready..'   Charges Remaining:'..charges..'')
     end
-end
- 
-function ready_move(cmdParams)
-    local move = cmdParams[2]:lower()
-    local ReadyMove = ''
-    if move == 'one' then
-        ReadyMove = ReadyMoveOne
-    elseif move == 'two' then
-        ReadyMove = ReadyMoveTwo
-    elseif move == 'three' then
-        ReadyMove = ReadyMoveThree
-    else
-        ReadyMove = ReadyMoveFour
-    end
-    send_command('input /pet "'.. ReadyMove ..'" <me>')
 end
 
 pet_tp = 0
@@ -1841,8 +1818,6 @@ function display_current_job_state(eventArgs)
     msg = msg .. ', Corr.: '..state.CorrelationMode.value
 
 
-
-    add_to_chat(28,'Ready Moves: 1.'.. ReadyMoveOne ..'  2.'.. ReadyMoveTwo ..'  3.'.. ReadyMoveThree ..'  4.'.. ReadyMoveFour ..'')
     add_to_chat(122, msg)
 
     eventArgs.handled = true
